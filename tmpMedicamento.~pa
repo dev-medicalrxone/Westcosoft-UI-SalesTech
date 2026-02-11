@@ -1,0 +1,54 @@
+unit tmpMedicamento;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, Grids, DBGrids, ExtCtrls, DBCtrls, Db;
+
+type
+  TForm2 = class(TForm)
+    DataSource1: TDataSource;
+    DBNavigator1: TDBNavigator;
+    DBGrid1: TDBGrid;
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure DataSource1UpdateData(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+uses UntData;
+
+{$R *.DFM}
+
+procedure TForm2.Button1Click(Sender: TObject);
+  var resultado,ndc : String;
+
+begin
+  resultado := InputBox('Entre Medicamento:','deded','1');
+  ndc := InputBox('Entre Ndc:','121212','1');
+  try
+  datasource1.DataSet.Insert;
+  datasource1.DataSet.FieldByName('Medicamento').asstring := resultado;
+  datasource1.DataSet.FieldByName('NDC').asstring := ndc;
+  datasource1.DataSet.FieldByName('Generico').asboolean := false;
+  datasource1.DataSet.post;
+  except
+     showmessage('Eroro');
+  end;
+end;
+
+procedure TForm2.DataSource1UpdateData(Sender: TObject);
+begin
+  DATASOURCE1.DataSet.UpdateCursorPos ;
+end;
+
+end.

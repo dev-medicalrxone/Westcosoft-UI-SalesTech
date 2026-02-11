@@ -1,0 +1,407 @@
+object FrmBotonesEdit: TFrmBotonesEdit
+  Left = 0
+  Top = 0
+  Caption = 'Edit Buttons'
+  ClientHeight = 515
+  ClientWidth = 582
+  Color = clBtnFace
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poMainFormCenter
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnShow = FormShow
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 84
+    Top = 44
+    Width = 61
+    Height = 13
+    Caption = 'Product No.'
+    FocusControl = DBEdit1
+  end
+  object Label2: TLabel
+    Left = 86
+    Top = 71
+    Width = 59
+    Height = 13
+    Caption = 'Description'
+    FocusControl = DBEdit2
+  end
+  object Label3: TLabel
+    Left = 365
+    Top = 179
+    Width = 80
+    Height = 13
+    Caption = 'Button Number'
+    FocusControl = DBEdit3
+    Visible = False
+  end
+  object Label4: TLabel
+    Left = 127
+    Top = 101
+    Width = 18
+    Height = 13
+    Caption = 'QTY'
+    FocusControl = DBEdit4
+  end
+  object Label5: TLabel
+    Left = 51
+    Top = 128
+    Width = 94
+    Height = 13
+    Caption = 'Procedure Add-on'
+  end
+  object SpeedButton1: TSpeedButton
+    Left = 295
+    Top = 40
+    Width = 85
+    Height = 22
+    Caption = 'Inventory'
+    Glyph.Data = {
+      36030000424D3603000000000000360000002800000010000000100000000100
+      18000000000000030000120B0000120B00000000000000000000FF00FF4A667C
+      BE9596FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FF6B9CC31E89E84B7AA3C89693FF00FFFF00FFFF00FFFF
+      00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF4BB4FE51B5FF
+      2089E94B7AA2C69592FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FF51B7FE51B3FF1D87E64E7AA0CA9792FF00FFFF
+      00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      51B7FE4EB2FF1F89E64E7BA2B99497FF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF52B8FE4BB1FF2787D95F6A76FF
+      00FFB0857FC09F94C09F96BC988EFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      FF00FFFF00FF55BDFFB5D6EDBF9D92BB9B8CE7DAC2FFFFE3FFFFE5FDFADAD8C3
+      B3B58D85FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFCEA795FD
+      EEBEFFFFD8FFFFDAFFFFDBFFFFE6FFFFFBEADDDCAE837FFF00FFFF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFC1A091FBDCA8FEF7D0FFFFDBFFFFE3FFFFF8FFFF
+      FDFFFFFDC6A99CFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFC1A091FEE3ACF1
+      C491FCF2CAFFFFDDFFFFE4FFFFF7FFFFF7FFFFE9EEE5CBB9948CFF00FFFF00FF
+      FF00FFFF00FFFF00FFC2A191FFE6AEEEB581F7DCAEFEFDD8FFFFDFFFFFE3FFFF
+      E4FFFFE0F3ECD2BB968EFF00FFFF00FFFF00FFFF00FFFF00FFBC978CFBE7B7F4
+      C791F2C994F8E5B9FEFCD8FFFFDDFFFFDCFFFFE0E2D2BAB68E86FF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFD9C3A9FFFEE5F7DCB8F2C994F5D4A5FAE8BDFDF4
+      C9FDFBD6B69089FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFB58D85E8
+      DEDDFFFEF2F9D8A3F4C48CF9D49FFDEAB8D0B49FB89086FF00FFFF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFFF00FFAD827FC9AA9EEFE0B7EFDFB2E7CEACB890
+      86B89086FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+      00FFFF00FFBA968ABB988CB79188FF00FFFF00FFFF00FFFF00FF}
+    OnClick = SpeedButton1Click
+  end
+  object SpeedButton2: TSpeedButton
+    Left = 272
+    Top = 152
+    Width = 29
+    Height = 22
+    Glyph.Data = {
+      36030000424D3603000000000000360000002800000010000000100000000100
+      18000000000000030000120B0000120B00000000000000000000FF00FF4A667C
+      BE9596FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FF6B9CC31E89E84B7AA3C89693FF00FFFF00FFFF00FFFF
+      00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF4BB4FE51B5FF
+      2089E94B7AA2C69592FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FF51B7FE51B3FF1D87E64E7AA0CA9792FF00FFFF
+      00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      51B7FE4EB2FF1F89E64E7BA2B99497FF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF52B8FE4BB1FF2787D95F6A76FF
+      00FFB0857FC09F94C09F96BC988EFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      FF00FFFF00FF55BDFFB5D6EDBF9D92BB9B8CE7DAC2FFFFE3FFFFE5FDFADAD8C3
+      B3B58D85FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFCEA795FD
+      EEBEFFFFD8FFFFDAFFFFDBFFFFE6FFFFFBEADDDCAE837FFF00FFFF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFC1A091FBDCA8FEF7D0FFFFDBFFFFE3FFFFF8FFFF
+      FDFFFFFDC6A99CFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFC1A091FEE3ACF1
+      C491FCF2CAFFFFDDFFFFE4FFFFF7FFFFF7FFFFE9EEE5CBB9948CFF00FFFF00FF
+      FF00FFFF00FFFF00FFC2A191FFE6AEEEB581F7DCAEFEFDD8FFFFDFFFFFE3FFFF
+      E4FFFFE0F3ECD2BB968EFF00FFFF00FFFF00FFFF00FFFF00FFBC978CFBE7B7F4
+      C791F2C994F8E5B9FEFCD8FFFFDDFFFFDCFFFFE0E2D2BAB68E86FF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFD9C3A9FFFEE5F7DCB8F2C994F5D4A5FAE8BDFDF4
+      C9FDFBD6B69089FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFB58D85E8
+      DEDDFFFEF2F9D8A3F4C48CF9D49FFDEAB8D0B49FB89086FF00FFFF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFFF00FFAD827FC9AA9EEFE0B7EFDFB2E7CEACB890
+      86B89086FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+      00FFFF00FFBA968ABB988CB79188FF00FFFF00FFFF00FFFF00FF}
+    OnClick = SpeedButton2Click
+  end
+  object Label6: TLabel
+    Left = 8
+    Top = 154
+    Width = 137
+    Height = 13
+    Caption = 'Image 56 height 116 width'
+  end
+  object Label7: TLabel
+    Left = 77
+    Top = 224
+    Width = 68
+    Height = 13
+    Caption = 'Button Name'
+    FocusControl = DBEdit5
+  end
+  object SpeedButton3: TSpeedButton
+    Left = 450
+    Top = 148
+    Width = 85
+    Height = 22
+    Caption = 'Assembly'
+    Glyph.Data = {
+      36030000424D3603000000000000360000002800000010000000100000000100
+      18000000000000030000120B0000120B00000000000000000000FF00FF4A667C
+      BE9596FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FF6B9CC31E89E84B7AA3C89693FF00FFFF00FFFF00FFFF
+      00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF4BB4FE51B5FF
+      2089E94B7AA2C69592FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FF51B7FE51B3FF1D87E64E7AA0CA9792FF00FFFF
+      00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      51B7FE4EB2FF1F89E64E7BA2B99497FF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF52B8FE4BB1FF2787D95F6A76FF
+      00FFB0857FC09F94C09F96BC988EFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      FF00FFFF00FF55BDFFB5D6EDBF9D92BB9B8CE7DAC2FFFFE3FFFFE5FDFADAD8C3
+      B3B58D85FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFCEA795FD
+      EEBEFFFFD8FFFFDAFFFFDBFFFFE6FFFFFBEADDDCAE837FFF00FFFF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFC1A091FBDCA8FEF7D0FFFFDBFFFFE3FFFFF8FFFF
+      FDFFFFFDC6A99CFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFC1A091FEE3ACF1
+      C491FCF2CAFFFFDDFFFFE4FFFFF7FFFFF7FFFFE9EEE5CBB9948CFF00FFFF00FF
+      FF00FFFF00FFFF00FFC2A191FFE6AEEEB581F7DCAEFEFDD8FFFFDFFFFFE3FFFF
+      E4FFFFE0F3ECD2BB968EFF00FFFF00FFFF00FFFF00FFFF00FFBC978CFBE7B7F4
+      C791F2C994F8E5B9FEFCD8FFFFDDFFFFDCFFFFE0E2D2BAB68E86FF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFD9C3A9FFFEE5F7DCB8F2C994F5D4A5FAE8BDFDF4
+      C9FDFBD6B69089FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFB58D85E8
+      DEDDFFFEF2F9D8A3F4C48CF9D49FFDEAB8D0B49FB89086FF00FFFF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFFF00FFAD827FC9AA9EEFE0B7EFDFB2E7CEACB890
+      86B89086FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+      00FFFF00FFBA968ABB988CB79188FF00FFFF00FFFF00FFFF00FF}
+    Visible = False
+    OnClick = SpeedButton3Click
+  end
+  object DBEdit1: TDBEdit
+    Left = 150
+    Top = 41
+    Width = 134
+    Height = 21
+    DataField = 'PRODUCTNO'
+    DataSource = DMMidas.dsBotones
+    TabOrder = 0
+  end
+  object DBEdit2: TDBEdit
+    Left = 150
+    Top = 68
+    Width = 394
+    Height = 21
+    DataField = 'DESCRIPTION'
+    DataSource = DMMidas.dsBotones
+    TabOrder = 1
+  end
+  object DBEdit3: TDBEdit
+    Left = 450
+    Top = 176
+    Width = 85
+    Height = 21
+    DataField = 'BUTTON_NUMBER'
+    DataSource = DMMidas.dsBotones
+    ReadOnly = True
+    TabOrder = 2
+    Visible = False
+  end
+  object DBEdit4: TDBEdit
+    Left = 150
+    Top = 98
+    Width = 134
+    Height = 21
+    DataField = 'QTY'
+    DataSource = DMMidas.dsBotones
+    TabOrder = 3
+  end
+  object DBComboBox1: TDBComboBox
+    Left = 151
+    Top = 125
+    Width = 145
+    Height = 21
+    DataField = 'PROCEDURE_ADD_ON'
+    DataSource = DMMidas.dsBotones
+    Items.Strings = (
+      'Recetas'
+      'OTC'
+      'Bag Pickup'
+      'eSignature'
+      'Stop Tag'
+      'Delivery'
+      'Tarj Familia'
+      'Layaway'
+      'Pago Credito'
+      'Venta Credito'
+      'Auspicio'
+      'Group Sales'
+      'Patrocinio'
+      'Utility'
+      'Combo'
+      'Abono Layaway'
+      'Comiciones'
+      'Assemblies'
+      'Cambio Cheques'
+      'Redimir Patrocinio'
+      'Veterano'
+      'Trans WIC'
+      'Cobro WIC'
+      'Servicio Negocio'
+      'Cotizacion'
+      'SSS O.T.C.'
+      'SSS Void'
+      'Customers'
+      'View eSignature'
+      'Coopharma'
+      'Restart Print Server'
+      'Logon PINPad'
+      'Logoff PINPad'
+      'Void PINPad Transaction'
+      'EBT Balance'
+      'Prod Verify'
+      'MCS Refund'
+      'Unica Cash Withdrawl'
+      'MCS balance'
+      'Tip adjust'
+      'Reprint'
+      'Settle PINPad'
+      'ATH Manual'
+      'Visa Manual')
+    TabOrder = 4
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 474
+    Width = 582
+    Height = 41
+    Align = alBottom
+    TabOrder = 5
+    object Button1: TButton
+      AlignWithMargins = True
+      Left = 503
+      Top = 4
+      Width = 75
+      Height = 33
+      Align = alRight
+      Caption = 'Ok'
+      ModalResult = 1
+      TabOrder = 0
+    end
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Top = 0
+    Width = 582
+    Height = 25
+    ButtonHeight = 25
+    ButtonWidth = 32
+    Caption = 'ToolBar1'
+    Images = FrmMain.ImageListDB
+    TabOrder = 6
+    object ToolButton1: TToolButton
+      Left = 0
+      Top = 0
+      Caption = 'ToolButton1'
+      ImageIndex = 0
+      OnClick = ToolButton1Click
+    end
+    object TBPost: TToolButton
+      Left = 32
+      Top = 0
+      Caption = 'TBPost'
+      ImageIndex = 1
+      OnClick = TBPostClick
+    end
+    object ToolButton3: TToolButton
+      Left = 64
+      Top = 0
+      Caption = 'ToolButton3'
+      ImageIndex = 3
+      OnClick = ToolButton3Click
+    end
+    object ToolButton5: TToolButton
+      Left = 96
+      Top = 0
+      Caption = 'ToolButton5'
+      ImageIndex = 4
+      OnClick = ToolButton5Click
+    end
+    object ToolButton2: TToolButton
+      Left = 128
+      Top = 0
+      Caption = 'ToolButton2'
+      ImageIndex = 5
+      OnClick = ToolButton2Click
+    end
+    object ToolButton4: TToolButton
+      Left = 160
+      Top = 0
+      Caption = 'ToolButton4'
+      ImageIndex = 6
+      OnClick = ToolButton4Click
+    end
+  end
+  object DBImage1: TDBImage
+    Left = 150
+    Top = 152
+    Width = 116
+    Height = 59
+    DataField = 'BUTTON_IMAGE'
+    DataSource = DMMidas.dsBotones
+    TabOrder = 7
+  end
+  object DBEdit5: TDBEdit
+    Left = 149
+    Top = 221
+    Width = 145
+    Height = 21
+    DataField = 'BUTTON_NAME'
+    DataSource = DMMidas.dsBotones
+    ReadOnly = True
+    TabOrder = 8
+  end
+  object TouchKeyboard1: TTouchKeyboard
+    Left = 0
+    Top = 294
+    Width = 582
+    Height = 180
+    Align = alBottom
+    GradientEnd = clSilver
+    GradientStart = clGray
+    Layout = 'Standard'
+  end
+  object DBCheckBox1: TDBCheckBox
+    Left = 450
+    Top = 125
+    Width = 97
+    Height = 17
+    Caption = 'Assembly'
+    DataField = 'ASSEMBLY_YN'
+    DataSource = DMMidas.dsBotones
+    ReadOnly = True
+    TabOrder = 10
+    Visible = False
+  end
+  object DBCheckBox2: TDBCheckBox
+    Left = 149
+    Top = 249
+    Width = 97
+    Height = 17
+    Caption = 'RECIPE PRICE'
+    DataField = 'RECIPE_PRICE'
+    DataSource = DMMidas.dsBotones
+    TabOrder = 11
+  end
+  object DBCheckBox3: TDBCheckBox
+    Left = 427
+    Top = 198
+    Width = 108
+    Height = 17
+    Caption = 'RETAIL BUTTON'
+    DataField = 'RETAIL'
+    DataSource = DMMidas.dsBotones
+    TabOrder = 12
+    Visible = False
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 680
+  end
+end
