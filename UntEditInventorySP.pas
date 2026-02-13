@@ -191,10 +191,10 @@ type
     SpeedButton10: TSpeedButton;
     EditSupDesc2: TEdit;
     Label26: TLabel;
-    Label27: TLabel;
+    lblSupPrice: TLabel;
     cbSupplierPrice: TCheckBox;
     cbSupplierPrice2: TCheckBox;
-    Label49: TLabel;
+    lblSupPrice2: TLabel;
     procedure SpeedButton7Click(Sender: TObject);
     procedure SpeedButton8Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
@@ -243,13 +243,15 @@ type
     procedure EditRetailPriceEnter(Sender: TObject);
     procedure EditPrecioVenta2Enter(Sender: TObject);
     procedure EditPrecioVenta3Enter(Sender: TObject);
+    procedure cbSupplierPriceClick(Sender: TObject);
+    procedure cbSupplierPrice2Click(Sender: TObject);
   private
     { Private declarations }
     hasImage: Boolean;
     precio, costo, gm: Double;
     precioStr: String;
   public
-    NoSupplier, NoDept, NoSubDept: Integer;
+    NoSupplier,NoSupplier2, NoDept, NoSubDept: Integer;
     { Public declarations }
   end;
 
@@ -375,6 +377,26 @@ begin
     end;
   end;
   //ImageEnView1.Clear;
+end;
+
+procedure TFrmEditInventorySP.cbSupplierPrice2Click(Sender: TObject);
+begin
+  cbSupplierPrice.Checked := not cbSupplierPrice2.Checked;
+  if DMMidas.CDSInventarioPisoSUPPLIER_PRICE2.Value <> 0 then
+  begin
+    EditCosto.Text := DMMidas.CDSInventarioPiso.FieldByName('SUPPLIER_PRICE2').asString;
+    EditCostoExit(nil);
+  end;
+end;
+
+procedure TFrmEditInventorySP.cbSupplierPriceClick(Sender: TObject);
+begin
+  cbSupplierPrice2.Checked := not cbSupplierPrice.Checked;
+  if DMMidas.CDSInventarioPisoSUPPLIER_PRICE.Value <> 0 then
+  begin
+    EditCosto.Text := DMMidas.CDSInventarioPiso.FieldByName('SUPPLIER_PRICE').asString;
+    EditCostoExit(nil);
+  end;
 end;
 
 procedure TFrmEditInventorySP.eDailySalePriceChange(Sender: TObject);
@@ -663,6 +685,7 @@ begin
   begin
     cbCustIDRequired.Checked := CDSInventarioPisoCUSTOMER_ID_REQUIRED.Value;
     NoSupplier := CDSInventarioPisoNUMEROSUPLIDOR.Value;
+    NoSupplier2 := CDSInventarioPisoNUMEROSUPLIDOR2.Value;
     NoDept := CDSInventarioPisoDEPARTAMENTO.Value;
     NoSubDept :=  CDSInventarioPisoSUB_DEPARTAMENTO.Value;
     if CDSInventarioPisoDEPARTAMENTO.Value > 0 then
@@ -857,6 +880,22 @@ begin
       cbAge.ItemIndex := 0
     else
       cbAge.Text := CDSInventarioPisoAskID.AsString;
+    if CDSInventarioPisoNUMEROSUPLIDOR2.Value > 0 then
+    begin
+      CDSSuplidores.Close;
+      CDSSuplidores.CommandText := 'select * from SUPLIDORES where NUMEROSUPLIDOR = ' + CDSInventarioPisoNUMEROSUPLIDOR2.AsString;
+      CDSSuplidores.Open;
+      EditSupDesc2.Text := CDSSuplidoresSUPLIDOR.Value;
+    end;
+    lblSupPrice.Caption := {Format('%m', [} CurrToStr(CDSInventarioPiso.FieldByName('SUPPLIER_PRICE').AsCurrency);//]);
+    lblSupPrice2.Caption := {Format('%m', [}CurrToStr(CDSInventarioPiso.FieldByName('SUPPLIER_PRICE2').asCurrency);//]);
+    if (lblSupPrice.Caption <> '0') or (lblSupPrice2.Caption <> '0') then
+    begin
+      if CDSInventarioPisoSUPPLIER_PRICE_DEFINE.Value = 0 then
+        cbSupplierPrice.Checked := True
+      else
+        cbSupplierPrice2.Checked := True;
+    end;
     ///
     if Trim(editProductId.Text) > '' then
     begin
@@ -1042,11 +1081,21 @@ begin
       FrmSuppliers := TFrmSuppliers.Create(self);
       With FrmSuppliers do
       begin
+        if TComponent(Sender).Name = 'SpeedButton10' then
+          FrmSuppliers.Tag := 2;
         ShowModal;
         If ModalResult = mrOK then
         begin
-          EditSupDesc.Text := CDSSuplidoresSUPLIDOR.Value;
-          NoSupplier := CDSSuplidoresNUMEROSUPLIDOR.Value;
+          if FrmSuppliers.Tag = 2 then    //To identify wether change is for supplier 1 or supplier 2 AGC 02/13/2026///
+          begin
+            EditSupDesc2.Text := CDSSuplidoresSUPLIDOR.Value;
+            NoSupplier2 := CDSSuplidoresNUMEROSUPLIDOR.Value;
+          end
+          else
+          begin
+            EditSupDesc.Text := CDSSuplidoresSUPLIDOR.Value;
+            NoSupplier := CDSSuplidoresNUMEROSUPLIDOR.Value;
+          end;
         end
         else
         begin
@@ -1347,6 +1396,19 @@ begin
       ParamByName('@LST_MODIF_PR').Value := Now;
       ParamByName('@SIZE_IT').Value := Trim(EditProdSize.Text);
       ParamByName('@AskID').Value := Trim(cbAge.Text);
+      ParamByName('@NUMEROSUPLIDOR2').Value := NoSupplier2;
+      if cbSupplierPrice.Checked = True then    //Select supplier price 1 or 2 ACG 02/13/2026//
+        ParamByName('@SUPPLIER_PRICE_DEFINE').Value := 0
+      else
+        ParamByName('@SUPPLIER_PRICE_DEFINE').Value := 1;
+      if lblSupPrice.Caption > '' then
+        ParamByName('@SUPPLIER_PRICE').Value := StrToFloat(StringReplace(lblSupPrice.Caption, '$', '', [rfReplaceAll]))
+      else
+        ParamByName('@SUPPLIER_PRICE').Value := '0';
+      if lblSupPrice2.Caption > '' then
+        ParamByName('@SUPPLIER_PRICE2').Value := StrToFloat(StringReplace(lblSupPrice2.Caption, '$', '', [rfReplaceAll]))
+      else
+        ParamByName('@SUPPLIER_PRICE2').Value := '0';
       ///end///
       ExecProc;
 

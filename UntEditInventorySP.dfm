@@ -594,18 +594,18 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Caption = 'SUPLIDOR 2'
         Transparent = True
       end
-      object Label27: TLabel
-        Left = 999
+      object lblSupPrice: TLabel
+        Left = 1009
         Top = 10
-        Width = 38
+        Width = 28
         Height = 13
         Alignment = taRightJustify
         Caption = '$0.00'
       end
-      object Label49: TLabel
-        Left = 999
+      object lblSupPrice2: TLabel
+        Left = 1009
         Top = 37
-        Width = 38
+        Width = 28
         Height = 13
         Alignment = taRightJustify
         Caption = '$0.00'
@@ -1060,6 +1060,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Width = 25
         Height = 17
         TabOrder = 48
+        OnClick = cbSupplierPriceClick
       end
       object cbSupplierPrice2: TCheckBox
         Left = 1043
@@ -1067,6 +1068,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Width = 25
         Height = 17
         TabOrder = 49
+        OnClick = cbSupplierPrice2Click
       end
     end
     object TabSheet2: TTabSheet

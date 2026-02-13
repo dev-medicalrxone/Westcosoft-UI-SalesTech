@@ -2622,6 +2622,14 @@ type
     CDSPasswordsCREATE_INVENTORY: TBooleanField;
     CDSPasswordsDELETE_INVENTORY: TBooleanField;
     CDSPasswordsEDIT_INVENTORY: TBooleanField;
+    CDSInventarioPisoNUMEROSUPLIDOR2: TIntegerField;
+    CDSInventarioPisoSUPPLIER_PRICE_DEFINE: TIntegerField;
+    CDSInventarioPisoSUPPLIER_PRICE: TFMTBCDField;
+    CDSInventarioPisoSUPPLIER_PRICE2: TFMTBCDField;
+    cdsInventarioPiso2NUMEROSUPLIDOR2: TIntegerField;
+    cdsInventarioPiso2SUPPLIER_PRICE_DEFINE: TIntegerField;
+    cdsInventarioPiso2SUPPLIER_PRICE: TFMTBCDField;
+    cdsInventarioPiso2SUPPLIER_PRICE2: TFMTBCDField;
     procedure CDSSetupAfterDelete(DataSet: TDataSet);
     procedure CDSClientTransactionsAfterDelete(DataSet: TDataSet);
     procedure CDSClientesOldCalcFields(DataSet: TDataSet);

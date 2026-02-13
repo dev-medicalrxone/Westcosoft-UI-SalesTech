@@ -729,6 +729,22 @@ object DMMidas: TDMMidas
       FieldName = 'AskID'
       Required = True
     end
+    object CDSInventarioPisoNUMEROSUPLIDOR2: TIntegerField
+      FieldName = 'NUMEROSUPLIDOR2'
+    end
+    object CDSInventarioPisoSUPPLIER_PRICE_DEFINE: TIntegerField
+      FieldName = 'SUPPLIER_PRICE_DEFINE'
+    end
+    object CDSInventarioPisoSUPPLIER_PRICE: TFMTBCDField
+      FieldName = 'SUPPLIER_PRICE'
+      Precision = 18
+      Size = 2
+    end
+    object CDSInventarioPisoSUPPLIER_PRICE2: TFMTBCDField
+      FieldName = 'SUPPLIER_PRICE2'
+      Precision = 18
+      Size = 2
+    end
   end
   object DSPInventarioPiso: TDataSetProvider
     DataSet = QInventarioPisoFD
@@ -13728,6 +13744,22 @@ object DMMidas: TDMMidas
       FieldName = 'TOTAL_COST'
       Calculated = True
     end
+    object cdsInventarioPiso2NUMEROSUPLIDOR2: TIntegerField
+      FieldName = 'NUMEROSUPLIDOR2'
+    end
+    object cdsInventarioPiso2SUPPLIER_PRICE_DEFINE: TIntegerField
+      FieldName = 'SUPPLIER_PRICE_DEFINE'
+    end
+    object cdsInventarioPiso2SUPPLIER_PRICE: TFMTBCDField
+      FieldName = 'SUPPLIER_PRICE'
+      Precision = 18
+      Size = 2
+    end
+    object cdsInventarioPiso2SUPPLIER_PRICE2: TFMTBCDField
+      FieldName = 'SUPPLIER_PRICE2'
+      Precision = 18
+      Size = 2
+    end
   end
   object dsInventarioPiso2: TDataSource
     DataSet = cdsInventarioPiso2
@@ -14750,6 +14782,34 @@ object DMMidas: TDMMidas
       end
       item
         Position = 75
+        Name = '@NUMEROSUPLIDOR2'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Position = 76
+        Name = '@SUPPLIER_PRICE_DEFINE'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Position = 77
+        Name = '@SUPPLIER_PRICE'
+        DataType = ftFMTBcd
+        Precision = 18
+        NumericScale = 2
+        ParamType = ptInput
+      end
+      item
+        Position = 78
+        Name = '@SUPPLIER_PRICE2'
+        DataType = ftFMTBcd
+        Precision = 18
+        NumericScale = 2
+        ParamType = ptInput
+      end
+      item
+        Position = 79
         Name = '@LST_MODIF_PR'
         DataType = ftTimeStamp
         NumericScale = 3
