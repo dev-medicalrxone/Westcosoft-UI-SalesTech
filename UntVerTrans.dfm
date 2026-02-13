@@ -291,7 +291,6 @@ object FrmVerTrans: TFrmVerTrans
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitTop = -6
     object Label7: TLabel
       AlignWithMargins = True
       Left = 228
@@ -302,7 +301,6 @@ object FrmVerTrans: TFrmVerTrans
       Alignment = taRightJustify
       Caption = 'Amount'
       Layout = tlCenter
-      ExplicitLeft = 224
       ExplicitHeight = 13
     end
     object Label8: TLabel
@@ -327,28 +325,22 @@ object FrmVerTrans: TFrmVerTrans
       object Label2: TLabel
         AlignWithMargins = True
         Left = 405
-        Top = 4
+        Top = 10
         Width = 55
-        Height = 27
-        Align = alLeft
+        Height = 13
         Alignment = taRightJustify
         Caption = 'Employee: '
         Layout = tlCenter
-        ExplicitTop = 3
       end
       object Label1: TLabel
         AlignWithMargins = True
         Left = 617
-        Top = 4
+        Top = 10
         Width = 55
-        Height = 27
-        Align = alLeft
+        Height = 13
         Alignment = taRightJustify
         Caption = 'Tran. Type: '
         Layout = tlCenter
-        ExplicitLeft = 686
-        ExplicitTop = 1
-        ExplicitHeight = 33
       end
       object Label3: TLabel
         AlignWithMargins = True
@@ -360,33 +352,16 @@ object FrmVerTrans: TFrmVerTrans
         Alignment = taRightJustify
         Caption = 'To: '
         Layout = tlCenter
-        ExplicitLeft = 439
-        ExplicitTop = 1
-        ExplicitHeight = 33
+        ExplicitHeight = 13
       end
       object Label4: TLabel
         AlignWithMargins = True
-        Left = 934
-        Top = 4
+        Left = 822
+        Top = 10
         Width = 32
-        Height = 27
-        Align = alLeft
+        Height = 13
         Caption = '      ID:'
         Layout = tlCenter
-        ExplicitLeft = 945
-      end
-      object Label5: TLabel
-        AlignWithMargins = True
-        Left = 827
-        Top = 4
-        Width = 49
-        Height = 27
-        Align = alLeft
-        Alignment = taRightJustify
-        Caption = 'No. Caja: '
-        Layout = tlCenter
-        Visible = False
-        ExplicitLeft = 856
       end
       object Label6: TLabel
         AlignWithMargins = True
@@ -400,6 +375,16 @@ object FrmVerTrans: TFrmVerTrans
         Caption = 'From: '
         Layout = tlCenter
       end
+      object Label5: TLabel
+        AlignWithMargins = True
+        Left = 1099
+        Top = 10
+        Width = 49
+        Height = 13
+        Caption = 'No. Caja: '
+        Layout = tlCenter
+        Visible = False
+      end
       object cbAllTransactions: TCheckBox
         AlignWithMargins = True
         Left = 4
@@ -410,9 +395,6 @@ object FrmVerTrans: TFrmVerTrans
         Caption = 'All transactions'
         TabOrder = 0
         OnClick = cbAllTransactionsClick
-        ExplicitLeft = 3
-        ExplicitTop = 38
-        ExplicitHeight = 29
       end
       object DBLookupComboBox1: TDBLookupComboBox
         AlignWithMargins = True
@@ -421,13 +403,11 @@ object FrmVerTrans: TFrmVerTrans
         Width = 145
         Height = 21
         Margins.Top = 7
-        Align = alLeft
         DropDownRows = 10
         KeyField = 'USERNAME'
         ListSource = DMMidas.DSPasswords
         TabOrder = 1
         OnCloseUp = DBLookupComboBox1CloseUp
-        ExplicitTop = 7
       end
       object ComboBox1: TComboBox
         AlignWithMargins = True
@@ -436,7 +416,6 @@ object FrmVerTrans: TFrmVerTrans
         Width = 143
         Height = 21
         Margins.Top = 7
-        Align = alLeft
         TabOrder = 2
         Text = 'Todas'
         Items.Strings = (
@@ -456,18 +435,60 @@ object FrmVerTrans: TFrmVerTrans
           'ATH, ATH Movil, Credit Card'
           'Triple-S Advantage'
           'PayPal')
-        ExplicitLeft = 563
-        ExplicitTop = 0
+      end
+      object ComboBox3: TComboBox
+        AlignWithMargins = True
+        Left = 860
+        Top = 8
+        Width = 106
+        Height = 21
+        Margins.Top = 7
+        TabOrder = 3
+        Text = '0'
+      end
+      object dtpFrom: TDateTimePicker
+        AlignWithMargins = True
+        Left = 160
+        Top = 4
+        Width = 105
+        Height = 27
+        Align = alLeft
+        Date = 37359.000000000000000000
+        Time = 0.401661064803192900
+        TabOrder = 4
+        OnCloseUp = DBLookupComboBox1CloseUp
+      end
+      object dtpTo: TDateTimePicker
+        AlignWithMargins = True
+        Left = 294
+        Top = 4
+        Width = 105
+        Height = 27
+        Align = alLeft
+        Date = 37359.000000000000000000
+        Time = 0.401661064803192900
+        TabOrder = 5
+        OnCloseUp = DBLookupComboBox1CloseUp
+      end
+      object Button1: TButton
+        AlignWithMargins = True
+        Left = 1222
+        Top = 4
+        Width = 75
+        Height = 27
+        Align = alRight
+        Caption = 'Filter'
+        TabOrder = 6
+        OnClick = ToolButton1Click
       end
       object ComboBox2: TComboBox
         AlignWithMargins = True
-        Left = 882
-        Top = 8
+        Left = 1154
+        Top = 7
         Width = 46
         Height = 21
         Margins.Top = 7
-        Align = alLeft
-        TabOrder = 3
+        TabOrder = 7
         Text = '0'
         Visible = False
         Items.Strings = (
@@ -482,63 +503,6 @@ object FrmVerTrans: TFrmVerTrans
           '8'
           '9'
           '10')
-        ExplicitLeft = 446
-        ExplicitTop = 0
-      end
-      object ComboBox3: TComboBox
-        AlignWithMargins = True
-        Left = 972
-        Top = 8
-        Width = 106
-        Height = 21
-        Margins.Top = 7
-        Align = alLeft
-        TabOrder = 4
-        Text = '0'
-        ExplicitLeft = 549
-        ExplicitTop = 0
-      end
-      object dtpFrom: TDateTimePicker
-        AlignWithMargins = True
-        Left = 160
-        Top = 4
-        Width = 105
-        Height = 27
-        Align = alLeft
-        Date = 37359.000000000000000000
-        Time = 0.401661064803192900
-        TabOrder = 5
-        OnCloseUp = DBLookupComboBox1CloseUp
-        ExplicitLeft = 150
-        ExplicitTop = 0
-        ExplicitHeight = 22
-      end
-      object dtpTo: TDateTimePicker
-        AlignWithMargins = True
-        Left = 294
-        Top = 4
-        Width = 105
-        Height = 27
-        Align = alLeft
-        Date = 37359.000000000000000000
-        Time = 0.401661064803192900
-        TabOrder = 6
-        OnCloseUp = DBLookupComboBox1CloseUp
-        ExplicitHeight = 21
-      end
-      object Button1: TButton
-        AlignWithMargins = True
-        Left = 1222
-        Top = 4
-        Width = 75
-        Height = 27
-        Align = alRight
-        Caption = 'Filter'
-        TabOrder = 7
-        OnClick = ToolButton1Click
-        ExplicitLeft = 1176
-        ExplicitTop = 5
-        ExplicitHeight = 25
       end
     end
     object EditAmount: TEdit
@@ -552,8 +516,6 @@ object FrmVerTrans: TFrmVerTrans
       Align = alLeft
       TabOrder = 1
       TextHint = 'Amount'
-      ExplicitLeft = 176
-      ExplicitTop = 56
     end
     object EditLast4: TEdit
       AlignWithMargins = True
@@ -567,8 +529,6 @@ object FrmVerTrans: TFrmVerTrans
       Enabled = False
       TabOrder = 2
       TextHint = 'Last 4'
-      ExplicitLeft = 176
-      ExplicitTop = 56
     end
   end
   object ToolBar1: TToolBar

@@ -7853,8 +7853,8 @@ object DMMidas: TDMMidas
   object DSPCombo_DETAIL: TDataSetProvider
     DataSet = QCombo_DETAILFD
     Options = [poPropogateChanges, poAllowCommandText, poUseQuoteChar]
-    Left = 384
-    Top = 768
+    Left = 368
+    Top = 784
   end
   object CDSCombo: TClientDataSet
     Aggregates = <>

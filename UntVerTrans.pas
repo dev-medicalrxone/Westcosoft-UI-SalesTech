@@ -25,8 +25,6 @@ type
     Label3: TLabel;
     Splitter3: TSplitter;
     Label4: TLabel;
-    ComboBox2: TComboBox;
-    Label5: TLabel;
     ComboBox3: TComboBox;
     ToolButton2: TToolButton;
     CDSTransactionDetails: TClientDataSet;
@@ -98,6 +96,8 @@ type
     EditAmount: TEdit;
     EditLast4: TEdit;
     Label8: TLabel;
+    ComboBox2: TComboBox;
+    Label5: TLabel;
     procedure ToolButton1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -359,13 +359,11 @@ end;
 
 procedure TFrmVerTrans.cbAllTransactionsClick(Sender: TObject);
 begin
-  DBLookupComboBox1.visible := not(cbAllTransactions.Checked);
-  ComboBox1.visible := not(cbAllTransactions.Checked);
-  ComboBox2.visible := not(cbAllTransactions.Checked);
   ComboBox3.visible := not(cbAllTransactions.Checked);
   label4.visible := not(cbAllTransactions.Checked);
-  Label5.visible := not(cbAllTransactions.Checked);
+  ComboBox1.visible := not(cbAllTransactions.Checked);
   Label1.visible := not(cbAllTransactions.Checked);
+  DBLookupComboBox1.visible := not(cbAllTransactions.Checked);
   label2.visible := not(cbAllTransactions.Checked);
 end;
 

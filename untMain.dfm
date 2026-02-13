@@ -24321,7 +24321,7 @@ object FrmMain: TFrmMain
     OnClick = dxBarButtonClientInfoClick
   end
   object TBRxVerfication: TSpeedButton
-    Left = 509
+    Left = 501
     Top = 262
     Width = 239
     Height = 235
