@@ -367,6 +367,7 @@ end;
     function Coopharma_SendTransaction: Boolean;
     procedure voidOrRefund;
     procedure voidOrRefundSpinPOS;
+    procedure ReturnSpinPOS;
     procedure SettleSpinPOS;
     procedure addPinPadTip;
     procedure addPinPadTipSpinPOS;  // add new procedure spinpos tip
@@ -8763,6 +8764,66 @@ begin
         loop := True;
     end;
   end;
+  CommonPOS.ClearTransactions;  //[2026/02/14 JB] CLEAR TRANSACTION
+end;
+
+procedure TCommonPOS.ReturnSpinPOS;
+var
+  MyStrval: String;
+  loop: Boolean;
+begin
+  loop := True;
+  CommonPOS.adjDelete := True;
+  FrmInputNumber := TFrmInputNumber.Create(application);
+  with FrmInputNumber do
+  begin
+    FrmInputNumber.Caption := 'Enter reference number';
+    EditNumber.text := '0';
+    FrmInputNumber.EditNumber.Text := MyStrVal;
+    while loop = true do
+    begin
+      ShowModal;
+      if (ModalResult = mrCancel) then
+      begin
+        loop := False;
+        FrmPOSRest.btnRefundClick(nil);
+        exit
+      end;
+      MyStrVal := FrmInputNumber.EditNumber.Text;
+      if (MyStrVal > '') and (MyStrVal <> '0') then
+      begin
+        CommonPOS.TransactionType := 'Return';
+        With DMMidas do
+        begin
+          cdsSpinPos.Active := False;
+          cdsSpinPos.CommandText := 'select * from spinPOS where TransactionType=''Sale'' and REFERENCENUM = ' + MyStrVal ;
+          cdsSpinPos.Active := True;
+          CommonPOS.Header := cdsSpinPos.FieldByName('TRANSACTIONNUMBER').AsLargeInt;
+          if cdsSpinPos.RecordCount > 0 then
+          begin
+           frmMainSPOS := TfrmSpinPOS.Create(nil);
+           frmMainSPOS.TypePayment := cdsSpinPOSPaymentType.Value;
+           frmMainSPOS.ProcessNum  := 2;  //return
+           frmMainSPOS.sRefNum := MyStrVal;
+           frmMainSPOS.dAmount :=cdsSpinPOSAMOUNT.Value;
+           frmMainSPOS.ShowModal;
+           frmMainSPOS.Free;
+           frmMainSPOS := nil;
+
+            loop := False;
+          end
+          else
+          begin
+            showMessage('No transaction found.');
+            loop := True;
+          end;
+        end;
+      end
+      else
+        loop := True;
+    end;
+  end;
+  CommonPOS.ClearTransactions;  //[2026/02/14 JB] CLEAR TRANSACTION
 end;
 
 function  TCommonPOS.VoidTrans(NoTrans: Integer): Boolean;
@@ -9109,6 +9170,10 @@ begin
       if Trim(UpperCase(CDSBotonesPROCEDURE_ADD_ON.Value)) = 'TIP ADJUST' then
       begin
         CommonPOS.addPinPadTip
+      end;
+      if Trim(UpperCase(CDSBotonesPROCEDURE_ADD_ON.Value)) = 'SPOS RETURN' then //[2026/02/14 JB] ADDED SPINPOSRETURN OPTION
+      begin
+        CommonPOS.ReturnSpinPOS;
       end;
       if Trim(UpperCase(CDSBotonesPROCEDURE_ADD_ON.Value)) = 'MANUAL SALE' then
       begin
