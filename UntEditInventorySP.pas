@@ -1045,6 +1045,8 @@ begin
         begin
           EditSubDeptDesc.Text := CDSSubDeptDESCRIPCION.Value;
           NoSubDept := CDSSubDeptDEPARTAMENTO.Value; //CDSSubDeptLINK_SUBDPT.Value;
+          EditDeptDesc.Text := CDSDepartamentosDESCRIPCION.Value;
+          NoDept := CDSDepartamentosDEPARTAMENTO.Value;
         end
         else
         begin
@@ -1234,6 +1236,8 @@ begin
   EditDeptDesc.Text := '';
   EditSubDeptDesc.Text := '';
   EditSupDesc.Text := '';
+  EditSupDesc2.Text := '';
+  EditSALES_PROMOTION_ID.Text := '0' ;
   EditPO.Text := '';
   EditUPC.Text := '';
   EditPartNumber.Text := '';
@@ -1277,7 +1281,12 @@ begin
   cbNonRefundable.Checked := False;
   cbPepSpray.Checked := False;
   cbSkipPriceUpdt.Checked := False;
+  lblSupPrice.caption := '$0.00';
+  lblSupPrice2.caption := '$0.00';
+  //cbSupplierPrice.Checked := False;
+  //cbSupplierPrice2.Checked := False;
   sbNewUPC.Click;
+  FrmEditInventorySP.Tag := 1; ///To identify a new product is to be inserted
 end;
 
 procedure TFrmEditInventorySP.tlBtnPostClick(Sender: TObject);
@@ -1288,150 +1297,154 @@ begin
   With DMMidas do
   begin
     CommonPOS.DisconnectFromDatabase;
-    With POS_INSERT_EDIT_INVENTORY do
+    try
+        With POS_INSERT_EDIT_INVENTORY do
+      begin
+        Prepare;
+        ParamByName('@ADD_EDIT').Value := 1;
+        ParamByName('@PROCUCT_ID').Value := StrToInt(EditProductID.Text);
+        ParamByName('@DESCRIPCION').Value := Trim(Copy(EditDescription.Text,1,35));
+        ParamByName('@COSTO').Value := StrToFloat(EditCosto.Text);
+        ParamByName('@PRECIO').Value := StrToFloat(EditRetailPrice.Text);
+        ParamByName('@PRECIOVENTA2').Value := StrToFloat(EditPrecioVenta2.Text);
+        ParamByName('@PRECIOVENTA3').Value := StrToFloat(EditPrecioVenta3.Text);
+        ParamByName('@RBP').Value := StrToFloat(EditPrecioGrupo.Text);
+        ParamByName('@GROUP_QTY').Value := StrToFloat(EditGROUP_QTY.Text);
+        ParamByName('@PRECIO_CAJA').Value := StrToFloat(EditPrecioCaja.Text);
+        ParamByName('@QTY_CAJA').Value := StrToFloat(EditQtyCaja.Text);
+        ParamByName('@ESPECIAL').Value := StrToFloat(EditEspecial.Text);
+        ParamByName('@COMESPECIAL').Value := StrToDateTime(EditCOMESPECIAL.Text);
+        ParamByName('@TERMINAESPECIAL').Value := StrToDateTime(EditTERMINAESPECIAL.Text);
+        ParamByName('@SALES_PROMO_DEFINE').Value := StrToIntDef(EditSALES_PROMOTION_ID.Text, 0);
+        ParamByName('@KITCHEN').Value := cbKitchen.Checked;
+        ParamByName('@HAS_MODIFIER').Value := cbModifiers.Checked;
+        ParamByName('@MODIFIER_QTY').Value := StrToFloat(EditNO_MODIFIERS.Text);
+        ParamByName('@DESCDEPT').Value := NoDept;
+        ParamByName('@SUBDEPT').Value := NoSubDept;
+        ParamByName('@Suplidor').Value := NoSupplier;
+        ParamByName('@CMININVENTARIO').Value := StrToFloat(EditMinimo.Text);
+        ParamByName('@CMAXINVENTARIO').Value := StrToFloat(EditMaximo.Text);
+        ParamByName('@QTYINVENTARIO').Value := StrToFloat(EditQtyInventario.Text);
+        ParamByName('@EDITAR_PRECIO').Value := cbEditarPrecio.Checked;
+        ParamByName('@PO').Value := Copy(EditPO.Text,1,10);
+        ParamByName('@CODIGOBARRA').Value := Copy(EditUPC.Text,1,14);
+        ParamByName('@BARCODE2').Value := Copy(EditPartNumber.Text,1,14);
+        ParamByName('@INFOADICIONAL').Value := Copy(EditAdditionalInfo.Text,1,25);
+        ParamByName('@RECIPEPRICE').Value := StrToFloat(EditRecipePrice.Text);
+        if cbShowIndividual.Checked then
+          ParamByName('@SHOWINDIVIDUAL').Value := '1'
+        else
+          ParamByName('@SHOWINDIVIDUAL').Value := '0';
+        if cbPatrocinio.Checked then
+          ParamByName('@PATROCINIO').Value := 1
+        else
+          ParamByName('@PATROCINIO').Value := 0;
+        if cbStateTaxable.Checked then
+          ParamByName('@TAXABLE_ESTATAL').Value := '1'
+        else
+          ParamByName('@TAXABLE_ESTATAL').Value := '0';
+        if cbLocalTax.Checked then
+          ParamByName('@TAXABLE').Value := '1'
+        else
+          ParamByName('@TAXABLE').Value := '0';
+        if cbFoodItem.Checked then
+          ParamByName('@FOODITEM').Value := 1
+        else
+          ParamByName('@FOODITEM').Value := 0;
+        if cbNoUPC.Checked then
+          ParamByName('@NONEBC').Value := 1
+        else
+          ParamByName('@NONEBC').Value := 0;
+        if cbShowOnEcomm.Checked then
+          ParamByName('@SHOW_ON_ECOMM').Value := 1
+        else
+          ParamByName('@SHOW_ON_ECOMM').Value := 0;
+        ParamByName('@RECIPE').Value := cbRecipe.Checked;
+        ParamByName('@DAILY_SALE_START_TIME').Value := StrToTime(eDailySaleStartTime.Text);
+        ParamByName('@DAILY_SALE_END_TIME').Value := StrToTime(eDailySalEndTime.Text);
+        ParamByName('@DAILY_SPECIAL_PRICE').Value := StrToFloat(eDailySalePrice.Text);
+        ParamByName('@PROCESSED_FOOD').Value := cbProcessedFood.Checked;
+        ParamByName('@DAILY_SALE_ACTIVE').Value := cbDAILY_SALE_ACTIVE.Checked;
+        ParamByName('@TRIPLES_PRODUCT').Value := cbTripleS.Checked;
+        ParamByName('@ULTIMOCAMBIO').Value := Trim(Copy(CommonPOS.UserName,1,30));
+        ParamByName('@CUSTOMER_ID_REQUIRED').Value := cbCustIDRequired.Checked;
+        ParamByName('@NOTE').Value := MemoProductNote.Text;
+        ParamByName('@PRODUCT_CLASSIFICATION').Value := Trim(Copy(EditProductClassification.Text,1,20));
+        ///New for wescosoft///
+        ParamByName('@GM1').Value := StrToFloatDef(Trim(EditGm1.Text),0);
+        ParamByName('@GM2').Value := StrToFloatDef(Trim(EditGm2.Text), 0);
+        ParamByName('@GM3').Value := StrToFloatDef(Trim(EditGm3.Text), 0);
+        ParamByName('@ALWDISC').Value := cbAllowDiscount.Checked;
+        ParamByName('@ROUND').Value := cbRound.Checked;
+        ParamByName('@DEPL').Value := Trim(EditDptL.Text);
+        ParamByName('@DEPS').Value := Trim(EditDptS.Text);
+        ParamByName('@NLINE').Value := cbNline.Checked;
+        ParamByName('@EBT').Value := cbEbt.Checked;
+        ParamByName('@SIGIS').Value := cbSigSis.Checked;
+        ParamByName('@OTCCARD').Value := cbOtcCard.Checked;
+        ParamByName('@PSEUDO').Value := cbPseudo.Checked;
+        if EditPseudoMgD.Text > '' then
+          ParamByName('@PSEUDOMGD').Value := StrToIntDef(Trim(EditPseudoMgD.Text), 0)
+        else
+          ParamByName('@PSEUDOMGD').Value := 0;
+        if EditPseudoMgP.Text > '' then
+          ParamByName('@PSEUDOMGP').Value := StrToIntDef(Trim(EditPseudoMgP.Text), 0)
+        else
+          ParamByName('@PSEUDOMGP').Value := 0;
+        ParamByName('@NONREFUND').Value := cbNonRefundable.Checked;
+        ParamByName('@PEP_SPRAY').Value := cbPepSpray.Checked;
+        if EditMaxPerTx.Text > '' then
+          ParamByName('@MAXPERTX').Value := StrToIntDef(Trim(EditMaxPerTx.Text), 0)
+        else
+          ParamByName('@MAXPERTX').Value := StrToIntDef(Trim(EditMaxPerTx.Text), 0);
+        ParamByName('@SKIPPRICEUPD').Value := cbSkipPriceUpdt.Checked;
+        ParamByName('@DTSKIPPRICEUPD').Value := Trim(DateToStr(dtpSkipPriceUpdt.DATETIME));
+        ParamByName('@SKIPPRICEUPDINIT').Value := Trim(EditSkipPriceUpdtIni.Text);
+        ParamByName('@LINE_LOC').Value := Trim(EditLineLoc.Text);
+        ParamByName('@SHELF_LOC').Value := Trim(EditShelfLoc.Text);
+        ParamByName('@STOCK_LOC').Value := Trim(EditStockLoc.Text);
+        ParamByName('@LST_MODIF_PR').Value := Now;
+        ParamByName('@SIZE_IT').Value := Trim(EditProdSize.Text);
+        ParamByName('@AskID').Value := StrToIntDef(Trim(cbAge.Text), 0);
+        ParamByName('@NUMEROSUPLIDOR2').Value := NoSupplier2;
+        if cbSupplierPrice.Checked = True then    //Select supplier price 1 or 2 ACG 02/13/2026//
+          ParamByName('@SUPPLIER_PRICE_DEFINE').AsInteger := 0
+        else
+          ParamByName('@SUPPLIER_PRICE_DEFINE').AsInteger := 1;
+        if lblSupPrice.Caption > '' then
+          ParamByName('@SUPPLIER_PRICE').Value := StrToFloatDef(StringReplace(lblSupPrice.Caption, '$', '', [rfReplaceAll]), 0)
+        else
+          ParamByName('@SUPPLIER_PRICE').Value := 0;
+        if lblSupPrice2.Caption > '' then
+          ParamByName('@SUPPLIER_PRICE2').Value := StrToFloatDef(StringReplace(lblSupPrice2.Caption, '$', '', [rfReplaceAll]), 0)
+        else
+          ParamByName('@SUPPLIER_PRICE2').Value := 0;
+        ///end///
+        ExecProc;
+        EditProductID.Text := IntToStr(ParamByName('@PID').Value);
+      end;
+    except on E: Exception do
     begin
-      Prepare;
-      ParamByName('@ADD_EDIT').Value := 1;
-      ParamByName('@PROCUCT_ID').Value := StrToInt(EditProductID.Text);
-      ParamByName('@DESCRIPCION').Value := Trim(Copy(EditDescription.Text,1,35));
-      ParamByName('@COSTO').Value := StrToFloat(EditCosto.Text);
-      ParamByName('@PRECIO').Value := StrToFloat(EditRetailPrice.Text);
-      ParamByName('@PRECIOVENTA2').Value := StrToFloat(EditPrecioVenta2.Text);
-      ParamByName('@PRECIOVENTA3').Value := StrToFloat(EditPrecioVenta3.Text);
-      ParamByName('@RBP').Value := StrToFloat(EditPrecioGrupo.Text);
-      ParamByName('@GROUP_QTY').Value := StrToFloat(EditGROUP_QTY.Text);
-      ParamByName('@PRECIO_CAJA').Value := StrToFloat(EditPrecioCaja.Text);
-      ParamByName('@QTY_CAJA').Value := StrToFloat(EditQtyCaja.Text);
-      ParamByName('@ESPECIAL').Value := StrToFloat(EditEspecial.Text);
-      ParamByName('@COMESPECIAL').Value := StrToDateTime(EditCOMESPECIAL.Text);
-      ParamByName('@TERMINAESPECIAL').Value := StrToDateTime(EditTERMINAESPECIAL.Text);
-      ParamByName('@SALES_PROMO_DEFINE').Value := EditSALES_PROMOTION_ID.Text;
-      ParamByName('@KITCHEN').Value := cbKitchen.Checked;
-      ParamByName('@HAS_MODIFIER').Value := cbModifiers.Checked;
-      ParamByName('@MODIFIER_QTY').Value := StrToFloat(EditNO_MODIFIERS.Text);
-      ParamByName('@DESCDEPT').Value := NoDept;
-      ParamByName('@SUBDEPT').Value := NoSubDept;
-      ParamByName('@Suplidor').Value := NoSupplier;
-      ParamByName('@CMININVENTARIO').Value := StrToFloat(EditMinimo.Text);
-      ParamByName('@CMAXINVENTARIO').Value := StrToFloat(EditMaximo.Text);
-      ParamByName('@QTYINVENTARIO').Value := StrToFloat(EditQtyInventario.Text);
-      ParamByName('@EDITAR_PRECIO').Value := cbEditarPrecio.Checked;
-      ParamByName('@PO').Value := Copy(EditPO.Text,1,10);
-      ParamByName('@CODIGOBARRA').Value := Copy(EditUPC.Text,1,14);
-      ParamByName('@BARCODE2').Value := Copy(EditPartNumber.Text,1,14);
-      ParamByName('@INFOADICIONAL').Value := Copy(EditAdditionalInfo.Text,1,25);
-      ParamByName('@RECIPEPRICE').Value := StrToFloat(EditRecipePrice.Text);
-      if cbShowIndividual.Checked then
-        ParamByName('@SHOWINDIVIDUAL').Value := '1'
-      else
-        ParamByName('@SHOWINDIVIDUAL').Value := '0';
-      if cbPatrocinio.Checked then
-        ParamByName('@PATROCINIO').Value := 1
-      else
-        ParamByName('@PATROCINIO').Value := 0;
-      if cbStateTaxable.Checked then
-        ParamByName('@TAXABLE_ESTATAL').Value := '1'
-      else
-        ParamByName('@TAXABLE_ESTATAL').Value := '0';
-      if cbLocalTax.Checked then
-        ParamByName('@TAXABLE').Value := '1'
-      else
-        ParamByName('@TAXABLE').Value := '0';
-      if cbFoodItem.Checked then
-        ParamByName('@FOODITEM').Value := 1
-      else
-        ParamByName('@FOODITEM').Value := 0;
-      if cbNoUPC.Checked then
-        ParamByName('@NONEBC').Value := 1
-      else
-        ParamByName('@NONEBC').Value := 0;
-      if cbShowOnEcomm.Checked then
-        ParamByName('@SHOW_ON_ECOMM').Value := 1
-      else
-        ParamByName('@SHOW_ON_ECOMM').Value := 0;
-      ParamByName('@RECIPE').Value := cbRecipe.Checked;
-      ParamByName('@DAILY_SALE_START_TIME').Value := StrToTime(eDailySaleStartTime.Text);
-      ParamByName('@DAILY_SALE_END_TIME').Value := StrToTime(eDailySalEndTime.Text);
-      ParamByName('@DAILY_SPECIAL_PRICE').Value := StrToFloat(eDailySalePrice.Text);
-      ParamByName('@PROCESSED_FOOD').Value := cbProcessedFood.Checked;
-      ParamByName('@DAILY_SALE_ACTIVE').Value := cbDAILY_SALE_ACTIVE.Checked;
-      ParamByName('@TRIPLES_PRODUCT').Value := cbTripleS.Checked;
-      ParamByName('@ULTIMOCAMBIO').Value := Trim(Copy(CommonPOS.UserName,1,30));
-      ParamByName('@CUSTOMER_ID_REQUIRED').Value := cbCustIDRequired.Checked;
-      ParamByName('@NOTE').Value := MemoProductNote.Text;
-      ParamByName('@PRODUCT_CLASSIFICATION').Value := Trim(Copy(EditProductClassification.Text,1,20));
-      ///New for wescosoft///
-      ParamByName('@GM1').Value := Trim(EditGm1.Text);
-      ParamByName('@GM2').Value := Trim(EditGm2.Text);
-      ParamByName('@GM3').Value := Trim(EditGm3.Text);
-      ParamByName('@ALWDISC').Value := cbAllowDiscount.Checked;
-      ParamByName('@ROUND').Value := cbRound.Checked;
-      ParamByName('@DEPL').Value := Trim(EditDptL.Text);
-      ParamByName('@DEPS').Value := Trim(EditDptS.Text);
-      ParamByName('@NLINE').Value := cbNline.Checked;
-      ParamByName('@EBT').Value := cbEbt.Checked;
-      ParamByName('@SIGIS').Value := cbSigSis.Checked;
-      ParamByName('@OTCCARD').Value := cbOtcCard.Checked;
-      ParamByName('@PSEUDO').Value := cbPseudo.Checked;
-      if EditPseudoMgD.Text > '' then
-        ParamByName('@PSEUDOMGD').Value := StrToInt(Trim(EditPseudoMgD.Text))
-      else
-        ParamByName('@PSEUDOMGD').Value := 0;
-      if EditPseudoMgP.Text > '' then
-        ParamByName('@PSEUDOMGP').Value := StrToInt(Trim(EditPseudoMgP.Text))
-      else
-        ParamByName('@PSEUDOMGP').Value := 0;
-      ParamByName('@NONREFUND').Value := cbNonRefundable.Checked;
-      ParamByName('@PEP_SPRAY').Value := cbPepSpray.Checked;
-      if EditMaxPerTx.Text > '' then
-        ParamByName('@MAXPERTX').Value := StrToInt(Trim(EditMaxPerTx.Text))
-      else
-        ParamByName('@MAXPERTX').Value := StrToInt(Trim(EditMaxPerTx.Text));
-      ParamByName('@SKIPPRICEUPD').Value := cbSkipPriceUpdt.Checked;
-      ParamByName('@DTSKIPPRICEUPD').Value := Trim(DateToStr(dtpSkipPriceUpdt.DATETIME));
-      ParamByName('@SKIPPRICEUPDINIT').Value := Trim(EditSkipPriceUpdtIni.Text);
-      ParamByName('@LINE_LOC').Value := Trim(EditLineLoc.Text);
-      ParamByName('@SHELF_LOC').Value := Trim(EditShelfLoc.Text);
-      ParamByName('@STOCK_LOC').Value := Trim(EditStockLoc.Text);
-      ParamByName('@LST_MODIF_PR').Value := Now;
-      ParamByName('@SIZE_IT').Value := Trim(EditProdSize.Text);
-      ParamByName('@AskID').Value := Trim(cbAge.Text);
-      ParamByName('@NUMEROSUPLIDOR2').Value := NoSupplier2;
-      if cbSupplierPrice.Checked = True then    //Select supplier price 1 or 2 ACG 02/13/2026//
-        ParamByName('@SUPPLIER_PRICE_DEFINE').Value := 0
-      else
-        ParamByName('@SUPPLIER_PRICE_DEFINE').Value := 1;
-      if lblSupPrice.Caption > '' then
-        ParamByName('@SUPPLIER_PRICE').Value := StrToFloat(StringReplace(lblSupPrice.Caption, '$', '', [rfReplaceAll]))
-      else
-        ParamByName('@SUPPLIER_PRICE').Value := '0';
-      if lblSupPrice2.Caption > '' then
-        ParamByName('@SUPPLIER_PRICE2').Value := StrToFloat(StringReplace(lblSupPrice2.Caption, '$', '', [rfReplaceAll]))
-      else
-        ParamByName('@SUPPLIER_PRICE2').Value := '0';
-      ///end///
-      ExecProc;
-
-      EditProductID.Text := IntToStr(ParamByName('@PID').Value);
-      if StrToFloat(EditRetailPrice.Text) <> CDSInventarioPisoPRECIO.asFloat then
-      begin
-        Note := 'Price field value was change from: ' + CDSInventarioPisoPRECIO.AsString + ' to ' + EditRetailPrice.Text + chr(13);
-      end;
-      if StrToFloat(EditEspecial.Text) <> CDSInventarioPisoESPECIAL.asFloat then
-      begin
-        Note := Note + ' Special field value was change from: ' + CDSInventarioPisoESPECIAL.AsString + ' to ' + EditEspecial.Text;
-      end;
-      if StrToFloat(EditCosto.Text) <> CDSInventarioPisoCOSTO.asFloat then
-      begin
-        Note := Note + ' Cost field value was change from: ' + CDSInventarioPisoCOSTO.AsString + ' to ' + EditCosto.Text;
-      end;
-      CommonPOS.InsertLog('Inventory modified', 'M', CDSInventarioPisoCODIGOBARRA.Value,
-                  Copy(CommonPOS.User,1,3), '',
-                  0, 0, 0, 0,
-                  0, 0, 0, StrToInt(EditProductID.Text),
-                  'Drug: ' + Trim(CDSInventarioPisoDESCRIPCION.Value) + ' was modified by ' + CommonPOS.UserName + chr(39) + ' ' + Note,false,true);
-
+      ShowMessage('Error: ' + e.Message)
     end;
+    end;
+    if StrToFloat(EditRetailPrice.Text) <> CDSInventarioPisoPRECIO.asFloat then
+    begin
+      Note := 'Price field value was change from: ' + CDSInventarioPisoPRECIO.AsString + ' to ' + EditRetailPrice.Text + chr(13);
+    end;
+    if StrToFloat(EditEspecial.Text) <> CDSInventarioPisoESPECIAL.asFloat then
+    begin
+      Note := Note + ' Special field value was change from: ' + CDSInventarioPisoESPECIAL.AsString + ' to ' + EditEspecial.Text;
+    end;
+    if StrToFloat(EditCosto.Text) <> CDSInventarioPisoCOSTO.asFloat then
+    begin
+      Note := Note + ' Cost field value was change from: ' + CDSInventarioPisoCOSTO.AsString + ' to ' + EditCosto.Text;
+    end;
+    CommonPOS.InsertLog('Inventory modified', 'M', CDSInventarioPisoCODIGOBARRA.Value,
+                Copy(CommonPOS.User,1,3), '',
+                0, 0, 0, 0,
+                0, 0, 0, StrToInt(EditProductID.Text),
+                'Drug: ' + Trim(CDSInventarioPisoDESCRIPCION.Value) + ' was modified by ' + CommonPOS.UserName + chr(39) + ' ' + Note,false,true);
     if hasImage = True then
     begin
       MS := TMemoryStream.Create;
