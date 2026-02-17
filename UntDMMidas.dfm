@@ -9841,6 +9841,7 @@ object DMMidas: TDMMidas
     Top = 992
   end
   object FDPhysMSSQLDriverLink1: TFDPhysMSSQLDriverLink
+    ODBCAdvanced = 'TrustServerCertificate=yes'
     Left = 152
     Top = 24
   end

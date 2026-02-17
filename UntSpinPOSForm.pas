@@ -815,9 +815,6 @@ begin
   if not ValidateCredentials then
     Exit;
 
-  if not ValidateReturnInputs then
-    Exit;
-
   memoResponse.Lines.Clear;
   memoResponse.Lines.Add('Processing return...');
   memoResponse.Lines.Add('');
@@ -828,11 +825,11 @@ begin
   try
     ReturnData := TReturnData.Create;
     try
-      ReturnData.OriginalTransactionId := edtReturnTxnId.Text;
-      ReturnData.OriginalTCN := edtReturnTCN.Text;
-      ReturnData.Amount := StrToFloatDef(edtReturnAmount.Text, 0);
-      ReturnData.TypePayment := cbTypePayment.Text;
-      ReturnData.Reason := edtReturnReason.Text;
+      ReturnData.OriginalTransactionId :=IntToStr(CommonPOS.Header);
+      ReturnData.OriginalTCN := IntToStr(nextRefNo('REFERENCE_NO'));    //edtReturnTCN.Text;
+      ReturnData.Amount := dAmount; //StrToFloatDef(edtReturnAmount.Text, 0);
+      ReturnData.TypePayment := TypePayment;  //cbTypePayment.Text;
+      ReturnData.Reason := '';  //edtReturnReason.Text;
       memo1.Lines.Add('ONE MOMENT PLEASE');
       Response := SpinPOS.ProcessReturn(ReturnData);
       try
@@ -841,20 +838,23 @@ begin
           memoResponse.Lines.Add('=== RETURN RESPONSE ===');
           memoResponse.Lines.Add('Success: ' + BoolToStr(Response.Success, True));
           memoResponse.Lines.Add('Message: ' + Response.Message);
-            memo1.Lines.Clear;
-          if Response.Success then
+          memo1.Lines.Clear;
+         if Response.Success then
           begin
-            memoResponse.Lines.Add('Transaction ID: ' + Response.TransactionId);
-            memoResponse.Lines.Add('Approval Code: ' + Response.ApprovalCode);
+            memo1.Lines.Add('Transaction ID: ' + Response.TransactionId);
+            memo1.Lines.Add('Description: ' + Response.MessageDet);
+            memo1.Lines.Add('Approval Code: ' + Response.ApprovalCode);
+          end
+          else
+          begin
+            memo1.Lines.Add('Response:' + Response.Message);
+            memo1.Lines.Add('DeclineReason:' + Response.MessageDet);
           end;
-          memoResponse.Lines.Add('');
-          memoResponse.Lines.Add('=== RAW JSON ===');
-          memoResponse.Lines.Add(Response.RawJSON);
 
           if Response.Success then
-            ShowMessage('Return processed successfully!')
+              InsertFinishedTransaction(CommonPOS.Header,Response.RawJSON,StrToFloat(Response.Amount),strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType ) //ShowMessage('Return processed successfully!')
           else
-            ShowMessage('Return failed: ' + Response.Message);
+              InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType )
         end;
       finally
         if Response <> nil then
