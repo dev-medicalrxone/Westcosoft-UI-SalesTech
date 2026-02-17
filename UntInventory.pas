@@ -347,6 +347,9 @@ begin
   FrmEditInventorySP := TFrmEditInventorySP.Create(Self);
   With FrmEditInventorySP, DMMidas.CDSInventarioPiso do
   begin
+    DMMidas.CDSInventarioPiso.Close;
+    DMMidas.CDSInventarioPiso.CommandText := 'Select * from inventariopiso where productno = ' + chr(39) + chr (39);
+    DMMidas.CDSInventarioPiso.open;
     tbAppend.Click;
     ShowModal;
     FrmEditInventory := Nil;

@@ -455,7 +455,7 @@ begin
   cbLogeado.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 142);
   cbMAIN_CUST.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 143);
   cbMAIN_LABEL.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 144);
-  cbMAIN_INV.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 145);
+  cbMAIN_INV.Caption := 'INVENTORY (1)';//TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 145);
   cbMAIN_DEPT.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 146);
   cbMAIN_SUPL.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 147);
   cbMAIN_TOTAL.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 148);

@@ -18,7 +18,7 @@ uses
 type
   TFrmMain = class(TForm)
     sbMain: TStatusBar;
-    DisImages: TImageList;
+    DisImages: TImageList ;
     RichEdit1: TRichEdit;
     LblDummy: TLabel;
     TimerPoleDisplayHeader: TTimer;
