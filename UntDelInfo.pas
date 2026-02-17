@@ -27,6 +27,8 @@ type
     Panel1: TPanel;
     Button1: TButton;
     Button2: TButton;
+    Button3: TButton;
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,5 +41,29 @@ var
 implementation
 
 {$R *.dfm}
+
+uses UntSearchCust2, UntDMMidas;
+
+procedure TfrmDelInfo.Button3Click(Sender: TObject);
+begin
+  FrmSearchCust2 := TFrmSearchCust2.Create(nil);
+  with FrmSearchCust2 do
+  begin
+    ShowModal;
+    if ModalResult = mrok then
+    begin
+      with DMMidas do
+      begin
+        EditDelName.Text := CDSClientesNombreCompleto2.Value;
+        EditDelPhone.Text := CDSClientesCELULAR.asString;
+        EditDelAddress1.Text := CDSClientesDIRECCION1.Value;
+        EditDelAddress2.Text := CDSClientesDIRECCION2.Value;
+        EditDelCity.Text := CDSClientesCIUDAD.Value;
+        EditDelState.Text := CDSClientesESTADO.Value;
+        EditDelZipCode.Text := CDSClientesCODIGOPOSTAL.Value;
+      end;
+    end;
+  end;
+end;
 
 end.

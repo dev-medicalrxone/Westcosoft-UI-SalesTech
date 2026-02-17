@@ -745,6 +745,14 @@ object DMMidas: TDMMidas
       Precision = 18
       Size = 2
     end
+    object CDSInventarioPisoSUPP_ITEMID: TStringField
+      FieldName = 'SUPP_ITEMID'
+      FixedChar = True
+    end
+    object CDSInventarioPisoSUPP_ITEMID2: TStringField
+      FieldName = 'SUPP_ITEMID2'
+      FixedChar = True
+    end
   end
   object DSPInventarioPiso: TDataSetProvider
     DataSet = QInventarioPisoFD
@@ -9860,6 +9868,7 @@ object DMMidas: TDMMidas
       'MARS=yes'
       'Database=familiar'
       'DriverID=MSSQL')
+    Connected = True
     LoginPrompt = False
     Transaction = FDTransaction1
     Left = 24
@@ -14811,6 +14820,20 @@ object DMMidas: TDMMidas
       end
       item
         Position = 79
+        Name = '@SUPP_ITEMID'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 20
+      end
+      item
+        Position = 80
+        Name = '@SUPP_ITEMID2'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 20
+      end
+      item
+        Position = 81
         Name = '@LST_MODIF_PR'
         DataType = ftTimeStamp
         NumericScale = 3

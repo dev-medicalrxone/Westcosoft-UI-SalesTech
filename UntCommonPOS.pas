@@ -7880,6 +7880,11 @@ begin
           FrmStartTab.btnOK.Visible := True;
           FrmStarttab.btnStartNewTab.Visible := False;
         end
+        else if transType = 'D' then
+        begin
+          FrmStartTab.btnOK.Visible := True;
+          FrmStartTab.btnStartNewTab.Visible := True;
+        end
         else
         begin
           FrmStartTab.btnOK.Visible := False;

@@ -10,9 +10,7 @@ object frmDelInfo: TfrmDelInfo
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poScreenCenter
-  PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
     Left = 40
@@ -202,5 +200,14 @@ object frmDelInfo: TfrmDelInfo
       ModalResult = 1
       TabOrder = 1
     end
+  end
+  object Button3: TButton
+    Left = 344
+    Top = 19
+    Width = 105
+    Height = 25
+    Caption = 'Search customer...'
+    TabOrder = 9
+    OnClick = Button3Click
   end
 end
