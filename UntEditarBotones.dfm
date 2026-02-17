@@ -264,7 +264,8 @@ object FrmBotonesEdit: TFrmBotonesEdit
       'Reprint'
       'Settle PINPad'
       'ATH Manual'
-      'Visa Manual')
+      'Visa Manual'
+      'SPOS Return')
     TabOrder = 4
   end
   object Panel2: TPanel

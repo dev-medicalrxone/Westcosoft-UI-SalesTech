@@ -99,6 +99,7 @@ begin
   DBComboBox1.Items[22] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 222);
   DBComboBox1.Items[23] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 223);
   DBComboBox1.Items[24] :=  TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 224);
+
 end;
 
 procedure TFrmBotonesEdit.SpeedButton1Click(Sender: TObject);
