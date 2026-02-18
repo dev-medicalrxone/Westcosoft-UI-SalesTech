@@ -586,12 +586,12 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnClick = SpeedButton3Click
       end
       object Label26: TLabel
-        Left = 772
+        Left = 775
         Top = 64
-        Width = 59
+        Width = 56
         Height = 13
         Alignment = taRightJustify
-        Caption = 'SUPLIDOR 2'
+        Caption = 'SUPPLIER 2'
         Transparent = True
       end
       object lblSupPrice: TLabel
