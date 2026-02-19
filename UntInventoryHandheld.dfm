@@ -257,7 +257,7 @@ object FrmHandheld: TFrmHandheld
     Font.Height = -13
     Font.Name = 'Segoe UI'
     Font.Style = []
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
     ParentFont = False
     TabOrder = 1
     TitleFont.Charset = ANSI_CHARSET
@@ -267,6 +267,8 @@ object FrmHandheld: TFrmHandheld
     TitleFont.Style = []
     OnCellClick = DBGrid1CellClick
     OnDrawColumnCell = DBGrid1DrawColumnCell
+    OnKeyDown = DBGrid1KeyDown
+    OnKeyPress = DBGrid1KeyPress
     Columns = <
       item
         Expanded = False

@@ -10,6 +10,7 @@ uses
 
 
 type
+    THackDBGrid = class(TDBGrid);
   TFrmHandheld = class(TForm)
     Panel5: TPanel;
     Label5: TLabel;
@@ -49,6 +50,9 @@ type
     procedure btnCancelClick(Sender: TObject);
     procedure chkAllDismissClick(Sender: TObject);
     procedure chkAllRemoveClick(Sender: TObject);
+    procedure DBGrid1KeyPress(Sender: TObject; var Key: Char);
+    procedure DBGrid1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
 
   private
     { Private declarations }
@@ -146,7 +150,7 @@ begin
                     IIF(cboDevices1 ='ALL', '', ' and DeviceID = '+ ''''+cboDevices1 + '''') +
                     IIF(cboUsers1 ='ALL', '', ' and PASSWORDS.USERNAME  = '+''''+ cboUsers1 + '''') +
                     IIF(cbotype <> 0, ' and type =' + IntToStr(cboType)  , '');
-          CDSRecHandheld.CommandText := StringReplace(sQuery1,'''',Chr(39), [rfReplaceAll]) ;
+          CDSRecHandheld.CommandText := StringReplace(sQuery1,'''',Chr(39), [rfReplaceAll]) + ' ORDER BY ID; ';
           CDSRecHandheld.Open;
         end;
     end;
@@ -288,14 +292,16 @@ begin
 
             if not (CDSRecHandheld.State in [dsEdit]) then
               CDSRecHandheld.Edit;
+            if (Column.FieldName = 'DISMISS') OR (Column.FieldName = 'REMOVE') then
+              Column.Field.AsBoolean := not Column.Field.AsBoolean;
 
-            Column.Field.AsBoolean := not Column.Field.AsBoolean;
             if (Column.FieldName = 'DISMISS') then
             begin
                 CDSRecHandheld.FieldByName('Remove').AsBoolean :=false ;
                 chkAllRemove.Checked := false;
-            end
-            else
+            end;
+
+            if (Column.FieldName = 'REMOVE') then
             begin
                 CDSRecHandheld.FieldByName('Dismiss').AsBoolean :=false;
                 chkAllDismiss.Checked := false;
@@ -329,18 +335,92 @@ begin
     DBGridHandheld.DefaultDrawColumnCell(Rect, DataCol, Column, State);
 end;
 
+procedure TFrmHandheld.DBGrid1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+  EditCtrl: TInplaceEdit;
+  NuevoValor: string;
+  DataSet: TDataSet;
+  n: Double;
+begin
+      if Key = VK_RETURN then
+      begin
+        Key := 0;
+
+        EditCtrl :=  THackDBGrid(DBGridHandheld).InplaceEditor;
+
+        if Assigned(EditCtrl) then
+        begin
+          NuevoValor := EditCtrl.Text;
+          if TryStrToFloat(NuevoValor, n) then
+          begin
+              //UpdateQty(EditCtrl.Text);
+              DataSet := DBGridHandheld.DataSource.DataSet;
+              if not DataSet.Eof then
+              begin
+                    With DMMidas do
+                    begin
+                      POS_GET_HANDHELDINFO.Unprepare;
+                      POS_GET_HANDHELDINFO.Params.Clear;
+                      POS_GET_HANDHELDINFO.Params.Add('@pType', ftInteger).AsInteger := 7; //update
+                      POS_GET_HANDHELDINFO.Params.Add('@pID', ftInteger).AsInteger := DataSet.FieldByName('ID').AsInteger;
+                      POS_GET_HANDHELDINFO.Params.Add('@pQty',ftInteger).AsFloat := StrToFloat(NuevoValor);
+                      POS_GET_HANDHELDINFO.Prepare;
+                      POS_GET_HANDHELDINFO.ExecProc;
+                      POS_GET_HANDHELDINFO.Close;
+                    end;
+              end;
+          end;
+          FillGrid(cboDevices.Text,cbousers.Text);
+        end;
+      end;
+end;
+
+procedure TFrmHandheld.DBGrid1KeyPress(Sender: TObject; var Key: Char);
+var
+  EditCtrl: TInplaceEdit;
+begin
+   if DBGridHandheld.SelectedField.FieldName <> 'QTY' then
+   begin
+    Key := #0; // bloquea escritura
+    Exit;
+   end;
+
+   //if CommonPOS.isAuthorized('',UserRights.PROCESS_HANDHELD, false) then
+    With DMMidas do
+    begin
+        if (CommonPOS.UserLevel<>'2') and (CommonPOS.UserLevel<>'3') then
+         begin
+          Key := #0; // bloquea escritura
+          Exit;
+         end;
+    end;
+
+   EditCtrl := THackDBGrid(DBGridHandheld).InplaceEditor;
+
+  if Assigned(EditCtrl) then
+  begin
+    EditCtrl.SelText := Key;
+    Key := #0; // evitar manejo normal
+  end;
+end;
+
 procedure TFrmHandheld.FormCreate(Sender: TObject);
 begin
     cboType := 0;
     isInitialize :=false;
     fillcboDevicesUser(1 ,cboDevices);
     fillcboDevicesUser(2 ,cboUsers);
-    DBGridHandheld.Options := DBGridHandheld.Options - [dgEditing];
+    //DBGridHandheld.Options := DBGridHandheld.Options - [dgEditing];
     cboDevices.ItemIndex :=0;
     cboUsers.ItemIndex :=0;
     fillCounters(cboDevices.Text,cbousers.Text,Label12,Label19,Label20,Label21,Label22);
     FillGrid(cboDevices.Text,cbousers.Text);
     Self.Position := poScreenCenter;
+
+    DBGridHandheld.ReadOnly := False;
+    DBGridHandheld.Options := DBGridHandheld.Options + [dgEditing];
+
 end;
 
 procedure TFrmHandheld.FormResize(Sender: TObject);

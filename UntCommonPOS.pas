@@ -145,6 +145,7 @@ end;
     EvertecID: String;
     adjDelete: Boolean;
     UserName: String;
+    UserLevel: String;  //[2025/02/18 jb] added level
     Factura: Boolean;
     Paidout: Boolean;
     Capture_Signature_User: String;
@@ -9973,6 +9974,7 @@ begin
         CREATE_INVENTORY := True;
         DELETE_INVENTORY := True;
         REPORTS := True;
+        UserLevel := '3';
       end
       else
       begin
@@ -10035,6 +10037,7 @@ begin
         DELETE_INVENTORY := PWRD_ISAUTHORIZED.ParamByName('@DELETE_INVENTORY').Value;
         CREATE_INVENTORY := PWRD_ISAUTHORIZED.ParamByName('@CREATE_INVENTORY').Value;
         REPORTS := PWRD_ISAUTHORIZED.ParamByName('@REPORTES').Value;
+        CommonPOS.UserLevel :=PWRD_ISAUTHORIZED.ParamByName('@SEC_LEVEL').Value;
       end;
     end;
   end;
