@@ -20213,4 +20213,30 @@ object DMMidas: TDMMidas
         ParamType = ptInputOutput
       end>
   end
+  object CALC_PAYOUT: TFDStoredProc
+    Connection = FDConnection1
+    SchemaName = 'dbo'
+    StoredProcName = 'CALC_PAYOUT'
+    Left = 1768
+    Top = 312
+    ParamData = <
+      item
+        Position = 1
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        ParamType = ptResult
+      end
+      item
+        Position = 2
+        Name = '@ID'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Position = 3
+        Name = '@REGISTER'
+        DataType = ftInteger
+        ParamType = ptInput
+      end>
+  end
 end
