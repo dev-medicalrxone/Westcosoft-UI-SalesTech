@@ -311,7 +311,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object Label10: TLabel
         Left = 784
-        Top = 101
+        Top = 153
         Width = 84
         Height = 13
         Caption = '# OF MODIFIERS'
@@ -438,7 +438,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object Label1: TLabel
         Left = 806
-        Top = 73
+        Top = 125
         Width = 62
         Height = 13
         Alignment = taRightJustify
@@ -573,25 +573,25 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object Bevel20: TBevel
         Left = 772
-        Top = 61
+        Top = 113
         Width = 311
         Height = 3
       end
       object SpeedButton10: TSpeedButton
         Left = 970
-        Top = 31
+        Top = 58
         Width = 23
         Height = 22
         Caption = '...'
         OnClick = SpeedButton3Click
       end
       object Label26: TLabel
-        Left = 772
-        Top = 37
-        Width = 59
+        Left = 775
+        Top = 64
+        Width = 56
         Height = 13
         Alignment = taRightJustify
-        Caption = 'SUPLIDOR 2'
+        Caption = 'SUPPLIER 2'
         Transparent = True
       end
       object lblSupPrice: TLabel
@@ -604,11 +604,29 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object lblSupPrice2: TLabel
         Left = 1009
-        Top = 37
+        Top = 64
         Width = 28
         Height = 13
         Alignment = taRightJustify
         Caption = '$0.00'
+      end
+      object Label27: TLabel
+        Left = 793
+        Top = 37
+        Width = 38
+        Height = 13
+        Alignment = taRightJustify
+        Caption = 'ITEM ID'
+        Transparent = True
+      end
+      object Label42: TLabel
+        Left = 784
+        Top = 91
+        Width = 47
+        Height = 13
+        Alignment = taRightJustify
+        Caption = 'ITEM ID 2'
+        Transparent = True
       end
       object EditDescription: TEdit
         Left = 112
@@ -729,7 +747,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object EditNO_MODIFIERS: TEdit
         Left = 899
-        Top = 97
+        Top = 149
         Width = 121
         Height = 21
         Alignment = taRightJustify
@@ -739,7 +757,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbKitchen: TCheckBox
         Left = 784
-        Top = 125
+        Top = 177
         Width = 97
         Height = 17
         Caption = 'KITCHEN'
@@ -748,7 +766,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbModifiers: TCheckBox
         Left = 784
-        Top = 148
+        Top = 200
         Width = 97
         Height = 17
         Caption = 'MODIFIERS'
@@ -788,7 +806,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbEditarPrecio: TCheckBox
         Left = 932
-        Top = 171
+        Top = 223
         Width = 97
         Height = 17
         Caption = 'EDIT PRICE'
@@ -837,7 +855,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbShowIndividual: TCheckBox
         Left = 784
-        Top = 171
+        Top = 223
         Width = 129
         Height = 17
         Caption = 'SHOW INDIVIDUAL'
@@ -846,7 +864,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbPatrocinio: TCheckBox
         Left = 784
-        Top = 194
+        Top = 246
         Width = 129
         Height = 17
         Caption = 'NO PATROCINIO'
@@ -855,7 +873,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbStateTaxable: TCheckBox
         Left = 784
-        Top = 217
+        Top = 269
         Width = 129
         Height = 17
         Caption = 'STATE TAXABLE'
@@ -864,7 +882,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbLocalTax: TCheckBox
         Left = 784
-        Top = 241
+        Top = 293
         Width = 129
         Height = 17
         Caption = 'LOCAL TAXABLE'
@@ -873,7 +891,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbFoodItem: TCheckBox
         Left = 932
-        Top = 126
+        Top = 178
         Width = 129
         Height = 17
         Caption = 'FOOD ITEM'
@@ -882,7 +900,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbNoUPC: TCheckBox
         Left = 932
-        Top = 149
+        Top = 201
         Width = 129
         Height = 17
         Caption = 'NO UPC'
@@ -891,7 +909,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object EditProductID: TEdit
         Left = 899
-        Top = 70
+        Top = 122
         Width = 121
         Height = 21
         TabStop = False
@@ -918,7 +936,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbRecipe: TCheckBox
         Left = 932
-        Top = 194
+        Top = 246
         Width = 97
         Height = 17
         Caption = 'RECIPE'
@@ -985,7 +1003,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbProcessedFood: TCheckBox
         Left = 932
-        Top = 217
+        Top = 269
         Width = 124
         Height = 17
         Caption = 'PROCESSED FOOD'
@@ -993,7 +1011,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbTripleS: TCheckBox
         Left = 932
-        Top = 241
+        Top = 293
         Width = 124
         Height = 17
         Caption = 'TRIPLE S PRODUCT'
@@ -1001,7 +1019,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbShowOnEcomm: TCheckBox
         Left = 932
-        Top = 264
+        Top = 316
         Width = 154
         Height = 17
         Caption = 'SHOW ON ECOMMERCE'
@@ -1009,7 +1027,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbCustIDRequired: TCheckBox
         Left = 784
-        Top = 264
+        Top = 316
         Width = 141
         Height = 17
         Caption = 'CUSTOMER ID REQUIRED'
@@ -1048,7 +1066,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object EditSupDesc2: TEdit
         Left = 843
-        Top = 34
+        Top = 61
         Width = 121
         Height = 21
         TabOrder = 47
@@ -1064,11 +1082,27 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbSupplierPrice2: TCheckBox
         Left = 1043
-        Top = 36
+        Top = 63
         Width = 25
         Height = 17
         TabOrder = 49
         OnClick = cbSupplierPrice2Click
+      end
+      object EditItemId: TEdit
+        Left = 843
+        Top = 34
+        Width = 121
+        Height = 21
+        TabOrder = 50
+        OnKeyPress = FormKeyPress
+      end
+      object EditItemID2: TEdit
+        Left = 843
+        Top = 88
+        Width = 121
+        Height = 21
+        TabOrder = 51
+        OnKeyPress = FormKeyPress
       end
     end
     object TabSheet2: TTabSheet

@@ -745,6 +745,14 @@ object DMMidas: TDMMidas
       Precision = 18
       Size = 2
     end
+    object CDSInventarioPisoSUPP_ITEMID: TStringField
+      FieldName = 'SUPP_ITEMID'
+      FixedChar = True
+    end
+    object CDSInventarioPisoSUPP_ITEMID2: TStringField
+      FieldName = 'SUPP_ITEMID2'
+      FixedChar = True
+    end
   end
   object DSPInventarioPiso: TDataSetProvider
     DataSet = QInventarioPisoFD
@@ -9860,7 +9868,6 @@ object DMMidas: TDMMidas
       'MARS=yes'
       'Database=familiar'
       'DriverID=MSSQL')
-    Connected = True
     LoginPrompt = False
     Transaction = FDTransaction1
     Left = 24
@@ -14812,6 +14819,20 @@ object DMMidas: TDMMidas
       end
       item
         Position = 79
+        Name = '@SUPP_ITEMID'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 20
+      end
+      item
+        Position = 80
+        Name = '@SUPP_ITEMID2'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 20
+      end
+      item
+        Position = 81
         Name = '@LST_MODIF_PR'
         DataType = ftTimeStamp
         NumericScale = 3
@@ -20190,6 +20211,32 @@ object DMMidas: TDMMidas
         Name = '@ID'
         DataType = ftInteger
         ParamType = ptInputOutput
+      end>
+  end
+  object CALC_PAYOUT: TFDStoredProc
+    Connection = FDConnection1
+    SchemaName = 'dbo'
+    StoredProcName = 'CALC_PAYOUT'
+    Left = 1768
+    Top = 312
+    ParamData = <
+      item
+        Position = 1
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        ParamType = ptResult
+      end
+      item
+        Position = 2
+        Name = '@ID'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Position = 3
+        Name = '@REGISTER'
+        DataType = ftInteger
+        ParamType = ptInput
       end>
   end
 end

@@ -7056,6 +7056,7 @@ begin
         CommonPOS.ID := DMMidas.CDSTrHeadAdHoc2.fieldbyName('ID').asInteger;
       end;
     end;
+    {
     FDQuery1.Close;
     FDQuery1.SQL.Text := 'SELECT sum(PayAmount1) as TAmount From TransactionHeader Where (ID = ' + IntToStr(CommonPOS.ID) + ')  AND (Voided = 0) AND (PaymentType1 = ' + chr(39) + 'CASH' + chr(39) +') and (Register = ' + CommonPOS.RegisterNo + ')';
     FDQuery1.Open;
@@ -7090,6 +7091,20 @@ begin
     if FDQuery1.FieldByName('TAmount').IsNull = False then
     begin
       MaxAmount := MaxAmount - FDQuery1.FieldByName('TAmount').Value;
+    end;  }
+    try
+      CALC_PAYOUT.Prepare;
+      CALC_PAYOUT.ParamByName('@ID').AsInteger := CommonPOS.ID;
+      CALC_PAYOUT.ParamByName('@Register').AsInteger := StrToIntDef(CommonPOS.RegisterNo, 0);
+      CALC_PAYOUT.ExecProc;                                 // execute
+      // procedure returns a resultset with column MaxAmount in the example; fetch it:
+      if not CALC_PAYOUT.Active then CALC_PAYOUT.Open;
+      if not CALC_PAYOUT.FieldByName('MaxAmount').IsNull then
+        MaxAmount := CALC_PAYOUT.FieldByName('MaxAmount').AsCurrency
+      else
+        MaxAmount := 0;
+    except on e: Exception do
+      showMessage('Error: ' + e.Message)
     end;
   end;
   AuthUser := CommonPOS.User;
@@ -7505,6 +7520,7 @@ Var
   TmpAmnt: Single;
   InvoiceNum, StrAmnt: String;
   AuthUser: String;
+  MaxAmount: Double;
 begin
   AuthUser := CommonPOS.User;
   if CommonPOS.isAuthorized('POS_PAYOUT',UserRights.POS_PAYOUT,true) then
@@ -7514,11 +7530,28 @@ begin
       try
         StrAmnt := '0';
         InvoiceNum := '';
+        try
+          with DMMidas do
+          begin
+            CALC_PAYOUT.Prepare;
+            CALC_PAYOUT.ParamByName('@ID').AsInteger := CommonPOS.ID;
+            CALC_PAYOUT.ParamByName('@Register').AsInteger := StrToIntDef(CommonPOS.RegisterNo, 0);
+            CALC_PAYOUT.ExecProc;                                 // execute
+            // procedure returns a resultset with column MaxAmount in the example; fetch it:
+            if not CALC_PAYOUT.Active then CALC_PAYOUT.Open;
+            if not CALC_PAYOUT.FieldByName('MaxAmount').IsNull then
+              MaxAmount := CALC_PAYOUT.FieldByName('MaxAmount').AsCurrency
+            else
+              MaxAmount := 0;
+          end;
+        except on e: Exception do
+          showMessage('Error: ' + e.Message)
+        end;
         FrmInputNumber := TFrmInputNumber.Create(Application);
         With FrmInputNumber do
         begin
           if FrmMain.LanguageStr = 'English' then
-            FrmInputNumber.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 261)
+            FrmInputNumber.Caption := 'Available: ' + Format('%m', [MaxAmount])
           else
             FrmInputNumber.Caption := 'Entre la cantidad';
           ShowModal;
@@ -7880,6 +7913,11 @@ begin
         begin
           FrmStartTab.btnOK.Visible := True;
           FrmStarttab.btnStartNewTab.Visible := False;
+        end
+        else if transType = 'D' then
+        begin
+          FrmStartTab.btnOK.Visible := True;
+          FrmStartTab.btnStartNewTab.Visible := True;
         end
         else
         begin

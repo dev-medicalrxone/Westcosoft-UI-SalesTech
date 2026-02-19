@@ -2630,6 +2630,9 @@ type
     cdsInventarioPiso2SUPPLIER_PRICE_DEFINE: TIntegerField;
     cdsInventarioPiso2SUPPLIER_PRICE: TFMTBCDField;
     cdsInventarioPiso2SUPPLIER_PRICE2: TFMTBCDField;
+    CDSInventarioPisoSUPP_ITEMID: TStringField;
+    CDSInventarioPisoSUPP_ITEMID2: TStringField;
+    CALC_PAYOUT: TFDStoredProc;
     procedure CDSSetupAfterDelete(DataSet: TDataSet);
     procedure CDSClientTransactionsAfterDelete(DataSet: TDataSet);
     procedure CDSClientesOldCalcFields(DataSet: TDataSet);

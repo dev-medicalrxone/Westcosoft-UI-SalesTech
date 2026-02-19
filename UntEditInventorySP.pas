@@ -195,6 +195,10 @@ type
     cbSupplierPrice: TCheckBox;
     cbSupplierPrice2: TCheckBox;
     lblSupPrice2: TLabel;
+    Label27: TLabel;
+    EditItemId: TEdit;
+    Label42: TLabel;
+    EditItemID2: TEdit;
     procedure SpeedButton7Click(Sender: TObject);
     procedure SpeedButton8Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
@@ -889,13 +893,15 @@ begin
     end;
     lblSupPrice.Caption := {Format('%m', [} CurrToStr(CDSInventarioPiso.FieldByName('SUPPLIER_PRICE').AsCurrency);//]);
     lblSupPrice2.Caption := {Format('%m', [}CurrToStr(CDSInventarioPiso.FieldByName('SUPPLIER_PRICE2').asCurrency);//]);
-    if (lblSupPrice.Caption <> '0') or (lblSupPrice2.Caption <> '0') then
+    if (lblSupPrice.Caption <> '0') or (lblSupPrice2.Caption <> '0') then    //To check which price was previously selected AGC 02/17/26
     begin
       if CDSInventarioPisoSUPPLIER_PRICE_DEFINE.Value = 0 then
         cbSupplierPrice.Checked := True
       else
         cbSupplierPrice2.Checked := True;
     end;
+    EditItemId.Text := CDSInventarioPisoSUPP_ITEMID.Value;
+    EditItemID2.Text := CDSInventarioPisoSUPP_ITEMID2.Value;
     ///
     if Trim(editProductId.Text) > '' then
     begin
@@ -1283,10 +1289,9 @@ begin
   cbSkipPriceUpdt.Checked := False;
   lblSupPrice.caption := '$0.00';
   lblSupPrice2.caption := '$0.00';
-  //cbSupplierPrice.Checked := False;
-  //cbSupplierPrice2.Checked := False;
+  EditItemId.Text := '';
+  EditItemID2.Text := '';
   sbNewUPC.Click;
-  FrmEditInventorySP.Tag := 1; ///To identify a new product is to be inserted
 end;
 
 procedure TFrmEditInventorySP.tlBtnPostClick(Sender: TObject);
@@ -1419,6 +1424,8 @@ begin
           ParamByName('@SUPPLIER_PRICE2').Value := StrToFloatDef(StringReplace(lblSupPrice2.Caption, '$', '', [rfReplaceAll]), 0)
         else
           ParamByName('@SUPPLIER_PRICE2').Value := 0;
+        ParamByName('@SUPP_ITEMID').Value := EditItemId.Text;
+        ParamByName('@SUPP_ITEMID2').Value := EditItemId2.Text;
         ///end///
         ExecProc;
         EditProductID.Text := IntToStr(ParamByName('@PID').Value);
