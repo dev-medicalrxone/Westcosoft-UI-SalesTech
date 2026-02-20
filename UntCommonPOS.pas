@@ -110,6 +110,7 @@ end;
     Utility: Boolean;
     standalone: Boolean;
     extendedPosForm: Boolean;
+    maxPulloutAmnt:Double;
     productSignature: Boolean;
     CopharmaCardNumber: String;
     CoopharmaActive: Boolean;
@@ -3785,6 +3786,29 @@ begin
             CommonPOS.ShowMessageStr(FrmPOSRest.LabelCambio.Caption, 25,clBlack);
             //==================================================//
             CommonPOS.ClearTransactions;
+            if CommonPOS.maxPulloutAmnt > 0 then  //Checks if pullout amnt setting is enabled AGC 02/20/26
+            begin
+            try
+            begin
+              with DMMidas do
+              begin
+                CALC_PAYOUT.Prepare;
+                CALC_PAYOUT.ParamByName('@ID').AsInteger := CommonPOS.ID;
+                CALC_PAYOUT.ParamByName('@Register').AsInteger := StrToIntDef(CommonPOS.RegisterNo, 0);
+                CALC_PAYOUT.ExecProc;                                 // execute
+                // procedure returns a resultset with column MaxAmount in the example; fetch it:
+                if not CALC_PAYOUT.Active then CALC_PAYOUT.Open;
+                if not CALC_PAYOUT.FieldByName('MaxAmount').IsNull then
+                begin
+                  if maxPulloutAmnt < CALC_PAYOUT.FieldByName('MaxAmount').asFloat then
+                    ShowMessageStr('Max cash amount reached.', 12, clred)
+                end;
+              end;
+            end;
+            except on e: Exception do
+              showMessage('Error: ' + e.Message)
+            end;
+            end;
           end;
         end;
       end;

@@ -283,6 +283,8 @@ type
     edtMerchantId: TEdit;
     edtTerminalId: TEdit;
     DBEdit39: TDBEdit;
+    EditMaxPullout: TEdit;
+    Label85: TLabel;
     procedure ComboBox1Change(Sender: TObject);
     procedure TBPostClick(Sender: TObject);
     procedure ToolButton16Click(Sender: TObject);
@@ -389,6 +391,16 @@ begin
   end;
   try
     Registro.WriteBool('ExtendedPosForm', cbExtendedPOSform.Checked);
+  except
+    //
+  end;
+  try
+  begin
+    if EditMaxPullout.Text > '' then
+      Registro.WriteString('MaxPulloutAmnt', EditMaxPullout.Text)
+    else
+      Registro.WriteString('MaxPulloutAmnt', '0')
+  end;
   except
     //
   end;
@@ -620,6 +632,11 @@ begin
     Except
       cbExtendedPOSform.Checked := False;
     end;
+    Try
+      EditMaxPullout.Text := ReadString('MaxPulloutAmnt');
+    Except
+      EditMaxPullout.Text := '0';
+    End;
     Try
       EditSalesTechSADataBase.Text := ReadString('DataBaseNamePOS');
     Except

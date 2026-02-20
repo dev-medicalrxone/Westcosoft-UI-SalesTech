@@ -7315,7 +7315,7 @@ object FrmMain: TFrmMain
     OnClick = cxButtonInventoryClick
   end
   object cxButtonSettings: TSpeedButton
-    Left = 871
+    Left = 868
     Top = 56
     Width = 394
     Height = 208
