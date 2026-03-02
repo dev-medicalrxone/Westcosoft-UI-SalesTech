@@ -632,7 +632,6 @@ procedure TFrmMain.FormCreate(Sender: TObject);
 Var
   MyReg: TRegistry;
 begin
-
   LanguageStr := dmmidas.Language;
   if LanguageStr = 'English' then
   begin
@@ -694,6 +693,11 @@ begin
       CommonPOS.extendedPosForm := ReadBool('ExtendedPosForm');
     Except
       CommonPOS.extendedPosForm := False;
+    End;
+    Try
+      CommonPOS.maxPulloutAmnt := StrToFloat(ReadString('MaxPulloutAmnt'));
+    Except
+      CommonPOS.maxPulloutAmnt := 0;
     End;
     Try
       CommonPOS.Restaurant := ReadBool('POS_RESTAURANT');
