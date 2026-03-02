@@ -81,7 +81,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnPICalculateClick(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
-    function InsertFinishedTransaction(noTrans: Integer; response: string;fAmount: Float32; iRefNum, iBatchNum: Integer; sTypePayment,sTransactionType: string): Boolean;
+    function InsertFinishedTransaction(noTrans: Integer; response: string;fAmount: Float32; iRefNum, iBatchNum: Integer; sTypePayment,sTransactionType,sCardnum: string): Boolean;
     function nextRefNo(option: String): Integer;
     procedure btnClearClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -301,7 +301,7 @@ begin
   end;
 end;
 
-function TfrmSpinPOS.InsertFinishedTransaction(noTrans: Integer; response: string;fAmount: Float32; iRefNum, iBatchNum: Integer; sTypePayment,sTransactionType: string): Boolean;
+function TfrmSpinPOS.InsertFinishedTransaction(noTrans: Integer; response: string;fAmount: Float32; iRefNum, iBatchNum: Integer; sTypePayment,sTransactionType,sCardnum: string): Boolean;
 begin
   result := true;
   Try
@@ -314,6 +314,7 @@ begin
       ParamByName('@BatchNum').Value := iBatchNum;
       ParamByName('@PaymentType').Value := sTypePayment;
       ParamByName('@TransactionType').Value := sTransactionType;
+      ParamByName('@CardNum').Value := sCardnum;
       ExecProc;
       CommonPOS.SpinPOSID := ParamByName('@ID').Value;
     end;
@@ -656,16 +657,16 @@ begin
           memoResponse.Lines.Add(Response.RawJSON);
 
           if Response.Success then
-              InsertFinishedTransaction(CommonPOS.Header,Response.RawJSON,StrToFloat(Response.Amount),strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType )   //ShowMessage('Sale processed successfully!')
+              InsertFinishedTransaction(CommonPOS.Header,Response.RawJSON,StrToFloat(Response.Amount),strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType,Response.CardNumber )   //ShowMessage('Sale processed successfully!')
           else
-              InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType )
+              InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType,Response.CardNumber )
 
         end
         else
         begin
           memo1.Lines.Add('ERROR: No response received');
           memo1.Lines.Add('Last Error: ' + SpinPOS.LastError);
-          InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType )
+          InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType,Response.CardNumber )
         end;
       finally
 
@@ -770,16 +771,16 @@ begin
           memoResponse.Lines.Add(Response.RawJSON);
 
           if Response.Success then
-              InsertFinishedTransaction(CommonPOS.Header,Response.RawJSON,StrToFloat(Response.Amount),strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType )   //ShowMessage('Sale processed successfully!')
+              InsertFinishedTransaction(CommonPOS.Header,Response.RawJSON,StrToFloat(Response.Amount),strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType,Response.CardNumber )   //ShowMessage('Sale processed successfully!')
           else
-              InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType )
+              InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType,Response.CardNumber )
 
         end
         else
         begin
           memo1.Lines.Add('ERROR: No response received');
           memo1.Lines.Add('Last Error: ' + SpinPOS.LastError);
-          InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType )
+          InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType,Response.CardNumber )
         end;
       finally
         if Response <> nil then
@@ -852,9 +853,9 @@ begin
           end;
 
           if Response.Success then
-              InsertFinishedTransaction(CommonPOS.Header,Response.RawJSON,StrToFloat(Response.Amount),strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType ) //ShowMessage('Return processed successfully!')
+              InsertFinishedTransaction(CommonPOS.Header,Response.RawJSON,StrToFloat(Response.Amount),strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType,Response.CardNumber ) //ShowMessage('Return processed successfully!')
           else
-              InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType )
+              InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType,Response.CardNumber )
         end;
       finally
         if Response <> nil then
@@ -917,9 +918,9 @@ begin
           memoResponse.Lines.Add(Response.RawJSON);
 
           if Response.Success then
-              InsertFinishedTransaction(CommonPOS.Header,Response.RawJSON,StrToFloat(Response.Amount),strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType )   //ShowMessage('Sale processed successfully!')
+              InsertFinishedTransaction(CommonPOS.Header,Response.RawJSON,StrToFloat(Response.Amount),strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType,Response.CardNumber )   //ShowMessage('Sale processed successfully!')
           else
-              InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType )   //ShowMessage('Sale failed: ' + Response.Message);
+              InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType,Response.CardNumber )   //ShowMessage('Sale failed: ' + Response.Message);
         end;
       finally
         if Response <> nil then
@@ -1271,9 +1272,9 @@ begin
           memoResponse.Lines.Add(Response.RawJSON);
 
           if Response.Success then
-              InsertFinishedTransaction(CommonPOS.Header,Response.RawJSON,StrToFloat(Response.Amount),strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType )   //ShowMessage('Sale processed successfully!')
+              InsertFinishedTransaction(CommonPOS.Header,Response.RawJSON,StrToFloat(Response.Amount),strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType,Response.CardNumber )   //ShowMessage('Sale processed successfully!')
           else
-              InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType )   //ShowMessage('Sale failed: ' + Response.Message);
+              InsertFinishedTransaction(CommonPOS.Header,Response.MessageDet,0,strToInt(Response.RefNum),strToInt(Response.BatchNum),Response.TypePayment,Response.TransactionType,Response.CardNumber )   //ShowMessage('Sale failed: ' + Response.Message);
 
         end;
       finally
@@ -1451,9 +1452,9 @@ begin
           memoResponse.Lines.Add(Response.RawJSON);
 
           if Response.Success then
-              InsertFinishedTransaction(0,Response.RawJSON,0,0,0,Response.TypePayment,'Settle' )   //ShowMessage('Sale processed successfully!')
+              InsertFinishedTransaction(0,Response.RawJSON,0,0,0,Response.TypePayment,'Settle','' )   //ShowMessage('Sale processed successfully!')
           else
-              InsertFinishedTransaction(0,Response.MessageDet,0,0,0,Response.TypePayment,'Settle' )
+              InsertFinishedTransaction(0,Response.MessageDet,0,0,0,Response.TypePayment,'Settle','' )
 
         end;
       finally

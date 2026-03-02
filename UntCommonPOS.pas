@@ -8757,9 +8757,12 @@ begin
   FrmInputNumber := TFrmInputNumber.Create(application);
   with FrmInputNumber do
   begin
-    FrmInputNumber.Caption := 'Enter reference number';
+    FrmInputNumber.Caption := 'Enter Transaction number';
     EditNumber.text := '0';
     FrmInputNumber.EditNumber.Text := MyStrVal;
+    FrmInputNumber.Panel2.visible := true;
+    FrmInputNumber.Edit2.visible := false;
+    FrmInputNumber.Label2.visible := false;
     while loop = true do
     begin
       ShowModal;
@@ -8776,7 +8779,7 @@ begin
         With DMMidas do
         begin
           cdsSpinPos.Active := False;
-          cdsSpinPos.CommandText := 'select * from spinPOS where TransactionType=''Sale'' and REFERENCENUM = ' + MyStrVal ;
+          cdsSpinPos.CommandText := 'select * from spinPOS where TransactionType=''Sale'' and VOIDEDRET=0 and TRANSACTIONNUMBER = ' + MyStrVal + ' and AMOUNT = ' + Edit1.Text ;
           cdsSpinPos.Active := True;
           CommonPOS.Header := cdsSpinPos.FieldByName('TRANSACTIONNUMBER').AsLargeInt;
           if cdsSpinPos.RecordCount > 0 then
@@ -8784,7 +8787,7 @@ begin
            frmMainSPOS := TfrmSpinPOS.Create(nil);
            frmMainSPOS.TypePayment := cdsSpinPOSPaymentType.Value;
            frmMainSPOS.ProcessNum  := 3;  //void
-           frmMainSPOS.sRefNum := MyStrVal;
+           frmMainSPOS.sRefNum := cdsSpinPos.FieldByName('REFERENCENUM').AsString;
            frmMainSPOS.dAmount :=cdsSpinPOSAMOUNT.Value;
            frmMainSPOS.ShowModal;
            frmMainSPOS.Free;
@@ -8816,9 +8819,12 @@ begin
   FrmInputNumber := TFrmInputNumber.Create(application);
   with FrmInputNumber do
   begin
-    FrmInputNumber.Caption := 'Enter reference number';
+    FrmInputNumber.Caption := 'Enter Transaction number';
     EditNumber.text := '0';
     FrmInputNumber.EditNumber.Text := MyStrVal;
+    FrmInputNumber.Panel2.visible := true;
+    FrmInputNumber.Edit2.visible := false;
+    FrmInputNumber.Label2.visible := false;
     while loop = true do
     begin
       ShowModal;
@@ -8835,7 +8841,7 @@ begin
         With DMMidas do
         begin
           cdsSpinPos.Active := False;
-          cdsSpinPos.CommandText := 'select * from spinPOS where TransactionType=''Sale'' and REFERENCENUM = ' + MyStrVal ;
+          cdsSpinPos.CommandText := 'select * from spinPOS where TransactionType=''Sale'' and VOIDEDRET=0 and TRANSACTIONNUMBER = ' + MyStrVal + ' and AMOUNT = ' + Edit1.Text ;
           cdsSpinPos.Active := True;
           CommonPOS.Header := cdsSpinPos.FieldByName('TRANSACTIONNUMBER').AsLargeInt;
           if cdsSpinPos.RecordCount > 0 then
@@ -8843,7 +8849,7 @@ begin
            frmMainSPOS := TfrmSpinPOS.Create(nil);
            frmMainSPOS.TypePayment := cdsSpinPOSPaymentType.Value;
            frmMainSPOS.ProcessNum  := 2;  //return
-           frmMainSPOS.sRefNum := MyStrVal;
+           frmMainSPOS.sRefNum := cdsSpinPos.FieldByName('REFERENCENUM').AsString;     //MyStrVal;
            frmMainSPOS.dAmount :=cdsSpinPOSAMOUNT.Value;
            frmMainSPOS.ShowModal;
            frmMainSPOS.Free;

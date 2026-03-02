@@ -9868,6 +9868,7 @@ object DMMidas: TDMMidas
       'MARS=yes'
       'Database=familiar'
       'DriverID=MSSQL')
+    Connected = True
     LoginPrompt = False
     Transaction = FDTransaction1
     Left = 24
@@ -20211,6 +20212,11 @@ object DMMidas: TDMMidas
         Name = '@ID'
         DataType = ftInteger
         ParamType = ptInputOutput
+      end
+      item
+        Name = '@CardNum'
+        DataType = ftString
+        ParamType = ptInput
       end>
   end
   object CALC_PAYOUT: TFDStoredProc
