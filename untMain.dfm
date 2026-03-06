@@ -26762,7 +26762,7 @@ object FrmMain: TFrmMain
         Width = 50
       end
       item
-        Width = 75
+        Width = 110
       end
       item
         Width = 50

@@ -2910,8 +2910,8 @@ begin
     end;
     StatusBar1.Panels[1].Text := 'PETTY CASH: ' + Format('%m',[DMMidas.CDSTrHeadAdHoc2.FieldByName('STARTBANK').asFloat]);
     StatusBar1.Panels[0].Text := FrmMain.sbMain.Panels[0].Text;
-    StatusBar1.Panels[2].Text := 'NO. CAJA: ' + CommonPOS.RegisterNo;
-    StatusBar1.Panels[3].Text := 'CUADRE ID: ' + DMMidas.CDSTrHeadAdHoc2.fieldbyName('ID').AsString + '  ' + FormatDateTime('mm/dd/yy', DMMidas.CDSTrHeadAdHoc2.fieldbyName('salesdate').Value);
+    StatusBar1.Panels[2].Text := 'REGISTER NO: ' + CommonPOS.RegisterNo;
+    StatusBar1.Panels[3].Text := 'ID NO: ' + DMMidas.CDSTrHeadAdHoc2.fieldbyName('ID').AsString + '       ' + FormatDateTime('mm/dd/yy', DMMidas.CDSTrHeadAdHoc2.fieldbyName('salesdate').Value);
     CommonPOS.ID := DMMidas.CDSTrHeadAdHoc2.fieldbyName('ID').asInteger;
     CommonPOS.RefundPOS := False;
     StatusBar1.Panels[0].Text := Trim(Copy(CommonPOS.UserName,1,35));

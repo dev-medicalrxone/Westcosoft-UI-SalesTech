@@ -665,7 +665,7 @@ begin
   With MyReg do
   begin
     OpenKey('\SOFTWARE\WOW6432Node\FarmaTec2000', True); //OpenKey('\FarmaTec2000', True);
-    FrmMain.sbMain.Panels.Items[2].Text := '# CAJA: ' + ReadString('Caja#');
+    FrmMain.sbMain.Panels.Items[2].Text := 'REGISTER NO: ' + ReadString('Caja#');
     Free;
   end;
 

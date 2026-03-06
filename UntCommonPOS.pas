@@ -7117,6 +7117,7 @@ begin
       MaxAmount := MaxAmount - FDQuery1.FieldByName('TAmount').Value;
     end;  }
     try
+      CALC_PAYOUT.Close;
       CALC_PAYOUT.Prepare;
       CALC_PAYOUT.ParamByName('@ID').AsInteger := CommonPOS.ID;
       CALC_PAYOUT.ParamByName('@Register').AsInteger := StrToIntDef(CommonPOS.RegisterNo, 0);
@@ -7557,12 +7558,14 @@ begin
         try
           with DMMidas do
           begin
+            CALC_PAYOUT.Close;
             CALC_PAYOUT.Prepare;
             CALC_PAYOUT.ParamByName('@ID').AsInteger := CommonPOS.ID;
             CALC_PAYOUT.ParamByName('@Register').AsInteger := StrToIntDef(CommonPOS.RegisterNo, 0);
             CALC_PAYOUT.ExecProc;                                 // execute
             // procedure returns a resultset with column MaxAmount in the example; fetch it:
-            if not CALC_PAYOUT.Active then CALC_PAYOUT.Open;
+            if not CALC_PAYOUT.Active then
+              CALC_PAYOUT.Open;
             if not CALC_PAYOUT.FieldByName('MaxAmount').IsNull then
               MaxAmount := CALC_PAYOUT.FieldByName('MaxAmount').AsCurrency
             else
