@@ -51,7 +51,6 @@ object FrmInputNumber: TFrmInputNumber
     Height = 50
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 303
     object BitBtn1: TBitBtn
       AlignWithMargins = True
       Left = 153
@@ -123,8 +122,6 @@ object FrmInputNumber: TFrmInputNumber
     GradientEnd = clSilver
     GradientStart = clGray
     Layout = 'NumPad'
-    ExplicitTop = 46
-    ExplicitHeight = 252
   end
   object Panel2: TPanel
     Left = 0
