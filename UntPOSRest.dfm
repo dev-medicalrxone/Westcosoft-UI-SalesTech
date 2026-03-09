@@ -549,7 +549,7 @@ object FrmPOSRest: TFrmPOSRest
       Top = 480
       Width = 558
       Height = 229
-      ActivePage = TabSheet23
+      ActivePage = TabSheet22
       Align = alBottom
       TabOrder = 3
       object TabSheet21: TTabSheet

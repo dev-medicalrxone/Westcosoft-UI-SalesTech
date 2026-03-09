@@ -44,6 +44,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
     object tlBtnPost: TToolButton
       Left = 27
       Top = 0
+      Hint = 'Save'
       Caption = 'tlBtnPost'
       ImageIndex = 1
       OnClick = tlBtnPostClick
@@ -323,8 +324,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Height = 4
       end
       object Label2: TLabel
-        Left = 445
-        Top = 215
+        Left = 446
+        Top = 303
         Width = 20
         Height = 13
         Alignment = taRightJustify
@@ -350,8 +351,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label38: TLabel
-        Left = 426
-        Top = 102
+        Left = 427
+        Top = 190
         Width = 39
         Height = 13
         Alignment = taRightJustify
@@ -359,8 +360,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label39: TLabel
-        Left = 424
-        Top = 127
+        Left = 425
+        Top = 215
         Width = 41
         Height = 13
         Alignment = taRightJustify
@@ -368,8 +369,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label40: TLabel
-        Left = 403
-        Top = 152
+        Left = 404
+        Top = 240
         Width = 62
         Height = 13
         Alignment = taRightJustify
@@ -392,8 +393,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label50: TLabel
-        Left = 440
-        Top = 188
+        Left = 441
+        Top = 276
         Width = 25
         Height = 13
         Alignment = taRightJustify
@@ -401,8 +402,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label51: TLabel
-        Left = 434
-        Top = 269
+        Left = 435
+        Top = 357
         Width = 29
         Height = 13
         Alignment = taRightJustify
@@ -410,8 +411,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label3: TLabel
-        Left = 393
-        Top = 242
+        Left = 394
+        Top = 330
         Width = 70
         Height = 13
         Alignment = taRightJustify
@@ -425,8 +426,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Height = 3
       end
       object Bevel8: TBevel
-        Left = 390
-        Top = 176
+        Left = 391
+        Top = 264
         Width = 332
         Height = 3
       end
@@ -446,8 +447,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object sbNewUPC: TSpeedButton
-        Left = 625
-        Top = 212
+        Left = 626
+        Top = 300
         Width = 23
         Height = 20
         Caption = '...'
@@ -488,13 +489,13 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object Bevel10: TBevel
         Left = 390
-        Top = 296
+        Top = 176
         Width = 332
         Height = 3
       end
       object Label6: TLabel
         Left = 411
-        Top = 311
+        Top = 103
         Width = 73
         Height = 13
         Alignment = taRightJustify
@@ -503,7 +504,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object Label7: TLabel
         Left = 452
-        Top = 335
+        Top = 127
         Width = 32
         Height = 13
         Alignment = taRightJustify
@@ -512,7 +513,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object Label8: TLabel
         Left = 464
-        Top = 360
+        Top = 152
         Width = 20
         Height = 13
         Alignment = taRightJustify
@@ -521,7 +522,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object SpeedButton4: TSpeedButton
         Left = 658
-        Top = 331
+        Top = 123
         Width = 23
         Height = 22
         Caption = '....'
@@ -529,7 +530,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object SpeedButton5: TSpeedButton
         Left = 658
-        Top = 356
+        Top = 148
         Width = 23
         Height = 22
         Caption = '....'
@@ -746,7 +747,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditNO_MODIFIERS: TEdit
-        Left = 899
+        Left = 886
         Top = 149
         Width = 121
         Height = 21
@@ -774,8 +775,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditMinimo: TEdit
-        Left = 499
-        Top = 97
+        Left = 500
+        Top = 185
         Width = 121
         Height = 21
         Alignment = taRightJustify
@@ -784,8 +785,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditMaximo: TEdit
-        Left = 499
-        Top = 124
+        Left = 500
+        Top = 212
         Width = 121
         Height = 21
         Alignment = taRightJustify
@@ -794,8 +795,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditQtyInventario: TEdit
-        Left = 499
-        Top = 149
+        Left = 500
+        Top = 237
         Width = 121
         Height = 21
         Alignment = taRightJustify
@@ -814,31 +815,31 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditPO: TEdit
-        Left = 499
-        Top = 185
+        Left = 500
+        Top = 273
         Width = 121
         Height = 21
         TabOrder = 20
         OnKeyPress = FormKeyPress
       end
       object EditUPC: TEdit
-        Left = 498
-        Top = 212
+        Left = 499
+        Top = 300
         Width = 121
         Height = 21
         TabOrder = 21
         OnKeyPress = FormKeyPress
       end
       object EditPartNumber: TEdit
-        Left = 499
-        Top = 239
+        Left = 500
+        Top = 327
         Width = 121
         Height = 21
         TabOrder = 22
         OnKeyPress = FormKeyPress
       end
       object EditDeptDesc: TEdit
-        Left = 498
+        Left = 499
         Top = 34
         Width = 121
         Height = 21
@@ -846,8 +847,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditAdditionalInfo: TEdit
-        Left = 498
-        Top = 266
+        Left = 499
+        Top = 354
         Width = 193
         Height = 21
         TabOrder = 23
@@ -908,7 +909,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditProductID: TEdit
-        Left = 899
+        Left = 886
         Top = 122
         Width = 121
         Height = 21
@@ -919,7 +920,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         TabOrder = 37
       end
       object EditSubDeptDesc: TEdit
-        Left = 498
+        Left = 499
         Top = 61
         Width = 121
         Height = 21
@@ -956,7 +957,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object eDailySalePrice: TEdit
         Left = 499
-        Top = 305
+        Top = 97
         Width = 121
         Height = 21
         Alignment = taRightJustify
@@ -966,7 +967,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object eDailySaleStartTime: TEdit
         Left = 499
-        Top = 332
+        Top = 124
         Width = 153
         Height = 21
         TabOrder = 25
@@ -974,7 +975,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object eDailySalEndTime: TEdit
         Left = 499
-        Top = 357
+        Top = 149
         Width = 153
         Height = 21
         TabOrder = 26
@@ -982,7 +983,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object cbDAILY_SALE_ACTIVE: TCheckBox
         Left = 626
-        Top = 308
+        Top = 101
         Width = 137
         Height = 17
         Caption = 'DAILY SPECIAL ACTIVE'
@@ -1098,7 +1099,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object EditItemID2: TEdit
         Left = 843
-        Top = 88
+        Top = 86
         Width = 121
         Height = 21
         TabOrder = 51

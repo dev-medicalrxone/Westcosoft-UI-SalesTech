@@ -526,7 +526,6 @@ object FrmVerTrans: TFrmVerTrans
       Margins.Top = 7
       Margins.Bottom = 7
       Align = alLeft
-      Enabled = False
       TabOrder = 2
       TextHint = 'Last 4'
     end
@@ -907,6 +906,11 @@ object FrmVerTrans: TFrmVerTrans
       FieldName = 'SALESMAN'
       FixedChar = True
       Size = 3
+    end
+    object CDSTransactionDetailsLAST4: TStringField
+      FieldName = 'LAST4'
+      Required = True
+      Size = 5
     end
   end
   object dspVerTransacciones: TDataSetProvider

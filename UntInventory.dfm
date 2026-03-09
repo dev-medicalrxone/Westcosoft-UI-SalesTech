@@ -1230,6 +1230,7 @@ object FrmInventory: TFrmInventory
     object TlBtnPost: TToolButton
       Left = 54
       Top = 0
+      Hint = 'Save'
       Caption = 'TlBtnPost'
       ImageIndex = 1
       OnClick = TlBtnPost2Click
@@ -1237,6 +1238,7 @@ object FrmInventory: TFrmInventory
     object TlBtnCancel: TToolButton
       Left = 81
       Top = 0
+      Hint = 'Cancel'
       Caption = 'TlBtnCancel'
       ImageIndex = 5
       OnClick = TlBtnCancel2Click
@@ -1244,6 +1246,7 @@ object FrmInventory: TFrmInventory
     object ToolButton5: TToolButton
       Left = 108
       Top = 0
+      Hint = 'Delete'
       Caption = 'ToolButton5'
       ImageIndex = 4
       OnClick = ToolButton17Click
@@ -1259,6 +1262,7 @@ object FrmInventory: TFrmInventory
     object TlBtnRefresh: TToolButton
       Left = 143
       Top = 0
+      Hint = 'Refresh'
       Caption = 'TlBtnRefresh'
       ImageIndex = 2
       OnClick = TlBtnRefreshClick
@@ -1266,6 +1270,7 @@ object FrmInventory: TFrmInventory
     object ToolButton9: TToolButton
       Left = 170
       Top = 0
+      Hint = 'Browse'
       Caption = 'ToolButton9'
       ImageIndex = 37
       OnClick = ToolButton23Click
@@ -1275,6 +1280,7 @@ object FrmInventory: TFrmInventory
       Top = 0
       Caption = 'ToolButton10'
       ImageIndex = 12
+      Visible = False
       OnClick = TBSearchProdClick
     end
     object ToolButton11: TToolButton
@@ -1282,6 +1288,7 @@ object FrmInventory: TFrmInventory
       Top = 0
       Caption = 'Load'
       ImageIndex = 38
+      Visible = False
       OnClick = ToolButton1Click
     end
     object ToolButton14: TToolButton

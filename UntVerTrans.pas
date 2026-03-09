@@ -98,6 +98,7 @@ type
     Label8: TLabel;
     ComboBox2: TComboBox;
     Label5: TLabel;
+    CDSTransactionDetailsLAST4: TStringField;
     procedure ToolButton1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -109,7 +110,7 @@ type
     procedure ToolButton6Click(Sender: TObject);
     procedure language;
     procedure cbAllTransactionsClick(Sender: TObject);
-    procedure ApplyExtraFilters;
+    procedure ApplyExtraFilters(transType: String);
   private
     { Private declarations }
   public
@@ -147,25 +148,26 @@ begin
         14: TranType := 'TSSS';
         15: TranType := 'PPAL';
       end;
-      if (cbAllTransactions.Checked = true) or (ComboBox1.ItemIndex = 5) then
+      //if (cbAllTransactions.Checked = true) {or (ComboBox1.ItemIndex = 5)} then
       begin
         CDSTransactionDetails.Close;
         CDSTransactionDetails.CommandText := 'Select * from VerTransacciones Where FECHAVENTA between ' + chr(39) + DateToStr(dtpFrom.Date) + chr(39) + ' and ' + chr(39)+ DateToStr(dtpTo.date) + chr(39);
-        ApplyExtraFilters;
+        ApplyExtraFilters(TranType);
         CDSTransactionDetails.Open;
         exit
       end;
 
       //if (ComboBox1.Text = 'Todas') or (ComboBox1.Text = 'Todas') then
-      if ComboBox1.ItemIndex = 5 then
+    {  if ComboBox1.ItemIndex = 5 then
       begin
         CDSTransactionDetails.Close;
         CDSTransactionDetails.CommandText := 'Select * from VerTransacciones where EMPLOYNUMBER = ' + QuotedStr(DMMidas.CDSPasswordsINICIALES.Value);
         ApplyExtraFilters;
         CDSTransactionDetails.Open;
       end;
-      if {(ComboBox1.Text <> 'Todas')}(ComboBox1.ItemIndex <> 5) and (cbAllTransactions.Checked <> true) then
-      begin
+      if {(ComboBox1.Text <> 'Todas')}//(ComboBox1.ItemIndex <> 5) and (cbAllTransactions.Checked <> true) then
+
+      {begin
         IF Trim(ComboBox3.Text) > '' Then
         begin
           CDSTransactionDetails.Close;
@@ -183,7 +185,7 @@ begin
           else
           ShowMessage('Escoja el ID primero.');
         end;
-    end;
+    end; }
   end;
 end;
 
@@ -313,7 +315,7 @@ begin
      }
 end;
 
-procedure TFrmVerTrans.ApplyExtraFilters;
+procedure TFrmVerTrans.ApplyExtraFilters(transtype: String);
 var
   LAmountText: string;
   LLast4: string;
@@ -323,7 +325,8 @@ begin
   LAmountText := Trim(EditAmount.Text);
   LLast4      := Trim(EditLast4.Text);
   employee := DMMidas.CDSPasswordsINICIALES.Value;
-  registerId := ComboBox3.Text;
+  if ComboBox3.Text <> '0' then
+    registerId := ComboBox3.Text;
 
   // Filter by amount (PAYAMOUNT1)
   if LAmountText <> '' then
@@ -340,20 +343,30 @@ begin
   begin
     CDSTransactionDetails.CommandText :=
       CDSTransactionDetails.CommandText +
-      ' AND CREDITCARD1 = ' + QuotedStr(LLast4) +
-      '      OR CREDITCARD2 = ' + QuotedStr(LLast4);
+      ' AND LAST4 = ' + QuotedStr(LLast4);
   end;
-  if (registerId <> '') and (ComboBox3.Visible = true) then
+  if (registerId <> '') and (ComboBox3.Visible = true)  then
   begin
     CDSTransactionDetails.CommandText :=
       CDSTransactionDetails.CommandText +
       ' AND ID = ' + QuotedStr(registerID)
   end;
-  if DBLookupComboBox1.Visible = True then
+  if (DBLookupComboBox1.Visible = True) and (DBLookupComboBox1.Text > '') then
   begin
     CDSTransactionDetails.CommandText :=
       CDSTransactionDetails.CommandText +
       ' AND EMPLOYNUMBER = ' + QuotedStr(employee)
+  end;
+  if transType > '' then
+  begin
+    if TransType = 'REF' then
+      CDSTransactionDetails.CommandText :=
+      CDSTransactionDetails.CommandText +
+      ' and PayAmount1 < 0'
+    else
+      CDSTransactionDetails.CommandText :=
+      CDSTransactionDetails.CommandText +
+      ' and (PaymentType1 = ' + #39 + TransType + #39 + ' or PaymentType2 = ' + #39 + TransType + #39 + ')';
   end;
 end;
 
