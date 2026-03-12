@@ -2633,6 +2633,8 @@ type
     CDSInventarioPisoSUPP_ITEMID: TStringField;
     CDSInventarioPisoSUPP_ITEMID2: TStringField;
     CALC_PAYOUT: TFDStoredProc;
+    CDSInventarioPisoMAIN_NDC: TBooleanField;
+    CDSPasswordsPOS_COUPON: TBooleanField;
     procedure CDSSetupAfterDelete(DataSet: TDataSet);
     procedure CDSClientTransactionsAfterDelete(DataSet: TDataSet);
     procedure CDSClientesOldCalcFields(DataSet: TDataSet);

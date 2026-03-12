@@ -356,6 +356,7 @@ begin
             ParamByName('@DELETE_INVENTORY').AsBoolean := cbDeleteInv.Checked;
             ParamByName('@EDIT_INVENTORY').AsBoolean := cbEditInv.Checked;
             ParamByName('@CREATE_INVENTORY').AsBoolean := cbCreateInv.Checked;
+            ParamByName('@POS_COUPON').AsBoolean := cbCoupon.Checked;
             ExecProc;
           end;
           OpenPasswords('');

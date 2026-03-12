@@ -63,6 +63,7 @@ TUserRights = class(TObject)
   POS_OPNDRAWR: Boolean;
   POS_REPRINT: Boolean;
   POS_CREDIT: Boolean;
+  POS_COUPON: Boolean;
   GUARDAR_TRANSACCIONES: Boolean;
   RECALL_TRANS: Boolean;
   POS_HOLD: Boolean;
@@ -1226,6 +1227,7 @@ begin
       POS_OPNDRAWR := true;
       POS_REPRINT := true;
       POS_CREDIT := true;
+      POS_COUPON := true;
       GUARDAR_TRANSACCIONES := true;
       RECALL_TRANS := true;
       POS_HOLD := true;
@@ -9209,6 +9211,7 @@ Var
   NoRx: String;
   nt: Integer;
   tst: TFrmEvertec;
+  MyStrVal: String;
 begin
   if CommonPOS.TripleS_ApprovedAmount > 0 then
   begin
@@ -9626,6 +9629,24 @@ begin
              ShowMessageStr(DMMidas.CDSClientesINFOADICIONAL.Value, 12,clBlack);
              FrmPOSRest.EditSearchProd.SetFocus;
       end;
+      if Trim(UpperCase(CDSBotonesProcedure_ADD_ON.Value)) = 'COUPON' then    //Added to process coupon on a transaction AGC 03/12/2026
+      begin
+        if CommonPOS.isAuthorized('POS_COUPON', UserRights.POS_COUPON,true) then
+        begin
+          FrmInputNumber := TFrmInputNumber.Create(application);
+          with FrmInputNumber do
+          begin
+            FrmInputNumber.Caption := 'Coupon Amnt.';
+            ShowModal;
+            if ModalResult = mrOK then
+            begin
+              MyStrVal := FrmInputNumber.EditNumber.Text;
+              CommonPOS.AddProduct('F','99999999999', 'COUPON','COUPON','F','',
+               CommonPOS.User, 'F', 'F',  -StrToFloatDef(MyStrVal, 0), -StrToFloatDef(MyStrVal, 0), 0, 0,1,0, CommonPOS.Turno, CommonPOS.ID, 0,0,0,0,false,false,'',0,false,0,false, false);
+            end;
+          end;
+        end;
+      end;
       if Trim(UpperCase(CDSBotonesProcedure_ADD_ON.Value)) = 'UTILITY' then
       begin
         FrmAddUtility := TFrmAddUtility.Create(Nil);
@@ -10013,6 +10034,7 @@ begin
         POS_OPNDRAWR := true;
         POS_REPRINT := true;
         POS_CREDIT := true;
+        POS_COUPON := true;
         GUARDAR_TRANSACCIONES := true;
         RECALL_TRANS := true;
         POS_HOLD := true;
@@ -10076,6 +10098,7 @@ begin
         POS_OPNDRAWR := PWRD_ISAUTHORIZED.ParamByName('@POS_OPNDRAWR').Value;
         POS_REPRINT := PWRD_ISAUTHORIZED.ParamByName('@POS_REPRINT').Value;
         POS_CREDIT := PWRD_ISAUTHORIZED.ParamByName('@POS_CREDIT').Value;
+        POS_COUPON := PWRD_ISAUTHORIZED.ParamByName('@POS_COUPON').Value;   //To add coupons to transactions (addon) AGC 03/12/2026
         GUARDAR_TRANSACCIONES := PWRD_ISAUTHORIZED.ParamByName('@GUARDAR_TRANSACCIONES').Value;
         RECALL_TRANS := PWRD_ISAUTHORIZED.ParamByName('@RECALL_TRANS').Value;
         POS_HOLD := PWRD_ISAUTHORIZED.ParamByName('@POS_HOLD').Value;

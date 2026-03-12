@@ -106,6 +106,7 @@ type
     cbCreateInv: TCheckBox;
     cbDeleteInv: TCheckBox;
     cbEditInv: TCheckBox;
+    cbCoupon: TCheckBox;
     procedure DBCheckBox8MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure FormCreate(Sender: TObject);
@@ -438,6 +439,7 @@ begin
     cbCreateInv.Checked := CDSPasswordsCREATE_INVENTORY.Value;
     cbEditInv.Checked := CDSPasswordsEDIT_INVENTORY.Value;
     cbDeleteInv.Checked := CDSPasswordsDELETE_INVENTORY.Value;
+    cbCoupon.Checked := CDSPasswordsPOS_COUPON.Value;
   end;
 end;
 

@@ -36,8 +36,8 @@ object FrmSearchInv2: TFrmSearchInv2
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 384
-      Top = 0
+      Left = 456
+      Top = 2
       Width = 88
       Height = 30
       Caption = 'ESPECIAL'
@@ -49,8 +49,8 @@ object FrmSearchInv2: TFrmSearchInv2
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 507
-      Top = 0
+      Left = 574
+      Top = 2
       Width = 71
       Height = 30
       Caption = 'PRECIO'
@@ -62,11 +62,24 @@ object FrmSearchInv2: TFrmSearchInv2
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 613
-      Top = 0
+      Left = 661
+      Top = 2
       Width = 98
       Height = 30
       Caption = 'ON HAND'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label1: TLabel
+      Left = 308
+      Top = 2
+      Width = 130
+      Height = 30
+      Caption = 'GROUP PRICE'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -21
@@ -145,6 +158,7 @@ object FrmSearchInv2: TFrmSearchInv2
       RowCount = 5
       SelectedColor = clWhite
       OnKeyPress = DBCtrlGrid1KeyPress
+      OnPaintPanel = DBCtrlGrid1PaintPanel
       object DBText1: TDBText
         Left = 8
         Top = 31
@@ -162,7 +176,7 @@ object FrmSearchInv2: TFrmSearchInv2
       object DBText2: TDBText
         Left = 8
         Top = 5
-        Width = 363
+        Width = 321
         Height = 28
         DataField = 'DESCRIPCION'
         DataSource = DMMidas.DSInventarioPiso
@@ -174,7 +188,7 @@ object FrmSearchInv2: TFrmSearchInv2
         ParentFont = False
       end
       object DBText3: TDBText
-        Left = 377
+        Left = 449
         Top = 0
         Width = 87
         Height = 30
@@ -189,7 +203,7 @@ object FrmSearchInv2: TFrmSearchInv2
         ParentFont = False
       end
       object DBText4: TDBText
-        Left = 489
+        Left = 556
         Top = 0
         Width = 81
         Height = 30
@@ -204,7 +218,7 @@ object FrmSearchInv2: TFrmSearchInv2
         ParentFont = False
       end
       object DBText5: TDBText
-        Left = 646
+        Left = 694
         Top = 0
         Width = 57
         Height = 30
@@ -230,6 +244,21 @@ object FrmSearchInv2: TFrmSearchInv2
         Font.Height = -16
         Font.Name = 'Segoe UI'
         Font.Style = []
+        ParentFont = False
+      end
+      object DBText7: TDBText
+        Left = 343
+        Top = 0
+        Width = 87
+        Height = 30
+        Alignment = taRightJustify
+        DataField = 'RBP'
+        DataSource = DMMidas.DSInventarioPiso
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -21
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
         ParentFont = False
       end
     end

@@ -270,7 +270,8 @@ object FrmAddEditButtons: TFrmAddEditButtons
       'SSS O.T.C.'
       'SSS Void'
       'Customers'
-      'View eSignature')
+      'View eSignature'
+      'Coupon')
   end
   object ADD_EDIT_MOBILE_BUTTONS_DETAIL: TFDStoredProc
     Connection = DMMidas.FDConnection1

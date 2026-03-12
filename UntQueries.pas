@@ -127,7 +127,7 @@ begin
               begin
                 GPNO := CDSInventarioPisoGROUP_PRODUCTNO.asString;
                 CDSInventarioPiso.Close;
-                CDSInventarioPiso.CommandText := 'Select * from InventarioPiso with (NOLOCK) where GROUP_PRODUCTNO = '+ #39 + GPNO  + #39 +  ' and Recetario <> ' + #39 + 'R' + #39 + ' order by DESCRIPCION';
+                CDSInventarioPiso.CommandText := 'Select * from InventarioPiso with (NOLOCK) where GROUP_PRODUCTNO = '+ #39 + GPNO  + #39 +  ' and Recetario <> ' + #39 + 'R' + #39 + ' and MAIN_NDC = 1 order by DESCRIPCION';      //main_ndc added in order to insert product instead of showing all linked products AGC 03/11/26
                 CDSInventarioPiso.Open;
               end
               else

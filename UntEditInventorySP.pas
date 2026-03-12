@@ -199,6 +199,9 @@ type
     EditItemId: TEdit;
     Label42: TLabel;
     EditItemID2: TEdit;
+    Label49: TLabel;
+    EditGroupNo: TEdit;
+    cbMainGroupProd: TCheckBox;
     procedure SpeedButton7Click(Sender: TObject);
     procedure SpeedButton8Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
@@ -753,6 +756,8 @@ begin
       EditEspecial.Text := Format('%f', [CDSInventarioPisoESPECIAL.asFloat])
     else
       EditEspecial.Text := '0.00';
+    EditGroupNo.Text := CDSInventarioPisoGROUP_PRODUCTNO.asString;
+    cbMainGroupProd.Checked := CDSInventarioPisoMAIN_NDC.AsBoolean;
     EditCOMESPECIAL.Text := DateTimeToStr(CDSInventarioPisoCOMESPECIAL.asDateTime);
     EditTERMINAESPECIAL.Text := DateTimeToStr(CDSInventarioPisoTERMINAESPECIAL.asDateTime);
     EditDeptDesc.Text := CDSDepartamentosDESCRIPCION.Value;
@@ -1426,6 +1431,8 @@ begin
           ParamByName('@SUPPLIER_PRICE2').Value := 0;
         ParamByName('@SUPP_ITEMID').Value := EditItemId.Text;
         ParamByName('@SUPP_ITEMID2').Value := EditItemId2.Text;
+        ParamByName('@GROUP_PRODUCTNO').Value := EditGroupNo.Text;  //Added to link products ACG 03/10/2026//
+        ParamByName('@MAIN_NDC').Value := ord(cbMainGroupProd.Checked);
         ///end///
         ExecProc;
         EditProductID.Text := IntToStr(ParamByName('@PID').Value);

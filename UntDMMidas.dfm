@@ -753,6 +753,9 @@ object DMMidas: TDMMidas
       FieldName = 'SUPP_ITEMID2'
       FixedChar = True
     end
+    object CDSInventarioPisoMAIN_NDC: TBooleanField
+      FieldName = 'MAIN_NDC'
+    end
   end
   object DSPInventarioPiso: TDataSetProvider
     DataSet = QInventarioPisoFD
@@ -1781,6 +1784,9 @@ object DMMidas: TDMMidas
     end
     object CDSPasswordsEDIT_INVENTORY: TBooleanField
       FieldName = 'EDIT_INVENTORY'
+    end
+    object CDSPasswordsPOS_COUPON: TBooleanField
+      FieldName = 'POS_COUPON'
     end
   end
   object DSPPasswords: TDataSetProvider
@@ -9868,7 +9874,6 @@ object DMMidas: TDMMidas
       'MARS=yes'
       'Database=familiar'
       'DriverID=MSSQL')
-    Connected = True
     LoginPrompt = False
     Transaction = FDTransaction1
     Left = 24
@@ -14834,6 +14839,18 @@ object DMMidas: TDMMidas
       end
       item
         Position = 81
+        Name = '@GROUP_PRODUCTNO'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Position = 82
+        Name = '@MAIN_NDC'
+        DataType = ftBoolean
+        ParamType = ptInput
+      end
+      item
+        Position = 83
         Name = '@LST_MODIF_PR'
         DataType = ftTimeStamp
         NumericScale = 3
@@ -16790,15 +16807,28 @@ object DMMidas: TDMMidas
       end
       item
         Position = 125
-        Name = '@INV_CHANGE_FACILITY'
+        Name = '@POS_COUPON'
         DataType = ftBoolean
         ParamType = ptInputOutput
       end
       item
         Position = 126
+        Name = '@INV_CHANGE_FACILITY'
+        DataType = ftBoolean
+        ParamType = ptInputOutput
+      end
+      item
+        Position = 127
         Name = '@LTC'
         DataType = ftBoolean
         ParamType = ptInputOutput
+      end
+      item
+        Position = 128
+        Name = '@SEC_LEVEL'
+        DataType = ftString
+        ParamType = ptInputOutput
+        Size = 1
       end>
   end
   object RESTClient: TRESTClient

@@ -31,6 +31,8 @@ type
     BitBtn5: TBitBtn;
     BitBtn3: TBitBtn;
     DBText6: TDBText;
+    DBText7: TDBText;
+    Label1: TLabel;
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
     procedure EditSearchProdExit(Sender: TObject);
@@ -42,6 +44,7 @@ type
     procedure BitBtn3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure language;
+    procedure DBCtrlGrid1PaintPanel(DBCtrlGrid: TDBCtrlGrid; Index: Integer);
   private
     { Private declarations }
   public
@@ -94,6 +97,17 @@ begin
   Begin
     BtnOK.Click;            { move to next control }
   END;
+end;
+
+procedure TFrmSearchInv2.DBCtrlGrid1PaintPanel(DBCtrlGrid: TDBCtrlGrid;
+  Index: Integer);
+begin
+ { If (DMMidas.CDSInventarioPisoMAIN_NDC.Value = True then
+    Begin
+      with (Sender as TDBGrid) do Canvas.Brush.Color := clYellow;
+      with (Sender as TDBGrid) do Canvas.FillRect(Rect);
+      With (Sender as TDBGrid) do Canvas.Font.Color := clRed;
+    end;             }
 end;
 
 procedure TFrmSearchInv2.EditSearchProdExit(Sender: TObject);

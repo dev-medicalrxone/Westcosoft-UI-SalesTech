@@ -67,6 +67,8 @@ object FrmGroupSales: TFrmGroupSales
     Height = 486
     Align = alClient
     TabOrder = 1
+    ExplicitLeft = -8
+    ExplicitTop = 49
     object Label1: TLabel
       Left = 24
       Top = 35

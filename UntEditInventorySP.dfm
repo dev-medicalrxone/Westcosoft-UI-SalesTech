@@ -629,6 +629,15 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Caption = 'ITEM ID 2'
         Transparent = True
       end
+      object Label49: TLabel
+        Left = 211
+        Top = 186
+        Width = 29
+        Height = 13
+        Alignment = taRightJustify
+        Caption = 'Gp No'
+        Transparent = True
+      end
       object EditDescription: TEdit
         Left = 112
         Top = 12
@@ -1104,6 +1113,24 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Height = 21
         TabOrder = 51
         OnKeyPress = FormKeyPress
+      end
+      object EditGroupNo: TEdit
+        Left = 246
+        Top = 182
+        Width = 95
+        Height = 21
+        Alignment = taRightJustify
+        TabOrder = 52
+        OnExit = EditGm3Exit
+        OnKeyPress = FormKeyPress
+      end
+      object cbMainGroupProd: TCheckBox
+        Left = 219
+        Top = 211
+        Width = 122
+        Height = 17
+        Caption = 'MAIN GROUP PROD.'
+        TabOrder = 53
       end
     end
     object TabSheet2: TTabSheet
