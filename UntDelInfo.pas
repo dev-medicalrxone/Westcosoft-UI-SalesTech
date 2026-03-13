@@ -46,7 +46,7 @@ uses UntSearchCust2, UntDMMidas;
 
 procedure TfrmDelInfo.Button3Click(Sender: TObject);
 begin
-  FrmSearchCust2 := TFrmSearchCust2.Create(nil);
+  FrmSearchCust2 := TFrmSearchCust2.Create(nil);         //search stored customers ACG 031326
   with FrmSearchCust2 do
   begin
     ShowModal;
@@ -55,7 +55,7 @@ begin
       with DMMidas do
       begin
         EditDelName.Text := CDSClientesNombreCompleto2.Value;
-        EditDelPhone.Text := CDSClientesCELULAR.asString;
+        EditDelPhone.Text := CDSClientesTELEFONO.asString;   //Changed from cellphone to telephone field ACG 031326
         EditDelAddress1.Text := CDSClientesDIRECCION1.Value;
         EditDelAddress2.Text := CDSClientesDIRECCION2.Value;
         EditDelCity.Text := CDSClientesCIUDAD.Value;

@@ -4081,6 +4081,12 @@ object DMMidas: TDMMidas
     object CDSDailyTotalsEOD_LINK: TIntegerField
       FieldName = 'EOD_LINK'
     end
+    object CDSDailyTotalsCOUPONREAD: TFMTBCDField
+      FieldName = 'COUPONREAD'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
   end
   object DSPDailyTotals: TDataSetProvider
     DataSet = QDailytotalsFD
@@ -9866,13 +9872,13 @@ object DMMidas: TDMMidas
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'Server=192.168.4.217,1433'
+      'Server=192.168.4.24,1433'
       'User_Name=dbo'
       'Password=agabriel'
       'ApplicationName=Enterprise/Architect/Ultimate'
       'Workstation=SERVER'
       'MARS=yes'
-      'Database=familiar'
+      'Database=RBH_Salestech'
       'DriverID=MSSQL')
     LoginPrompt = False
     Transaction = FDTransaction1

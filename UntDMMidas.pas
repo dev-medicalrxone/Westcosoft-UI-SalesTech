@@ -2635,6 +2635,7 @@ type
     CALC_PAYOUT: TFDStoredProc;
     CDSInventarioPisoMAIN_NDC: TBooleanField;
     CDSPasswordsPOS_COUPON: TBooleanField;
+    CDSDailyTotalsCOUPONREAD: TFMTBCDField;
     procedure CDSSetupAfterDelete(DataSet: TDataSet);
     procedure CDSClientTransactionsAfterDelete(DataSet: TDataSet);
     procedure CDSClientesOldCalcFields(DataSet: TDataSet);

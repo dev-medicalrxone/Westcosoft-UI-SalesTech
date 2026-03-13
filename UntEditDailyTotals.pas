@@ -107,6 +107,9 @@ type
     BitBtn2: TBitBtn;
     Label27: TLabel;
     DBText15: TDBText;
+    Label28: TLabel;
+    DBText16: TDBText;
+    DBEdit20: TDBEdit;
     procedure BtnPrintClick(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
     procedure TabSheet3Enter(Sender: TObject);
@@ -440,7 +443,7 @@ begin
   labeL20.Caption :=  TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 204);
   label24.Caption :=  TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 205);
   label9.Caption :=  TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 206);
-  label10.Caption :=  TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 201);
+  //label10.Caption :=  TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 1352);
   label12.Caption :=  TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 194);
   TabSheet1.Caption :=  TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 208);
 

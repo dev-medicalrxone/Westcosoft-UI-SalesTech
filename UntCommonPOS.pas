@@ -9641,7 +9641,7 @@ begin
             if ModalResult = mrOK then
             begin
               MyStrVal := FrmInputNumber.EditNumber.Text;
-              CommonPOS.AddProduct('F','99999999999', 'COUPON','COUPON','F','',
+              CommonPOS.AddProduct('F','999999999989', 'COUPON','COUPON','F','',    //UPC changed to Identify Coupons AGC 031326
                CommonPOS.User, 'F', 'F',  -StrToFloatDef(MyStrVal, 0), -StrToFloatDef(MyStrVal, 0), 0, 0,1,0, CommonPOS.Turno, CommonPOS.ID, 0,0,0,0,false,false,'',0,false,0,false, false);
             end;
           end;

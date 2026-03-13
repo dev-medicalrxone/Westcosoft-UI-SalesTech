@@ -2,7 +2,7 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
   Left = 340
   Top = 69
   Caption = 'Editar cuadres'
-  ClientHeight = 709
+  ClientHeight = 735
   ClientWidth = 819
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
@@ -20,11 +20,12 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
     Left = 0
     Top = 0
     Width = 819
-    Height = 657
+    Height = 683
     Align = alClient
     BevelOuter = bvLowered
     Caption = ' '
     TabOrder = 0
+    ExplicitHeight = 657
     object RichEdit1: TRichEdit
       Left = 67
       Top = 368
@@ -47,12 +48,13 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
       Left = 1
       Top = 41
       Width = 817
-      Height = 615
+      Height = 641
       ActivePage = TabSheet1
       Align = alClient
       TabOrder = 1
       TabWidth = 100
       OnChange = PageControl1Change
+      ExplicitHeight = 615
       object TabSheet1: TTabSheet
         Caption = 'Cuadre d'#237'a'
         OnShow = TabSheet1Show
@@ -219,7 +221,7 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object DBText10: TDBText
           Left = 139
-          Top = 325
+          Top = 328
           Width = 69
           Height = 17
           Alignment = taRightJustify
@@ -235,21 +237,21 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object Label14: TLabel
           Left = 37
-          Top = 327
+          Top = 330
           Width = 90
           Height = 13
           Caption = 'UTILIDADES ----->'
         end
         object Label8: TLabel
           Left = 37
-          Top = 351
+          Top = 384
           Width = 98
           Height = 13
           Caption = 'PETTY --------------->'
         end
         object DBText8: TDBText
           Left = 139
-          Top = 351
+          Top = 384
           Width = 69
           Height = 17
           Alignment = taRightJustify
@@ -265,7 +267,7 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object DBText6: TDBText
           Left = 139
-          Top = 568
+          Top = 600
           Width = 65
           Height = 17
           Alignment = taRightJustify
@@ -281,14 +283,14 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object Label10: TLabel
           Left = 37
-          Top = 568
-          Width = 67
+          Top = 600
+          Width = 60
           Height = 13
-          Caption = 'Cuadre Total:'
+          Caption = 'TOTAL READ'
         end
         object Label9: TLabel
           Left = 37
-          Top = 531
+          Top = 573
           Width = 70
           Height = 13
           Caption = 'COMENTARIO'
@@ -449,21 +451,21 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object Label16: TLabel
           Left = 37
-          Top = 378
+          Top = 414
           Width = 89
           Height = 13
           Caption = 'TAX ESTATAL ----->'
         end
         object Label17: TLabel
           Left = 37
-          Top = 403
+          Top = 442
           Width = 107
           Height = 13
           Caption = 'TAX MUNICIPAL ----->'
         end
         object Label18: TLabel
           Left = 37
-          Top = 479
+          Top = 520
           Width = 80
           Height = 13
           Caption = 'TOTAL TAX ----->'
@@ -514,7 +516,7 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object Label20: TLabel
           Left = 37
-          Top = 429
+          Top = 469
           Width = 99
           Height = 13
           Caption = 'TAX SERVICIO ----->'
@@ -630,14 +632,14 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object Label23: TLabel
           Left = 37
-          Top = 504
+          Top = 546
           Width = 78
           Height = 13
           Caption = 'GRATUITY ----->'
         end
         object Label24: TLabel
           Left = 37
-          Top = 451
+          Top = 491
           Width = 147
           Height = 13
           Caption = 'TAX PROCESSED FOOD ----->'
@@ -716,14 +718,14 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object Label27: TLabel
           Left = 320
-          Top = 328
+          Top = 331
           Width = 28
           Height = 13
           Caption = 'CASH'
         end
         object DBText15: TDBText
           Left = 354
-          Top = 327
+          Top = 330
           Width = 69
           Height = 17
           Alignment = taRightJustify
@@ -737,9 +739,32 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
           Font.Quality = fqClearType
           ParentFont = False
         end
+        object Label28: TLabel
+          Left = 37
+          Top = 357
+          Width = 84
+          Height = 13
+          Caption = 'COUPONS ----->'
+        end
+        object DBText16: TDBText
+          Left = 139
+          Top = 355
+          Width = 69
+          Height = 17
+          Alignment = taRightJustify
+          DataField = 'COUPONREAD'
+          DataSource = DMMidas.DTSDailyTotals
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          Font.Quality = fqClearType
+          ParentFont = False
+        end
         object DBEdit9: TDBEdit
           Left = 230
-          Top = 323
+          Top = 326
           Width = 73
           Height = 21
           TabStop = False
@@ -752,7 +777,7 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object DBEdit7: TDBEdit
           Left = 230
-          Top = 347
+          Top = 380
           Width = 73
           Height = 21
           TabStop = False
@@ -765,9 +790,9 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object DBMemo1: TDBMemo
           Left = 230
-          Top = 527
-          Width = 185
-          Height = 57
+          Top = 569
+          Width = 204
+          Height = 40
           DataField = 'COMMENTS'
           DataSource = DMMidas.DTSDailyTotals
           TabOrder = 2
@@ -788,7 +813,7 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object DBEdit2: TDBEdit
           Left = 230
-          Top = 371
+          Top = 407
           Width = 73
           Height = 21
           TabStop = False
@@ -801,7 +826,7 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object DBEdit3: TDBEdit
           Left = 230
-          Top = 395
+          Top = 434
           Width = 73
           Height = 21
           TabStop = False
@@ -814,7 +839,7 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object DBEdit4: TDBEdit
           Left = 230
-          Top = 421
+          Top = 461
           Width = 73
           Height = 21
           TabStop = False
@@ -827,7 +852,7 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object EditTotalTax: TEdit
           Left = 230
-          Top = 474
+          Top = 515
           Width = 73
           Height = 21
           TabOrder = 7
@@ -926,15 +951,16 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
           Left = 440
           Top = 0
           Width = 369
-          Height = 587
+          Height = 613
           Align = alRight
           GradientEnd = clSilver
           GradientStart = clGray
           Layout = 'NumPad'
+          ExplicitHeight = 587
         end
         object DBEdit15: TDBEdit
           Left = 230
-          Top = 500
+          Top = 542
           Width = 73
           Height = 21
           TabStop = False
@@ -947,7 +973,7 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
         end
         object DBEdit17: TDBEdit
           Left = 230
-          Top = 448
+          Top = 488
           Width = 73
           Height = 21
           TabStop = False
@@ -978,6 +1004,20 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
           DataField = 'PAYPALCOUNT'
           DataSource = DMMidas.DTSDailyTotals
           TabOrder = 21
+          OnKeyPress = FormKeyPress
+        end
+        object DBEdit20: TDBEdit
+          Left = 230
+          Top = 353
+          Width = 73
+          Height = 21
+          TabStop = False
+          DataField = 'COUPONREAD'
+          DataSource = DMMidas.DTSDailyTotals
+          Enabled = False
+          ParentColor = True
+          ReadOnly = True
+          TabOrder = 22
           OnKeyPress = FormKeyPress
         end
       end
@@ -1072,13 +1112,14 @@ object FrmEditDailyTotals: TFrmEditDailyTotals
   end
   object Panel2: TPanel
     Left = 0
-    Top = 657
+    Top = 683
     Width = 819
     Height = 52
     Align = alBottom
     BevelOuter = bvNone
     Caption = ' '
     TabOrder = 1
+    ExplicitTop = 657
     object btnCancel: TBitBtn
       AlignWithMargins = True
       Left = 731

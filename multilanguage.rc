@@ -374,4 +374,5 @@ STRINGTABLE
 1371, "Warning, You must fill all the blanks"
 1372, "Rx not found!"
 1373, "Middle Name"
+1374, "Total Read"
 }
