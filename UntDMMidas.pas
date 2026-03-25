@@ -2636,6 +2636,14 @@ type
     CDSInventarioPisoMAIN_NDC: TBooleanField;
     CDSPasswordsPOS_COUPON: TBooleanField;
     CDSDailyTotalsCOUPONREAD: TFMTBCDField;
+    qHelp: TFDQuery;
+    dspHelp: TDataSetProvider;
+    dsHelp: TDataSource;
+    cdsHelp: TClientDataSet;
+    cdsHelpDESCRIPCION: TStringField;
+    cdsHelpINDICE: TAutoIncField;
+    cdsHelpCAPITULO: TIntegerField;
+    cdsHelpDESCRIPCION_DETALLE: TStringField;
     procedure CDSSetupAfterDelete(DataSet: TDataSet);
     procedure CDSClientTransactionsAfterDelete(DataSet: TDataSet);
     procedure CDSClientesOldCalcFields(DataSet: TDataSet);
@@ -2751,6 +2759,7 @@ type
     function getWC_PATIENTS(dbNamePOS, dbNameRx: String): String;
     procedure CDSPacientesCalcFields(DataSet: TDataSet);
     procedure cdsCountersAfterDelete(DataSet: TDataSet);
+    procedure cdsHelpAfterDelete(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -3691,6 +3700,11 @@ end;
 procedure TDMMidas.CDSHeadCalcFields(DataSet: TDataSet);
 begin
   CDSHeadRecallNoTrans.Value := 'HK' + IntToStr(CDSHeadTRANSACTIONNUMBER.Value);
+end;
+
+procedure TDMMidas.cdsHelpAfterDelete(DataSet: TDataSet);
+begin
+  cdsHelp.ApplyUpdates(-1)
 end;
 
 procedure TDMMidas.cdsInventarioPiso2AfterScroll(DataSet: TDataSet);

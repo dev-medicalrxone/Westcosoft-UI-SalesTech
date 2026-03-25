@@ -138,6 +138,8 @@ type
     Pepspraysaleslog1: TMenuItem;
     frxCSVExport1: TfrxCSVExport;
     frxPDFExport1: TfrxPDFExport;
+    Help1: TMenuItem;
+    Helpform1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure dxBarButton5Click(Sender: TObject);
     procedure dxBarButtonDptClick(Sender: TObject);
@@ -223,6 +225,7 @@ type
     procedure Pepspraysaleslog1Click(Sender: TObject);
     procedure RptDeptSalesBeforePrint(Sender: TfrxReportComponent);
     procedure Reports1Click(Sender: TObject);
+    procedure Helpform1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -2590,6 +2593,11 @@ begin
       Release;
     end;
   end;
+end;
+
+procedure TFrmMain.Helpform1Click(Sender: TObject);
+begin
+  CommonPOS.showHelpForm;       //Added to show the help form AGC 032426
 end;
 
 procedure TFrmMain.imeCard1Click(Sender: TObject);

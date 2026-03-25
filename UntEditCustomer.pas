@@ -150,7 +150,7 @@ end;
 
 procedure TFrmEditCustomer.language;
 begin
-  FrmEditCustomer.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 081);
+  FrmEditCustomer.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 081);      //Translations added AGC 032426
   Label2.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 082);
   Label1.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 083);
   Label9.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 084);
@@ -172,6 +172,7 @@ begin
   Label28.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 099);
   Label25.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 100);
   Label24.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 052);
+  Label27.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 377);
 end;
 
 procedure TFrmEditCustomer.SpeedButton2Click(Sender: TObject);

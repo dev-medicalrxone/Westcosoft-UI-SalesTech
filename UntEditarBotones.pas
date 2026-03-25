@@ -89,12 +89,15 @@ end;
 
 procedure TFrmBotonesEdit.language;
 begin
-  DBComboBox1.Items[0] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 215);
+  DBComboBox1.Items[0] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 215);     //Translations added AGC 032426
   DBComboBox1.Items[8] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 217);
   DBComboBox1.Items[9] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 216);
+  DBComboBox1.Items[10] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 380);
+  DBComboBox1.Items[12] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 377);
   DBComboBox1.Items[15] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 218);
   DBComboBox1.Items[16] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 219);
   DBComboBox1.Items[18] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 220);
+  DBComboBox1.Items[19] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 381);
   DBComboBox1.Items[20] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 221);
   DBComboBox1.Items[22] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 222);
   DBComboBox1.Items[23] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 223);

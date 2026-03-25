@@ -98,7 +98,7 @@ type
     Label8: TLabel;
     ComboBox2: TComboBox;
     Label5: TLabel;
-    CDSTransactionDetailsLAST4: TStringField;
+    CDSTransactionDetailsLAST4: TIntegerField;
     procedure ToolButton1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -153,6 +153,7 @@ begin
         CDSTransactionDetails.Close;
         CDSTransactionDetails.CommandText := 'Select * from VerTransacciones Where FECHAVENTA between ' + chr(39) + DateToStr(dtpFrom.Date) + chr(39) + ' and ' + chr(39)+ DateToStr(dtpTo.date) + chr(39);
         ApplyExtraFilters(TranType);
+        CDSTransactionDetails.CommandText := CDSTransactionDetails.CommandText + 'order by TRANSACTIONNUMBER';
         CDSTransactionDetails.Open;
         exit
       end;
@@ -224,7 +225,7 @@ end;
 
 procedure TFrmVerTrans.language;
 begin
-  FrmVerTrans.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 101);
+  FrmVerTrans.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 101);         //Translations added AGC 032426
   DBGrid1.Columns[28].Title.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 102);
   DBGrid1.Columns[29].Title.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 003);
   DBGrid1.Columns[31].Title.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 010);
@@ -237,7 +238,9 @@ begin
   ComboBox1.Items[3] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 104);
   ComboBox1.Items[4] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 105);
   ComboBox1.Items[5] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 110);
-  ComboBox1.Text := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 110);
+  ComboBox1.Items[11] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 378);
+  ComboBox1.Items[13] := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 379);
+  ComboBox1.Text := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 110) ;
 
 end;
 

@@ -115,13 +115,18 @@ object FrmVerTrans: TFrmVerTrans
       end
       item
         Expanded = False
-        FieldName = 'OPENED'
-        Title.Caption = 'Opened'
+        FieldName = 'ID'
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'ID'
+        FieldName = 'LAST4'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'OPENED'
+        Title.Caption = 'Opened'
         Visible = True
       end
       item
@@ -426,11 +431,11 @@ object FrmVerTrans: TFrmVerTrans
           'ATH'
           'Todas'
           'Pay Outs'
-          'Tarjeta de la Familia'
+          'EBT'
           'WIC'
           'Refund'
           'No Charge'
-          'ATHM Movil'
+          'Mobile Pay'
           'PICK'
           'ATH, ATH Movil, Credit Card'
           'Triple-S Advantage'
@@ -907,10 +912,9 @@ object FrmVerTrans: TFrmVerTrans
       FixedChar = True
       Size = 3
     end
-    object CDSTransactionDetailsLAST4: TStringField
+    object CDSTransactionDetailsLAST4: TIntegerField
+      DisplayLabel = 'Last 4'
       FieldName = 'LAST4'
-      Required = True
-      Size = 5
     end
   end
   object dspVerTransacciones: TDataSetProvider

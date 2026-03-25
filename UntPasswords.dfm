@@ -118,7 +118,7 @@ object FrmPasswords: TFrmPasswords
     object ToolButton5: TToolButton
       Left = 0
       Top = 0
-      Hint = 'A'#241'adir'
+      Hint = 'Append'
       Caption = 'ToolButton5'
       ImageIndex = 0
       OnClick = ToolButton5Click
@@ -126,7 +126,7 @@ object FrmPasswords: TFrmPasswords
     object tbEdit: TToolButton
       Left = 23
       Top = 0
-      Hint = 'Editar'
+      Hint = 'Edit'
       Caption = 'tbEdit'
       ImageIndex = 3
       OnClick = tbEditClick
@@ -134,7 +134,7 @@ object FrmPasswords: TFrmPasswords
     object ToolButton17: TToolButton
       Left = 46
       Top = 0
-      Hint = 'Borrar'
+      Hint = 'Delete'
       Caption = 'ToolButton17'
       ImageIndex = 4
       OnClick = ToolButton17Click
@@ -142,7 +142,7 @@ object FrmPasswords: TFrmPasswords
     object TlBtnRefresh: TToolButton
       Left = 69
       Top = 0
-      Hint = 'Refrescar'
+      Hint = 'Refresh'
       Caption = 'TlBtnRefresh'
       ImageIndex = 2
       OnClick = TlBtnRefreshClick
@@ -158,6 +158,7 @@ object FrmPasswords: TFrmPasswords
     object ToolButton1: TToolButton
       Left = 100
       Top = 0
+      Hint = 'Commissions Report'
       Caption = 'ToolButton1'
       ImageIndex = 17
       OnClick = ToolButton1Click

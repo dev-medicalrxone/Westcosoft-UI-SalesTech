@@ -9872,13 +9872,13 @@ object DMMidas: TDMMidas
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'Server=192.168.4.24,1433'
+      'Server=192.168.4.217,1433'
       'User_Name=dbo'
       'Password=agabriel'
       'ApplicationName=Enterprise/Architect/Ultimate'
       'Workstation=SERVER'
       'MARS=yes'
-      'Database=RBH_Salestech'
+      'Database=familiar'
       'DriverID=MSSQL')
     LoginPrompt = False
     Transaction = FDTransaction1
@@ -18664,8 +18664,8 @@ object DMMidas: TDMMidas
     Aggregates = <>
     Params = <>
     ProviderName = 'dspVentasDpt'
-    Left = 448
-    Top = 1240
+    Left = 416
+    Top = 1280
     object CDSVentasDptProdDepartment: TStringField
       FieldName = 'ProdDepartment'
       Origin = 'ProdDepartment'
@@ -18696,14 +18696,14 @@ object DMMidas: TDMMidas
   end
   object dsVentasDept: TDataSource
     DataSet = CDSVentasDpt
-    Left = 368
-    Top = 1240
+    Left = 336
+    Top = 1280
   end
   object dspVentasDpt: TDataSetProvider
     DataSet = QVentasDeptFD
     Options = [poAllowCommandText, poUseQuoteChar]
-    Left = 296
-    Top = 1240
+    Left = 264
+    Top = 1280
   end
   object QVentasDeptFD: TFDQuery
     Connection = FDConnection1
@@ -18712,8 +18712,8 @@ object DMMidas: TDMMidas
         'Select ProdDepartment, Sum(Total) as Precio, Sum(Costo * Qty) as' +
         ' TCosto, Sum(Total) - Sum(Costo * Qty) as Ganancia from Transact' +
         'ionDetail group by  ProdDepartment ')
-    Left = 208
-    Top = 1240
+    Left = 176
+    Top = 1280
   end
   object QtransPorHora: TFDQuery
     Connection = FDConnection1
@@ -18724,25 +18724,25 @@ object DMMidas: TDMMidas
       'TRANSACTIONHEADER'
       'group by datepart(hh,TRANSACTIONTIME)'
       'order by datepart(hh,TRANSACTIONTIME)')
-    Left = 203
-    Top = 1306
+    Left = 171
+    Top = 1346
   end
   object dspTransPorHora: TDataSetProvider
     DataSet = QtransPorHora
-    Left = 296
-    Top = 1304
+    Left = 264
+    Top = 1344
   end
   object dsTransPorHora: TDataSource
     DataSet = CDStransPorHora
-    Left = 400
-    Top = 1304
+    Left = 368
+    Top = 1344
   end
   object CDStransPorHora: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'dspTransPorHora'
-    Left = 496
-    Top = 1304
+    Left = 464
+    Top = 1344
   end
   object qTotalVentPorEmp: TFDQuery
     Connection = FDConnection1
@@ -18750,26 +18750,26 @@ object DMMidas: TDMMidas
       'SELECT USERNAME as Salesman, SUM(subtotal) as Total'
       'FROM TOTAL_COMISIONES where SALESMAN is not null'
       'group by USERNAME order by USERNAME;')
-    Left = 179
-    Top = 1386
+    Left = 163
+    Top = 1402
   end
   object dspTotalVentPorEmp: TDataSetProvider
     DataSet = qTotalVentPorEmp
     Options = [poAllowCommandText, poUseQuoteChar]
-    Left = 296
-    Top = 1384
+    Left = 280
+    Top = 1400
   end
   object dsTotalVentPorEmp: TDataSource
     DataSet = cdsTotalVentPorEmp
-    Left = 400
-    Top = 1384
+    Left = 384
+    Top = 1400
   end
   object cdsTotalVentPorEmp: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'dspTotalVentPorEmp'
-    Left = 512
-    Top = 1384
+    Left = 496
+    Top = 1400
     object cdsTotalVentPorEmpSalesman: TStringField
       FieldName = 'Salesman'
       Required = True
@@ -20280,5 +20280,48 @@ object DMMidas: TDMMidas
         DataType = ftInteger
         ParamType = ptInput
       end>
+  end
+  object qHelp: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT * FROM HELPTABLE')
+    Left = 208
+    Top = 1200
+  end
+  object dspHelp: TDataSetProvider
+    DataSet = qHelp
+    Options = [poAllowCommandText, poUseQuoteChar]
+    Left = 296
+    Top = 1200
+  end
+  object dsHelp: TDataSource
+    DataSet = cdsHelp
+    Left = 376
+    Top = 1200
+  end
+  object cdsHelp: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspHelp'
+    AfterPost = cdsHelpAfterDelete
+    AfterDelete = cdsHelpAfterDelete
+    Left = 464
+    Top = 1200
+    object cdsHelpDESCRIPCION: TStringField
+      FieldName = 'DESCRIPCION'
+      Size = 50
+    end
+    object cdsHelpINDICE: TAutoIncField
+      FieldName = 'INDICE'
+      ReadOnly = True
+    end
+    object cdsHelpCAPITULO: TIntegerField
+      FieldName = 'CAPITULO'
+    end
+    object cdsHelpDESCRIPCION_DETALLE: TStringField
+      FieldName = 'DESCRIPCION_DETALLE'
+      FixedChar = True
+      Size = 500
+    end
   end
 end

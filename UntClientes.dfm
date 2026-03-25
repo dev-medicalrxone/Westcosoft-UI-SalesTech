@@ -574,7 +574,7 @@ object FrmClientes: TFrmClientes
     object ToolButton3: TToolButton
       Left = 192
       Top = 0
-      Hint = 'Balance auspicio inicial'
+      Hint = 'Initial sponsor balance'
       Caption = 'ToolButton3'
       ImageIndex = 154
       OnClick = ToolButton3Click
@@ -582,7 +582,7 @@ object FrmClientes: TFrmClientes
     object ToolButton4: TToolButton
       Left = 215
       Top = 0
-      Hint = 'Exportar auspicios'
+      Hint = 'Export client sales'
       Caption = 'ToolButton4'
       ImageIndex = 164
       OnClick = ToolButton4Click
@@ -598,7 +598,7 @@ object FrmClientes: TFrmClientes
     object TlBtnPost: TToolButton
       Left = 261
       Top = 0
-      Hint = 'Guardar cambios'
+      Hint = 'Save changes'
       Caption = 'Commit'
       ImageIndex = 152
       OnClick = TlBtnPostClick
@@ -606,7 +606,7 @@ object FrmClientes: TFrmClientes
     object TlBtnCancel: TToolButton
       Left = 284
       Top = 0
-      Hint = 'Cancelar cambios'
+      Hint = 'Cancel changes'
       Caption = 'TlBtnCancel'
       Enabled = False
       ImageIndex = 153
@@ -623,7 +623,7 @@ object FrmClientes: TFrmClientes
     object ToolButton8: TToolButton
       Left = 344
       Top = 0
-      Hint = 'Balance Inicial en Internet'
+      Hint = 'Initial internet balance'
       Caption = 'ToolButton8'
       ImageIndex = 154
       Visible = False
@@ -640,7 +640,7 @@ object FrmClientes: TFrmClientes
     object ToolButton6: TToolButton
       Left = 375
       Top = 0
-      Hint = 'Transacciones Credito en Internet'
+      Hint = 'Internet credit transactions'
       Caption = 'ToolButton6'
       ImageIndex = 10
       OnClick = ToolButton6Click
@@ -656,7 +656,7 @@ object FrmClientes: TFrmClientes
     object ToolButton9: TToolButton
       Left = 406
       Top = 0
-      Hint = 'Ver transacciones credito ajustadas'
+      Hint = 'View adjusted credit transactions'
       Caption = 'ToolButton9'
       ImageIndex = 40
       Visible = False
@@ -665,6 +665,7 @@ object FrmClientes: TFrmClientes
     object ToolButton12: TToolButton
       Left = 429
       Top = 0
+      Hint = 'Client debt'
       Caption = 'ToolButton12'
       ImageIndex = 41
       OnClick = ToolButton12Click
@@ -681,6 +682,7 @@ object FrmClientes: TFrmClientes
     object ToolButton13: TToolButton
       Left = 475
       Top = 0
+      Hint = 'Update credit'
       Caption = 'ToolButton13'
       ImageIndex = 46
       Visible = False

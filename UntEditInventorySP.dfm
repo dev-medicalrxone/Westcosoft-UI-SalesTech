@@ -34,9 +34,11 @@ object FrmEditInventorySP: TFrmEditInventorySP
     Caption = 'ToolBar1'
     Images = FrmMain.ImageListDB
     TabOrder = 0
+    Visible = False
     object tbAppend: TToolButton
       Left = 0
       Top = 0
+      Hint = 'Append'
       Caption = 'tbAppend'
       ImageIndex = 0
       OnClick = tbAppendClick
@@ -52,12 +54,14 @@ object FrmEditInventorySP: TFrmEditInventorySP
     object tbEdit: TToolButton
       Left = 54
       Top = 0
+      Hint = 'Edit'
       Caption = 'tbEdit'
       ImageIndex = 3
     end
     object ToolButton2: TToolButton
       Left = 81
       Top = 0
+      Hint = 'Delete'
       Caption = 'ToolButton2'
       ImageIndex = 4
       OnClick = ToolButton2Click
@@ -65,6 +69,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
     object tbCancel: TToolButton
       Left = 108
       Top = 0
+      Hint = 'Cancel'
       Caption = 'tbCancel'
       ImageIndex = 5
     end

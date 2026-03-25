@@ -724,6 +724,10 @@
             <Form>frmSpinPOS</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UntAddHelpAddress.pas">
+            <Form>FrmHelpAddress</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -790,6 +794,12 @@
             </Platforms>
             <Deployment Version="5">
                 <DeployFile LocalName="..\Bin\SalesTec2018.exe" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\Bin\SalesTec2018.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>SalesTech.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Win32\Debug\SalesTec2018.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">

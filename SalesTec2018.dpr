@@ -210,7 +210,8 @@ uses
   UntProcess832files in 'UntProcess832files.pas' {FrmProcess832},
   untPaymentCardLog in 'untPaymentCardLog.pas' {FrmPaymentCardLog},
   SpinPOSClient in 'SpinPOSClient.pas',
-  UntSpinPOSForm in 'UntSpinPOSForm.pas' {frmSpinPOS};
+  UntSpinPOSForm in 'UntSpinPOSForm.pas' {frmSpinPOS},
+  UntAddHelpAddress in 'UntAddHelpAddress.pas' {FrmHelpAddress};
 
 {$R *.RES}
 

@@ -942,6 +942,10 @@ procedure TFrmEditInventorySP.FormShow(Sender: TObject);
 begin
   if FrmMain.LanguageStr = 'English' then
     language;
+  cbKitchen.Enabled := CommonPOS.Restaurant;
+  cbModifiers.Enabled := CommonPOS.Restaurant;
+  Label10.Enabled := CommonPOS.Restaurant;
+  EditNO_MODIFIERS.Enabled := CommonPOS.Restaurant;
 end;
 
 procedure TFrmEditInventorySP.language;

@@ -209,6 +209,7 @@ begin
           Lines.Add('TRIPLE-S:   ' + Format('%24s',[Format('%m', [CDSDailyTotalsTRIPLESREAD.asFloat])]));
           Lines.Add('PAYPAL:     ' + Format('%24s',[Format('%m', [CDSDailyTotalsPAYPALREAD.asFloat])]));
           Lines.Add('GRATUITY:   ' + Format('%24s',[Format('%m', [CDSDailyTotalsTIPSREAD.asFloat])]));
+          Lines.Add('COUPON:     ' + Format('%24s',[Format('%m', [CDSDailyTotalsCOUPONREAD.asFloat])]));
           Lines.Add('BANK/BASE:  ' + Format('%24s',[Format('%m', [CDSDailyTotalsSTARTBANK.asFloat])]));
           Lines.Add('                            ========');
           Lines.Add('TOTAL:      ' + Format('%24s',[Format('%m', [CDSDailyTotalsTOTAL_READ.asFloat])]));

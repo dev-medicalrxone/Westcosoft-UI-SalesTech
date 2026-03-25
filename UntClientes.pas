@@ -270,7 +270,7 @@ end;
 
 procedure TFrmClientes.language;
 begin
-  DBGrid4.Columns[0].Title.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 053);
+  DBGrid4.Columns[0].Title.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 053);       //Translations added AGC 032426
   DBGrid4.Columns[1].Title.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 054);
   DBGrid4.Columns[2].Title.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 055);
   DBGrid4.Columns[3].Title.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 056);
@@ -285,6 +285,8 @@ begin
   ToolButton23.Hint := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 065);
   ToolButton1.Hint := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 066);
   ToolButton2.Hint := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 067);
+  ToolButton3.Hint := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 374) ;
+  Toolbutton22.Hint := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 375) ;
 end;
 
 procedure TFrmClientes.ToolButton5Click(Sender: TObject);

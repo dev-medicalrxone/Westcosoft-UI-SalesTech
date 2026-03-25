@@ -1,6 +1,7 @@
 object FrmPOSRest: TFrmPOSRest
   Left = 0
   Top = 0
+  Hint = 'f'
   BorderIcons = []
   Caption = 'POS Restaurant'
   ClientHeight = 729
@@ -549,9 +550,13 @@ object FrmPOSRest: TFrmPOSRest
       Top = 480
       Width = 558
       Height = 229
-      ActivePage = TabSheet23
+      ActivePage = TabSheet24
       Align = alBottom
       TabOrder = 3
+      OnChange = pcOptionsChange
+      OnChanging = pcOptionsChanging
+      ExplicitLeft = -2
+      ExplicitTop = 464
       object TabSheet21: TTabSheet
         Caption = 'Main'
         object GridPanel12: TGridPanel
@@ -1345,6 +1350,10 @@ object FrmPOSRest: TFrmPOSRest
             OnClick = btnCommissionClick
           end
         end
+      end
+      object TabSheet24: TTabSheet
+        Caption = 'Help'
+        ImageIndex = 3
       end
     end
     object Panel8: TPanel

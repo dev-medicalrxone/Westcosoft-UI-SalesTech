@@ -390,6 +390,7 @@ end;
     function UPCE2A(const UPCE: string): string;
     function checkDigit(const vStr: String): Integer;
     function MessageDlgNoPorDefecto(const Msg: string): Integer;
+    procedure showHelpForm;
   private
     HeldCust: Integer;
     CrPay, LaPay, HeldCrPay, HeldLaPay: Boolean;
@@ -461,7 +462,8 @@ uses
   UntCombo, UntShowMessage, UntTabs, UntBotonesModifiers, UntDelInfo, UntSSSOTC,
   UntTripleSCoveredProducts, untTest, UntEnterPO, UntShowSignature, QueryReply,
   UntCoopDiscountCard, untEvertec, untIpe, untWebReceipt, untEbtOptions,
-  untValidateProds, untReprintType, UntWillCallAvailables, UntSpinPOSForm;
+  untValidateProds, untReprintType, UntWillCallAvailables, UntSpinPOSForm,
+  UntAddHelpAddress;
 
 Function TCommonPOS.RoundingUserDefineDecaimalPart(FloatNum: Double; NoOfDecPart: integer): Double;
 Var
@@ -602,6 +604,15 @@ begin
     Memo1.Font.Size := FontSize;
     Memo1.Font.Color := FontColor;
     Memo1.lines.add(MessageStr);
+    ShowModal;
+  end;
+end;
+
+procedure TCommonPOS.showHelpForm;
+begin
+  FrmHelpAddress := TFrmHelpAddress.Create(application);    //Shows the help form AGC 032426
+  with FrmHelpAddress do
+  begin
     ShowModal;
   end;
 end;

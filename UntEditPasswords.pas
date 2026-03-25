@@ -439,7 +439,7 @@ begin
     cbCreateInv.Checked := CDSPasswordsCREATE_INVENTORY.Value;
     cbEditInv.Checked := CDSPasswordsEDIT_INVENTORY.Value;
     cbDeleteInv.Checked := CDSPasswordsDELETE_INVENTORY.Value;
-    cbCoupon.Checked := CDSPasswordsPOS_COUPON.Value;
+    cbCoupon.Checked := CDSPasswordsPOS_COUPON.Value;   //Coupon field added AGC 032426
   end;
 end;
 
@@ -451,7 +451,7 @@ end;
 
 procedure TFrmEditPasswords.language;
 begin
-  Label1.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 139);
+  Label1.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 139);      //Translations added AGC 032426
   Label3.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 140);
   Label4.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 141);
   cbLogeado.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 142);
@@ -506,6 +506,7 @@ begin
   cbRPT_POS.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 190);
   Button3.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 191);
   FrmEditPasswords.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 192);
+  cbREDIMIR_PATROCINIO.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 376);
 end;
 
 end.

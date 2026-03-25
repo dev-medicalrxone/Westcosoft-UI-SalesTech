@@ -966,6 +966,7 @@ type
     Panel6: TPanel;
     DBText1: TDBText;
     DBText2: TDBText;
+    TabSheet24: TTabSheet;
     procedure FormShow(Sender: TObject);
     function findButton(BtnName, BtnCaption: String; Tag: integer): Boolean;
     procedure FormCreate(Sender: TObject);
@@ -1841,8 +1842,11 @@ type
     procedure editForm(option: String);
     procedure DBGrid2DblClick(Sender: TObject);
     procedure DBText2Click(Sender: TObject);
+    procedure pcOptionsChange(Sender: TObject);
+    procedure pcOptionsChanging(Sender: TObject; var AllowChange: Boolean);
   private
     { Private declarations }
+    activePage: TTabSheet;
   public
     { Public declarations }
 
@@ -1860,7 +1864,7 @@ uses  UntEditarBotones, UntDMMidas, UntCommonPOS, untMain, UntTabs,
   UntPrintOptionReceipt, UntCommon, UntCheckOut, UntSearchInv2, UntVendors,
   UntTripleSCoveredProducts, UntStartNewTab, UntID, UntSignature,
   UntSignatureCapture, untSignatureCapture1x5, untSignatureCapture4x3,
-  untClientId;
+  untClientId, UntAddHelpAddress;
 
 procedure TFrmPOSRest.BBorrarClick(Sender: TObject);
 Var
@@ -7383,6 +7387,21 @@ begin
      EditSearchProd.SetFocus;
     end;
   end;
+end;
+
+procedure TFrmPOSRest.pcOptionsChange(Sender: TObject);
+begin
+  if pcOptions.ActivePageIndex = 3 then         //Shows the help form and returns to the prev active page 032426
+  begin
+    pcOptions.ActivePage := activePage;
+    CommonPOS.showHelpForm;
+  end;
+end;
+
+procedure TFrmPOSRest.pcOptionsChanging(Sender: TObject;
+  var AllowChange: Boolean);
+begin
+  activePage := pcOptions.ActivePage;      //Stores the previous active page AGC 032426
 end;
 
 end.

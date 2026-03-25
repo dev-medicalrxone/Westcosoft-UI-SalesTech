@@ -73097,6 +73097,13 @@ object FrmMain: TFrmMain
         OnClick = test1Click
       end
     end
+    object Help1: TMenuItem
+      Caption = 'Help'
+      object Helpform1: TMenuItem
+        Caption = 'Help form'
+        OnClick = Helpform1Click
+      end
+    end
   end
   object ImageList48: TImageList
     ColorDepth = cd32Bit
