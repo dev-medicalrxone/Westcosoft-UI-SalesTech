@@ -107,6 +107,7 @@ type
     cbDeleteInv: TCheckBox;
     cbEditInv: TCheckBox;
     cbCoupon: TCheckBox;
+    cbModifyHelp: TCheckBox;
     procedure DBCheckBox8MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure FormCreate(Sender: TObject);
@@ -440,6 +441,7 @@ begin
     cbEditInv.Checked := CDSPasswordsEDIT_INVENTORY.Value;
     cbDeleteInv.Checked := CDSPasswordsDELETE_INVENTORY.Value;
     cbCoupon.Checked := CDSPasswordsPOS_COUPON.Value;   //Coupon field added AGC 032426
+    cbModifyHelp.Checked := CDSPasswordsMODIFY_HELP_FORM.Value    //MODIFY_HELP_FORM field added ACG 032726
   end;
 end;
 

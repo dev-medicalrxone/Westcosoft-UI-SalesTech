@@ -95,6 +95,7 @@ TUserRights = class(TObject)
   CREATE_INVENTORY: Boolean;
   DELETE_INVENTORY: Boolean;
   REPORTS: Boolean;
+  MODIFY_HELP_FORM: Boolean;   //Added to modify help form AGC 032726
 end;
 
  TCommonPOS = Class(TObject)
@@ -613,6 +614,7 @@ begin
   FrmHelpAddress := TFrmHelpAddress.Create(application);    //Shows the help form AGC 032426
   with FrmHelpAddress do
   begin
+    ToolBar1.Visible := UserRights.MODIFY_HELP_FORM;
     ShowModal;
   end;
 end;
@@ -1238,7 +1240,7 @@ begin
       POS_OPNDRAWR := true;
       POS_REPRINT := true;
       POS_CREDIT := true;
-      POS_COUPON := true;
+      POS_COUPON := true;      //Added to modify help form AGC 032726
       GUARDAR_TRANSACCIONES := true;
       RECALL_TRANS := true;
       POS_HOLD := true;
@@ -1268,7 +1270,7 @@ begin
       POS_DELETE_RX := true;
       EvertecID := '';
       SpinPOSID := '';
-
+      MODIFY_HELP_FORM := True;
     end;
   end
   else
@@ -10045,7 +10047,7 @@ begin
         POS_OPNDRAWR := true;
         POS_REPRINT := true;
         POS_CREDIT := true;
-        POS_COUPON := true;
+        POS_COUPON := true;    //Added to modify help form AGC 032726
         GUARDAR_TRANSACCIONES := true;
         RECALL_TRANS := true;
         POS_HOLD := true;
@@ -10078,6 +10080,7 @@ begin
         CREATE_INVENTORY := True;
         DELETE_INVENTORY := True;
         REPORTS := True;
+        MODIFY_HELP_FORM := True;
         UserLevel := '3';
       end
       else
@@ -10142,6 +10145,7 @@ begin
         DELETE_INVENTORY := PWRD_ISAUTHORIZED.ParamByName('@DELETE_INVENTORY').Value;
         CREATE_INVENTORY := PWRD_ISAUTHORIZED.ParamByName('@CREATE_INVENTORY').Value;
         REPORTS := PWRD_ISAUTHORIZED.ParamByName('@REPORTES').Value;
+        MODIFY_HELP_FORM := PWRD_ISAUTHORIZED.ParamByName('@MODIFY_HELP_FORM').Value;  //Added to modify help form AGC 032726
         CommonPOS.UserLevel :=PWRD_ISAUTHORIZED.ParamByName('@SEC_LEVEL').Value;
       end;
     end;

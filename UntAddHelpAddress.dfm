@@ -31,6 +31,7 @@ object FrmHelpAddress: TFrmHelpAddress
     ParentColor = False
     ParentFont = False
     Transparent = True
+    Visible = False
   end
   object Panel2: TPanel
     Left = 0
@@ -39,8 +40,6 @@ object FrmHelpAddress: TFrmHelpAddress
     Height = 41
     Align = alBottom
     TabOrder = 0
-    ExplicitTop = 378
-    ExplicitWidth = 582
     object BitBtn1: TButton
       Left = 491
       Top = 8
@@ -68,8 +67,6 @@ object FrmHelpAddress: TFrmHelpAddress
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 582
-    ExplicitHeight = 349
     object TabSheet1: TTabSheet
       Caption = 'Index'
       object DBGrid1: TDBGrid
@@ -115,7 +112,6 @@ object FrmHelpAddress: TFrmHelpAddress
         Height = 344
         Align = alLeft
         TabOrder = 1
-        ExplicitHeight = 321
       end
       object DBMemo2: TDBMemo
         Left = 290
@@ -133,8 +129,6 @@ object FrmHelpAddress: TFrmHelpAddress
         Font.Style = []
         ParentFont = False
         TabOrder = 2
-        ExplicitWidth = 284
-        ExplicitHeight = 321
       end
     end
     object TabSheet2: TTabSheet
@@ -156,8 +150,6 @@ object FrmHelpAddress: TFrmHelpAddress
         ParentFont = False
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitWidth = 574
-        ExplicitHeight = 321
       end
     end
   end
@@ -172,7 +164,6 @@ object FrmHelpAddress: TFrmHelpAddress
     ParentShowHint = False
     ShowHint = True
     TabOrder = 2
-    ExplicitWidth = 582
     object ToolButton3: TToolButton
       Left = 0
       Top = 0

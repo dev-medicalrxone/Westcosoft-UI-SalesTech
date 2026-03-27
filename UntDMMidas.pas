@@ -2644,6 +2644,7 @@ type
     cdsHelpINDICE: TAutoIncField;
     cdsHelpCAPITULO: TIntegerField;
     cdsHelpDESCRIPCION_DETALLE: TStringField;
+    CDSPasswordsMODIFY_HELP_FORM: TBooleanField;
     procedure CDSSetupAfterDelete(DataSet: TDataSet);
     procedure CDSClientTransactionsAfterDelete(DataSet: TDataSet);
     procedure CDSClientesOldCalcFields(DataSet: TDataSet);

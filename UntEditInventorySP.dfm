@@ -229,6 +229,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Height = 13
         Alignment = taRightJustify
         Caption = 'GROUP QTY.'
+        Enabled = False
         Transparent = True
       end
       object Bevel1: TBevel
@@ -702,6 +703,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Width = 95
         Height = 21
         Alignment = taRightJustify
+        Enabled = False
         TabOrder = 7
         OnChange = EditGROUP_QTYChange
         OnKeyPress = FormKeyPress

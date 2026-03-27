@@ -357,6 +357,7 @@ begin
             ParamByName('@EDIT_INVENTORY').AsBoolean := cbEditInv.Checked;
             ParamByName('@CREATE_INVENTORY').AsBoolean := cbCreateInv.Checked;
             ParamByName('@POS_COUPON').AsBoolean := cbCoupon.Checked; //Coupon field added AGC 032426
+            ParamByName('@MODIFY_HELP_FORM').AsBoolean := cbModifyHelp.Checked; //MODIFY_HELP_FIELD field added AGC 032726
             ExecProc;
           end;
           OpenPasswords('');

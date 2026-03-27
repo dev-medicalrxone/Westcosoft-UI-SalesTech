@@ -1788,6 +1788,9 @@ object DMMidas: TDMMidas
     object CDSPasswordsPOS_COUPON: TBooleanField
       FieldName = 'POS_COUPON'
     end
+    object CDSPasswordsMODIFY_HELP_FORM: TBooleanField
+      FieldName = 'MODIFY_HELP_FORM'
+    end
   end
   object DSPPasswords: TDataSetProvider
     DataSet = QPasswordsFD
