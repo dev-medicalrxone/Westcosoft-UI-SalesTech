@@ -2645,6 +2645,8 @@ type
     cdsHelpCAPITULO: TIntegerField;
     cdsHelpDESCRIPCION_DETALLE: TStringField;
     CDSPasswordsMODIFY_HELP_FORM: TBooleanField;
+    CDSInventarioPisoQTY_FLOOR: TIntegerField;
+    CDSInventarioPisoQTY_STOCK: TIntegerField;
     procedure CDSSetupAfterDelete(DataSet: TDataSet);
     procedure CDSClientTransactionsAfterDelete(DataSet: TDataSet);
     procedure CDSClientesOldCalcFields(DataSet: TDataSet);

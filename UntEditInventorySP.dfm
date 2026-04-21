@@ -278,7 +278,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label9: TLabel
-        Left = 394
+        Left = 414
         Top = 10
         Width = 70
         Height = 13
@@ -330,8 +330,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Height = 4
       end
       object Label2: TLabel
-        Left = 446
-        Top = 303
+        Left = 464
+        Top = 308
         Width = 20
         Height = 13
         Alignment = taRightJustify
@@ -339,7 +339,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label36: TLabel
-        Left = 384
+        Left = 403
         Top = 37
         Width = 81
         Height = 13
@@ -357,8 +357,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label38: TLabel
-        Left = 427
-        Top = 190
+        Left = 605
+        Top = 185
         Width = 39
         Height = 13
         Alignment = taRightJustify
@@ -366,8 +366,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label39: TLabel
-        Left = 425
-        Top = 215
+        Left = 603
+        Top = 212
         Width = 41
         Height = 13
         Alignment = taRightJustify
@@ -375,7 +375,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label40: TLabel
-        Left = 404
+        Left = 391
         Top = 240
         Width = 62
         Height = 13
@@ -390,7 +390,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Height = 362
       end
       object Label46: TLabel
-        Left = 417
+        Left = 436
         Top = 64
         Width = 48
         Height = 13
@@ -399,8 +399,8 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label50: TLabel
-        Left = 441
-        Top = 276
+        Left = 459
+        Top = 273
         Width = 25
         Height = 13
         Alignment = taRightJustify
@@ -408,7 +408,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label51: TLabel
-        Left = 435
+        Left = 455
         Top = 357
         Width = 29
         Height = 13
@@ -417,7 +417,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Transparent = True
       end
       object Label3: TLabel
-        Left = 394
+        Left = 414
         Top = 330
         Width = 70
         Height = 13
@@ -501,7 +501,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
       end
       object Label6: TLabel
         Left = 411
-        Top = 103
+        Top = 102
         Width = 73
         Height = 13
         Alignment = taRightJustify
@@ -644,6 +644,24 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Caption = 'Gp No'
         Transparent = True
       end
+      object Label64: TLabel
+        Left = 420
+        Top = 213
+        Width = 33
+        Height = 13
+        Alignment = taRightJustify
+        Caption = 'STOCK'
+        Transparent = True
+      end
+      object Label65: TLabel
+        Left = 419
+        Top = 186
+        Width = 34
+        Height = 13
+        Alignment = taRightJustify
+        Caption = 'FLOOR'
+        Transparent = True
+      end
       object EditDescription: TEdit
         Left = 112
         Top = 12
@@ -755,7 +773,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditSALES_PROMOTION_ID: TEdit
-        Left = 499
+        Left = 490
         Top = 7
         Width = 121
         Height = 21
@@ -791,9 +809,9 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditMinimo: TEdit
-        Left = 500
-        Top = 185
-        Width = 121
+        Left = 650
+        Top = 182
+        Width = 72
         Height = 21
         Alignment = taRightJustify
         TabOrder = 17
@@ -801,9 +819,9 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditMaximo: TEdit
-        Left = 500
-        Top = 212
-        Width = 121
+        Left = 650
+        Top = 209
+        Width = 72
         Height = 21
         Alignment = taRightJustify
         TabOrder = 18
@@ -811,9 +829,9 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditQtyInventario: TEdit
-        Left = 500
+        Left = 459
         Top = 237
-        Width = 121
+        Width = 77
         Height = 21
         Alignment = taRightJustify
         ReadOnly = True
@@ -831,7 +849,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditPO: TEdit
-        Left = 500
+        Left = 490
         Top = 273
         Width = 121
         Height = 21
@@ -839,7 +857,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditUPC: TEdit
-        Left = 499
+        Left = 490
         Top = 300
         Width = 121
         Height = 21
@@ -847,7 +865,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditPartNumber: TEdit
-        Left = 500
+        Left = 490
         Top = 327
         Width = 121
         Height = 21
@@ -855,7 +873,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditDeptDesc: TEdit
-        Left = 499
+        Left = 490
         Top = 34
         Width = 121
         Height = 21
@@ -863,7 +881,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object EditAdditionalInfo: TEdit
-        Left = 499
+        Left = 490
         Top = 354
         Width = 193
         Height = 21
@@ -936,7 +954,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         TabOrder = 37
       end
       object EditSubDeptDesc: TEdit
-        Left = 499
+        Left = 490
         Top = 61
         Width = 121
         Height = 21
@@ -972,7 +990,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object eDailySalePrice: TEdit
-        Left = 499
+        Left = 490
         Top = 97
         Width = 121
         Height = 21
@@ -982,7 +1000,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object eDailySaleStartTime: TEdit
-        Left = 499
+        Left = 490
         Top = 124
         Width = 153
         Height = 21
@@ -990,7 +1008,7 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object eDailySalEndTime: TEdit
-        Left = 499
+        Left = 490
         Top = 149
         Width = 153
         Height = 21
@@ -1138,6 +1156,28 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Height = 17
         Caption = 'MAIN GROUP PROD.'
         TabOrder = 53
+      end
+      object EditQtyStock: TEdit
+        Left = 459
+        Top = 210
+        Width = 72
+        Height = 21
+        Alignment = taRightJustify
+        ReadOnly = True
+        TabOrder = 54
+        OnChange = EditMaximoChange
+        OnKeyPress = FormKeyPress
+      end
+      object EditQtyFloor: TEdit
+        Left = 459
+        Top = 183
+        Width = 72
+        Height = 21
+        Alignment = taRightJustify
+        ReadOnly = True
+        TabOrder = 55
+        OnChange = EditMinimoChange
+        OnKeyPress = FormKeyPress
       end
     end
     object TabSheet2: TTabSheet
@@ -1612,6 +1652,196 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Caption = 'Delete'
         TabOrder = 26
         OnClick = Button5Click
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Transfer'
+      ImageIndex = 2
+      object Panel1: TPanel
+        Left = 377
+        Top = 12
+        Width = 316
+        Height = 377
+        BevelOuter = bvLowered
+        Color = clActiveCaption
+        ParentBackground = False
+        TabOrder = 0
+        object Label54: TLabel
+          Left = 24
+          Top = 24
+          Width = 32
+          Height = 13
+          Caption = 'User: '
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object lblUser: TLabel
+          Left = 62
+          Top = 24
+          Width = 66
+          Height = 13
+          Caption = 'Axel Carreras'
+        end
+        object Label55: TLabel
+          Left = 148
+          Top = 67
+          Width = 10
+          Height = 13
+          Caption = 'to'
+        end
+        object Label57: TLabel
+          Left = 24
+          Top = 113
+          Width = 27
+          Height = 13
+          Caption = 'UPC: '
+        end
+        object Label58: TLabel
+          Left = 24
+          Top = 138
+          Width = 57
+          Height = 13
+          Caption = 'Description:'
+        end
+        object Label59: TLabel
+          Left = 24
+          Top = 167
+          Width = 30
+          Height = 13
+          Caption = 'Price: '
+        end
+        object Label60: TLabel
+          Left = 24
+          Top = 194
+          Width = 22
+          Height = 13
+          Caption = 'Qty:'
+        end
+        object Label61: TLabel
+          Left = 24
+          Top = 241
+          Width = 28
+          Height = 13
+          Caption = 'Floor:'
+        end
+        object Label62: TLabel
+          Left = 24
+          Top = 268
+          Width = 30
+          Height = 13
+          Caption = 'Stock:'
+        end
+        object Label63: TLabel
+          Left = 24
+          Top = 295
+          Width = 45
+          Height = 13
+          Caption = 'Pending: '
+        end
+        object ComboBoxFrom: TComboBox
+          Left = 24
+          Top = 64
+          Width = 89
+          Height = 21
+          ItemIndex = 0
+          TabOrder = 0
+          Text = 'Stock'
+          OnChange = ComboBoxFromChange
+          Items.Strings = (
+            'Stock'
+            'Floor')
+        end
+        object ComboBoxTo: TComboBox
+          Left = 192
+          Top = 64
+          Width = 89
+          Height = 21
+          ItemIndex = 1
+          TabOrder = 1
+          Text = 'Floor'
+          OnChange = ComboBoxToChange
+          Items.Strings = (
+            'Stock'
+            'Floor')
+        end
+        object Button4: TButton
+          Left = 224
+          Top = 344
+          Width = 67
+          Height = 25
+          Caption = 'Process'
+          TabOrder = 2
+          OnClick = Button4Click
+        end
+        object Button6: TButton
+          Left = 151
+          Top = 344
+          Width = 67
+          Height = 25
+          Caption = 'Clr'
+          TabOrder = 3
+          OnClick = Button6Click
+        end
+        object EditTransferFloor: TEdit
+          Left = 87
+          Top = 238
+          Width = 72
+          Height = 21
+          ReadOnly = True
+          TabOrder = 4
+        end
+        object EditTransferStock: TEdit
+          Left = 87
+          Top = 265
+          Width = 72
+          Height = 21
+          ReadOnly = True
+          TabOrder = 5
+        end
+        object EditTransferPending: TEdit
+          Left = 87
+          Top = 292
+          Width = 72
+          Height = 21
+          Enabled = False
+          TabOrder = 6
+        end
+        object EditTransferUpc: TEdit
+          Left = 87
+          Top = 110
+          Width = 160
+          Height = 21
+          ReadOnly = True
+          TabOrder = 7
+        end
+        object EditTransferDescription: TEdit
+          Left = 87
+          Top = 137
+          Width = 218
+          Height = 21
+          ReadOnly = True
+          TabOrder = 8
+        end
+        object EditTransferPrice: TEdit
+          Left = 87
+          Top = 164
+          Width = 72
+          Height = 21
+          ReadOnly = True
+          TabOrder = 9
+        end
+        object EditTransferQty: TEdit
+          Left = 87
+          Top = 191
+          Width = 48
+          Height = 21
+          TabOrder = 10
+          Text = '0'
+        end
       end
     end
   end

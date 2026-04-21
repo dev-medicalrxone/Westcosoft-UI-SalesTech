@@ -5171,7 +5171,15 @@ var
   P: pointer;
   S: Cardinal;
   AppVersionString: String;
+
+  FileName: string;
+  VerSize, VerHandle: DWORD;
+  VerBuf: Pointer;
+  FixedInfo: PVSFixedFileInfo;
+  FixedInfoLen: UINT;
+  Major, Minor, Release, Build: Word;
 begin
+{
   M := TMemoryStream.Create;
   try
     rs := TResourceStream.CreateFromID(HInstance, 1, RT_VERSION);
@@ -5200,6 +5208,61 @@ begin
     M.Free;
   end;
   Result := AppVersionString;
+                                   }
+
+
+  M := TMemoryStream.Create;                               //Testing different ways to get versioning AGC042126
+  try
+    rs := TResourceStream.CreateFromID(HInstance, 1, RT_VERSION);
+    try
+      M.CopyFrom(rs, rs.Size);
+    finally
+      rs.Free;
+    end;
+    M.Position := 0;
+    if VerQueryValue(M.Memory, '\', pointer(verblock), verlen) then
+    begin
+      versionMS := verblock.dwFileVersionMS;
+      versionLS := verblock.dwFileVersionLS;
+      AppVersionString := application.Title + ' ' + IntToStr(versionMS shr 16) +    //application.Title
+        '.' + IntToStr(versionMS and $FFFF) + '.' + IntToStr(versionLS shr 16) +
+        '.' + IntToStr(versionLS and $FFFF);
+    end;
+    if VerQueryValue(M.Memory,
+      PChar('\\StringFileInfo\\' + IntToHex(GetThreadLocale, 4) +
+      IntToHex(GetACP, 4) + '\\FileDescription'), P, S) or
+      VerQueryValue(M.Memory, '\\StringFileInfo\\040904E4\\FileDescription', P,
+      S) then
+      AppVersionString := AppVersionString;
+  finally
+    M.Free;
+  end;
+  Result := AppVersionString;
+
+ {
+  FileName := '';
+  if FileName = '' then
+    FileName := ParamStr(0);
+
+  Result := '0.0.0.0';
+  VerSize := GetFileVersionInfoSize(PChar(FileName), VerHandle);
+  if VerSize = 0 then Exit;
+
+  GetMem(VerBuf, VerSize);
+  try
+    if not GetFileVersionInfo(PChar(FileName), VerHandle, VerSize, VerBuf) then Exit;
+    if VerQueryValue(VerBuf, '', Pointer(FixedInfo), FixedInfoLen) and (FixedInfoLen >= SizeOf(TVSFixedFileInfo)) then
+    begin
+      Major   := HiWord(FixedInfo^.dwFileVersionMS);
+      Minor   := LoWord(FixedInfo^.dwFileVersionMS);
+      Release := HiWord(FixedInfo^.dwFileVersionLS);
+      Build   := LoWord(FixedInfo^.dwFileVersionLS);
+      Result := Format('%d.%d.%d.%d.%d', [Major, Minor, Release, Build, 1]);
+    end;
+  finally
+    FreeMem(VerBuf);
+  end;
+            }
 end;
 
 Function TCommonPOS.CheckifRxInSavedTransactions(OTCNumber, NoRx: String): Boolean;

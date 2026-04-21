@@ -514,7 +514,6 @@ begin
     end
     else
       ToolButton16.Click;
-
   end;
 end;
 

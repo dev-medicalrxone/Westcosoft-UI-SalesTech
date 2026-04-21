@@ -1922,11 +1922,7 @@ begin
         FrmMain.PanelHeading.Visible := False;
         FrmInventory := TFrmInventory.Create(Self);
         With FrmInventory do
-        begin                                                                                   {
-          ToolButton1.Enabled := CommonPOS.isAuthorized('',UserRights.CREATE_INVENTORY, false);
-          ToolButton16.Enabled := CommonPOS.isAuthorized('',UserRights.EDIT_INVENTORY, false);
-          TlBtnCancel.Enabled := CommonPOS.isAuthorized('',UserRights.DELETE_INVENTORY, false);}
-
+        begin
           ToolButton1.Enabled := UserRights.CREATE_INVENTORY;
           ToolButton16.Enabled := UserRights.EDIT_INVENTORY;
           TlBtnCancel.Enabled := UserRights.DELETE_INVENTORY;

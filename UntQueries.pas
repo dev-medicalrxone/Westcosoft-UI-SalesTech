@@ -192,7 +192,7 @@ begin
               begin
                 GPNO := CDSInventarioPisoGROUP_PRODUCTNO.asString;
                 CDSInventarioPiso.Close;
-                CDSInventarioPiso.CommandText := 'Select * from InventarioPiso with (NOLOCK) where GROUP_PRODUCTNO = '+  GPNO + ' and Recetario <> ' + #39 + 'R' + #39 + ' order by DESCRIPCION';
+                CDSInventarioPiso.CommandText := 'Select * from InventarioPiso with (NOLOCK) where GROUP_PRODUCTNO = '+  GPNO + ' and Recetario <> ' + #39 + 'R' + #39 + ' order by MAIN_NDC desc';
                 CDSInventarioPiso.Open;
               end
               else

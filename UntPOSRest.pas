@@ -2725,7 +2725,6 @@ procedure TFrmPOSRest.EditSearchProdExit(Sender: TObject);
 begin
   With DMMidas do
   begin
-
     EditSearchProd.Text := UpperCase(EditSearchProd.Text);
     IF EditSearchProd.Text > '' then
     begin

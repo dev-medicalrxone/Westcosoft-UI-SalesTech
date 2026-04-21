@@ -202,6 +202,33 @@ type
     Label49: TLabel;
     EditGroupNo: TEdit;
     cbMainGroupProd: TCheckBox;
+    TabSheet3: TTabSheet;
+    Panel1: TPanel;
+    Label54: TLabel;
+    lblUser: TLabel;
+    ComboBoxFrom: TComboBox;
+    ComboBoxTo: TComboBox;
+    Label55: TLabel;
+    Label57: TLabel;
+    Label58: TLabel;
+    Label59: TLabel;
+    Label60: TLabel;
+    Label61: TLabel;
+    Label62: TLabel;
+    Label63: TLabel;
+    Button4: TButton;
+    Button6: TButton;
+    EditTransferFloor: TEdit;
+    EditTransferStock: TEdit;
+    EditTransferPending: TEdit;
+    EditTransferUpc: TEdit;
+    EditTransferDescription: TEdit;
+    EditTransferPrice: TEdit;
+    EditTransferQty: TEdit;
+    Label64: TLabel;
+    EditQtyStock: TEdit;
+    EditQtyFloor: TEdit;
+    Label65: TLabel;
     procedure SpeedButton7Click(Sender: TObject);
     procedure SpeedButton8Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
@@ -252,6 +279,9 @@ type
     procedure EditPrecioVenta3Enter(Sender: TObject);
     procedure cbSupplierPriceClick(Sender: TObject);
     procedure cbSupplierPrice2Click(Sender: TObject);
+    procedure ComboBoxFromChange(Sender: TObject);
+    procedure ComboBoxToChange(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
   private
     { Private declarations }
     hasImage: Boolean;
@@ -366,8 +396,34 @@ begin
 end;
 
 procedure TFrmEditInventorySP.Button4Click(Sender: TObject);
+var
+  FromField, ToField: string;
+  TransferQty: Double;
 begin
-      //ImageEnView1.Clear;
+    // Decide which fields to use based on combo boxes
+    if SameText(ComboBoxFrom.Text, 'Floor') and SameText(ComboBoxTo.Text, 'Stock') then
+    begin
+      FromField := 'QTY_FLOOR';
+      ToField   := 'QTY_STOCK';
+    end
+    else
+    if SameText(ComboBoxFrom.Text, 'Stock') and SameText(ComboBoxTo.Text, 'Floor') then
+    begin
+      FromField := 'QTY_STOCK';
+      ToField   := 'QTY_FLOOR';
+    end;
+    TransferQty := StrToFloatDef(EditTransferQty.Text, 0);
+    if TransferQty <= 0 then
+      Exit;
+  with DMMidas.FDQuery1 do
+  begin
+    close;
+    sql.Text := 'update inventariopiso set ' + FromField + ' = ' + FromField + ' - ' + TransferQty.ToString +
+    ', ' + ToField + ' = ' + ToField + ' + ' + TransferQty.ToString;
+    ExecSQL
+  end;
+  DMMidas.CDSInventarioPiso.Refresh;
+  FrmEditInventorySP.FormCreate(nil);
 end;
 
 procedure TFrmEditInventorySP.Button5Click(Sender: TObject);
@@ -384,6 +440,11 @@ begin
     end;
   end;
   //ImageEnView1.Clear;
+end;
+
+procedure TFrmEditInventorySP.Button6Click(Sender: TObject);
+begin
+  EditTransferQty.Text := '0';
 end;
 
 procedure TFrmEditInventorySP.cbSupplierPrice2Click(Sender: TObject);
@@ -403,6 +464,28 @@ begin
   begin
     EditCosto.Text := DMMidas.CDSInventarioPiso.FieldByName('SUPPLIER_PRICE').asString;
     EditCostoExit(nil);
+  end;
+end;
+
+procedure TFrmEditInventorySP.ComboBoxFromChange(Sender: TObject);
+begin
+  if ComboBoxFrom.ItemIndex = ComboBoxTo.ItemIndex then
+  begin
+    if ComboBoxTo.ItemIndex = 0 then
+      ComboBoxTo.ItemIndex := 1
+    else
+      ComboBoxTo.ItemIndex := 0;
+  end;
+end;
+
+procedure TFrmEditInventorySP.ComboBoxToChange(Sender: TObject);
+begin
+  if ComboBoxFrom.ItemIndex = ComboBoxTo.ItemIndex then
+  begin
+    if ComboBoxFrom.ItemIndex = 0 then
+      ComboBoxFrom.ItemIndex := 1
+    else
+      ComboBoxFrom.ItemIndex := 0;
   end;
 end;
 
@@ -776,7 +859,14 @@ begin
       EditQtyInventario.Text := '0.00'
     else
       EditQtyInventario.Text := Format('%f', [CDSInventarioPisoQTYINVENTARIO.asFloat]);
-
+    if CDSInventarioPisoQTY_FLOOR.IsNull = True then            //qty_floor field and edits added AGC 041426
+      EditQtyFloor.Text := '0'
+    else
+      EditQtyFloor.Text := CDSInventarioPisoQTY_FLOOR.AsString;
+    if CDSInventarioPisoQTY_STOCK.IsNull = True then            //qty_stock field and edits added AGC 041426
+      EditQtyStock.Text := '0'
+    else
+      EditQtyStock.Text := CDSInventarioPisoQTY_STOCK.AsString;
     EditProductID.Text := CDSInventarioPisoPRODUCTNO.AsString;
     EditUPC.Text := CDSInventarioPisoCODIGOBARRA.Value;
     EditPartNumber.Text := CDSInventarioPisoBARCODE2.Value;
@@ -930,6 +1020,13 @@ begin
         hasImage := False;
       end;
     end;
+    //Transfer from floor to stock tab added AGC 041426
+    lblUser.Caption := CommonPOS.UserName;
+    EditTransferUpc.Text := CDSInventarioPisoCODIGOBARRA.AsString;
+    EditTransferDescription.Text := CDSInventarioPisoDESCRIPCION.asString;
+    EditTransferPrice.Text := Format('%f', [CDSInventarioPisoPRECIO.asFloat]);
+    EditTransferStock.Text := CDSInventarioPisoQTY_STOCK.AsString;
+    EditTransferFloor.Text := CDSInventarioPisoQTY_FLOOR.ASstring;
   end;
 end;
 
@@ -946,6 +1043,12 @@ begin
   cbModifiers.Enabled := CommonPOS.Restaurant;
   Label10.Enabled := CommonPOS.Restaurant;
   EditNO_MODIFIERS.Enabled := CommonPOS.Restaurant;
+  if DMMidas.CDSSetupVENDOR.Value <> 'WesCom, Inc.' then     //Option added to edit form based on vendor AGC 041426
+  begin
+    cbFoodItem.Caption := 'EBT';
+    cbTripleS.Enabled := False;
+    cbProcessedFood.Enabled := False;
+  end;
 end;
 
 procedure TFrmEditInventorySP.language;
@@ -955,6 +1058,7 @@ begin
   Label38.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 121);
   Label39.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 120);
   Label40.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 017);
+  cbPatrocinio.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 382);      //Translation added AGC 041426
 end;
 
 procedure TFrmEditInventorySP.sbNewUPCClick(Sender: TObject);

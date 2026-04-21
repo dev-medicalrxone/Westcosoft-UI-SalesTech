@@ -756,6 +756,12 @@ object DMMidas: TDMMidas
     object CDSInventarioPisoMAIN_NDC: TBooleanField
       FieldName = 'MAIN_NDC'
     end
+    object CDSInventarioPisoQTY_FLOOR: TIntegerField
+      FieldName = 'QTY_FLOOR'
+    end
+    object CDSInventarioPisoQTY_STOCK: TIntegerField
+      FieldName = 'QTY_STOCK'
+    end
   end
   object DSPInventarioPiso: TDataSetProvider
     DataSet = QInventarioPisoFD
