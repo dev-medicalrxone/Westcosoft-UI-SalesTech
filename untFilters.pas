@@ -14,12 +14,6 @@ type
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
-    cbClient: TCheckBox;
-    Desde: TDateTimePicker;
-    EditClientName: TEdit;
-    Hasta: TDateTimePicker;
-    Label1: TLabel;
-    Label2: TLabel;
     cbDept: TCheckBox;
     cbSubDept: TCheckBox;
     EditDept: TEdit;
@@ -33,6 +27,13 @@ type
     cbId: TComboBox;
     cbSupplier: TCheckBox;
     EditSupplier: TEdit;
+    cbDate: TCheckBox;
+    cbClient: TCheckBox;
+    EditClientName: TEdit;
+    Desde: TDateTimePicker;
+    Label1: TLabel;
+    Label2: TLabel;
+    Hasta: TDateTimePicker;
     procedure cbClientClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure cbDeptClick(Sender: TObject);
@@ -41,6 +42,7 @@ type
     procedure getId;
     procedure dateToChange(Sender: TObject);
     procedure cbSupplierClick(Sender: TObject);
+    procedure cbDateClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -81,6 +83,12 @@ begin
     FrmSearchCust2.Free;;
     FrmSearchCust2 := Nil;
   end;
+end;
+
+procedure TFrmFilters.cbDateClick(Sender: TObject);
+begin
+  Desde.Enabled := cbDate.Checked;        //To enable/disable datepicker AGC042826
+  hasta.Enabled := cbDate.Checked;
 end;
 
 procedure TFrmFilters.cbDeptClick(Sender: TObject);

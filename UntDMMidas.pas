@@ -2763,6 +2763,7 @@ type
     procedure CDSPacientesCalcFields(DataSet: TDataSet);
     procedure cdsCountersAfterDelete(DataSet: TDataSet);
     procedure cdsHelpAfterDelete(DataSet: TDataSet);
+    procedure ApplyExtraFilters(query: TFDQuery);
   private
     { Private declarations }
   public
@@ -3161,6 +3162,19 @@ begin
   end;
 end;
 
+procedure TDMMidas.ApplyExtraFilters(query: TFDQuery);
+begin
+  with FrmFilters do
+  begin
+    if cbDate.Checked = True then
+    begin
+      query.SQL.text :=
+      query.SQL.Text +
+      ' AND DATEOFTRANS between ' + chr(39) + DateToStr(Desde.Date) + Chr(39) + ' and ' + chr(39) + DateToStr(Hasta.Date) + chr(39);
+    end;
+  end;
+end;
+
 function TDMMidas.CalcTotals(SalesDate: TDateTime; EmpNumber, PayType: String; ID, NoRegister: Integer): Currency;
 Var
   Day, Month, Year: Word;
@@ -3318,9 +3332,10 @@ begin
     Memo1 := FrmMain.rptClientAccts.FindObject('Memo12') as TfrxMemoView;
     Memo1.Memo.Text := 'To pay: ' + Format('%m', [CDSClientTransactionsBALANCE.asFloat]);
     CommonPOS.SetConnection(QClientTransactionsFD);
+    QClientTransactionsFD.Close;
     CDSClientTransactions.Close;
-    CDSClientTransactions.CommandText := 'Select * from clienttransactions where clientno = ' + chr(39) + CDSClientesNUMEROCLIENTE.asString + chr(39)
-    + ' and convert(varchar, DATEOFTRANS, 101) between ' + chr(39) + DateToStr(FrmFilters.Desde.Date) + chr(39) + ' and ' + chr(39) + DateToStr(FrmFilters.Hasta.Date) + chr(39);
+    QClientTransactionsFD.SQL.Text := 'Select * from clienttransactions where clientno = ' + chr(39) + CDSClientesNUMEROCLIENTE.asString + chr(39);
+    ApplyExtraFilters(QClientTransactionsFD);
     CDSClientTransactions.Open;
     CommonPOS.SetConnection(FDQuery1);
     FDQuery1.close;

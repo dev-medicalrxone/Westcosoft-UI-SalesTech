@@ -2760,7 +2760,7 @@ begin
                      CommonPOS.User,'F', 'F', CDSOTCDEDUCIBLE.asFloat,
                      CDSOTCDEDUCIBLE.asFloat, 0, 0,1,0, 0, CommonPOS.ID, 0,0,0,0,false,false,'',0,false,0,false, false) //Header
         end;
-          CommonPOS.UpdateWorkFlow('P', Trim(CommonPOS.User) + ' ' + DateTimeToStr(Now), CDSOTCOTCNUMBER.Value);
+          //CommonPOS.UpdateWorkFlow('P', Trim(CommonPOS.User) + ' ' + DateTimeToStr(Now), CDSOTCOTCNUMBER.Value);      //This is now managed by TRANSACTIONDETAIL_DELETE sp AGC042826
           With SQLQuery1 do
           begin
             SQl.Clear;
@@ -3025,7 +3025,10 @@ Begin
         ParamByName('@GROUP_PROD').Value := GroupSale;
         ParamByName('@REGISTER').Value := CommonPOS.RegisterNo;
         ParamByName('@SUPER').Value := CommonPOS.Supervisor;
-        ParamByName('@PATROCINIO').Value := DMMidas.CDSInventarioPisoPatrocinio.Value;
+        if OTC_NUMBER > 0 then                                         //Added to not add rewards to prescriptions AGC051126
+          ParamByName('@PATROCINIO').Value := 1
+        else
+          ParamByName('@PATROCINIO').Value := DMMidas.CDSInventarioPisoPatrocinio.Value;
         ParamByName('@SUBDPT').Value := ProdSubDpt;
         ParamByName('@BARCODEALTERNO1').Value := DMMidas.CDSInventarioPisoBARCODE2.Value; // FrmPOSTS.BARCODEALTERNO1;
         ParamByName('@BARCODEALTERNO2').Value := ''; // FrmPOSTS.BARCODEALTERNO2;
@@ -3788,10 +3791,14 @@ begin
             CommonPOS.DisconnectFromDatabase;
             With DMMidas do
             begin
-              With TRANSACTIONDETAIL_DELETE do
+              With TRANSACTIONDETAIL_DELETE do      //This SP completes the transaction and moves the record from both tables TRANSACTION_HEADER/DETAIL_TEMP to TRANSACTION_HEADER/DETAIL AGC042826
               begin
                 Prepare;
-                ParamByName('@TNUMBER').AsInteger := CommonPOS.Header;// Header1;
+                ParamByName('@TNUMBER').AsInteger := CommonPOS.Header;
+                ParamByName('@REGISTER').Value := CommonPOS.RegisterNo;            //SP updated with new fields. This SP ensures to mark required prescriptions as charged in OTC table AGC042826
+                ParamByName('@DBName').Value := CommonPOS.DataBaseNameRx;
+                ParamByName('@USUARIO').Value := CommonPOS.User;
+                ParamByName('@SUPERVISOR').Value := '';
                 ExecProc;
               end;
               if Trim(CommonPOS.PrinterIP) > '' then
@@ -5179,38 +5186,6 @@ var
   FixedInfoLen: UINT;
   Major, Minor, Release, Build: Word;
 begin
-{
-  M := TMemoryStream.Create;
-  try
-    rs := TResourceStream.CreateFromID(HInstance, 1, RT_VERSION);
-    try
-      M.CopyFrom(rs, rs.Size);
-    finally
-      rs.Free;
-    end;
-    M.Position := 0;
-    if VerQueryValue(M.Memory, '\', pointer(verblock), verlen) then
-    begin
-      versionMS := verblock.dwFileVersionMS;
-      versionLS := verblock.dwFileVersionLS;
-      AppVersionString := application.Title + ' ' + IntToStr(versionMS shr 16) +
-        '.' + IntToStr(versionMS and $FFFF) + '.' + IntToStr(versionLS shr 16) +
-        '.' + IntToStr(versionLS and $FFFF);
-    end;
-    if VerQueryValue(M.Memory,
-      PChar('\\StringFileInfo\\' + IntToHex(GetThreadLocale, 4) +
-      IntToHex(GetACP, 4) + '\\FileDescription'), P, S) or
-      VerQueryValue(M.Memory, '\\StringFileInfo\\040904E4\\FileDescription', P,
-      S) then // en-us
-      // AppVersionString:=PChar(p)+' '+AppVersionString;
-      AppVersionString := AppVersionString;
-  finally
-    M.Free;
-  end;
-  Result := AppVersionString;
-                                   }
-
-
   M := TMemoryStream.Create;                               //Testing different ways to get versioning AGC042126
   try
     rs := TResourceStream.CreateFromID(HInstance, 1, RT_VERSION);
@@ -5238,31 +5213,6 @@ begin
     M.Free;
   end;
   Result := AppVersionString;
-
- {
-  FileName := '';
-  if FileName = '' then
-    FileName := ParamStr(0);
-
-  Result := '0.0.0.0';
-  VerSize := GetFileVersionInfoSize(PChar(FileName), VerHandle);
-  if VerSize = 0 then Exit;
-
-  GetMem(VerBuf, VerSize);
-  try
-    if not GetFileVersionInfo(PChar(FileName), VerHandle, VerSize, VerBuf) then Exit;
-    if VerQueryValue(VerBuf, '', Pointer(FixedInfo), FixedInfoLen) and (FixedInfoLen >= SizeOf(TVSFixedFileInfo)) then
-    begin
-      Major   := HiWord(FixedInfo^.dwFileVersionMS);
-      Minor   := LoWord(FixedInfo^.dwFileVersionMS);
-      Release := HiWord(FixedInfo^.dwFileVersionLS);
-      Build   := LoWord(FixedInfo^.dwFileVersionLS);
-      Result := Format('%d.%d.%d.%d.%d', [Major, Minor, Release, Build, 1]);
-    end;
-  finally
-    FreeMem(VerBuf);
-  end;
-            }
 end;
 
 Function TCommonPOS.CheckifRxInSavedTransactions(OTCNumber, NoRx: String): Boolean;
@@ -11333,9 +11283,9 @@ begin
   With DMMidas do
   begin
     if CommonPOS.standalone = True then
-      fdq.Connection := FDConnection2
+      fdq.Connection := FDConnection1
     else
-      fdq.Connection := FDConnection1;
+      fdq.Connection := FDConnection2;
   end;
 end;
 

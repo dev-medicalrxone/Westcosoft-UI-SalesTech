@@ -152,7 +152,7 @@ begin
       begin
         CDSTransactionDetails.Close;
         CDSTransactionDetails.CommandText := 'Select * from VerTransacciones Where FECHAVENTA between ' + chr(39) + DateToStr(dtpFrom.Date) + chr(39) + ' and ' + chr(39)+ DateToStr(dtpTo.date) + chr(39);
-        ApplyExtraFilters(TranType);
+        FrmVerTrans.ApplyExtraFilters(TranType);
         CDSTransactionDetails.CommandText := CDSTransactionDetails.CommandText + 'order by TRANSACTIONNUMBER';
         CDSTransactionDetails.Open;
         exit

@@ -601,22 +601,6 @@ object FrmEditInventorySP: TFrmEditInventorySP
         Caption = 'SUPPLIER 2'
         Transparent = True
       end
-      object lblSupPrice: TLabel
-        Left = 1009
-        Top = 10
-        Width = 28
-        Height = 13
-        Alignment = taRightJustify
-        Caption = '$0.00'
-      end
-      object lblSupPrice2: TLabel
-        Left = 1009
-        Top = 64
-        Width = 28
-        Height = 13
-        Alignment = taRightJustify
-        Caption = '$0.00'
-      end
       object Label27: TLabel
         Left = 793
         Top = 37
@@ -1108,17 +1092,17 @@ object FrmEditInventorySP: TFrmEditInventorySP
         OnKeyPress = FormKeyPress
       end
       object cbSupplierPrice: TCheckBox
-        Left = 1043
+        Left = 1000
         Top = 9
-        Width = 25
+        Width = 22
         Height = 17
         TabOrder = 48
         OnClick = cbSupplierPriceClick
       end
       object cbSupplierPrice2: TCheckBox
-        Left = 1043
+        Left = 1000
         Top = 63
-        Width = 25
+        Width = 22
         Height = 17
         TabOrder = 49
         OnClick = cbSupplierPrice2Click

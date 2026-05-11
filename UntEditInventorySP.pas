@@ -191,10 +191,8 @@ type
     SpeedButton10: TSpeedButton;
     EditSupDesc2: TEdit;
     Label26: TLabel;
-    lblSupPrice: TLabel;
     cbSupplierPrice: TCheckBox;
     cbSupplierPrice2: TCheckBox;
-    lblSupPrice2: TLabel;
     Label27: TLabel;
     EditItemId: TEdit;
     Label42: TLabel;
@@ -986,15 +984,10 @@ begin
       CDSSuplidores.Open;
       EditSupDesc2.Text := CDSSuplidoresSUPLIDOR.Value;
     end;
-    lblSupPrice.Caption := {Format('%m', [} CurrToStr(CDSInventarioPiso.FieldByName('SUPPLIER_PRICE').AsCurrency);//]);
-    lblSupPrice2.Caption := {Format('%m', [}CurrToStr(CDSInventarioPiso.FieldByName('SUPPLIER_PRICE2').asCurrency);//]);
-    if (lblSupPrice.Caption <> '0') or (lblSupPrice2.Caption <> '0') then    //To check which price was previously selected AGC 02/17/26
-    begin
-      if CDSInventarioPisoSUPPLIER_PRICE_DEFINE.Value = 0 then
-        cbSupplierPrice.Checked := True
-      else
-        cbSupplierPrice2.Checked := True;
-    end;
+    if CDSInventarioPisoSUPPLIER_PRICE_DEFINE.Value = 0 then
+      cbSupplierPrice.Checked := True
+    else
+      cbSupplierPrice2.Checked := True;
     EditItemId.Text := CDSInventarioPisoSUPP_ITEMID.Value;
     EditItemID2.Text := CDSInventarioPisoSUPP_ITEMID2.Value;
     ///
@@ -1400,8 +1393,6 @@ begin
   cbNonRefundable.Checked := False;
   cbPepSpray.Checked := False;
   cbSkipPriceUpdt.Checked := False;
-  lblSupPrice.caption := '$0.00';
-  lblSupPrice2.caption := '$0.00';
   EditItemId.Text := '';
   EditItemID2.Text := '';
   sbNewUPC.Click;
@@ -1529,14 +1520,6 @@ begin
           ParamByName('@SUPPLIER_PRICE_DEFINE').AsInteger := 0
         else
           ParamByName('@SUPPLIER_PRICE_DEFINE').AsInteger := 1;
-        if lblSupPrice.Caption > '' then
-          ParamByName('@SUPPLIER_PRICE').Value := StrToFloatDef(StringReplace(lblSupPrice.Caption, '$', '', [rfReplaceAll]), 0)
-        else
-          ParamByName('@SUPPLIER_PRICE').Value := 0;
-        if lblSupPrice2.Caption > '' then
-          ParamByName('@SUPPLIER_PRICE2').Value := StrToFloatDef(StringReplace(lblSupPrice2.Caption, '$', '', [rfReplaceAll]), 0)
-        else
-          ParamByName('@SUPPLIER_PRICE2').Value := 0;
         ParamByName('@SUPP_ITEMID').Value := EditItemId.Text;
         ParamByName('@SUPP_ITEMID2').Value := EditItemId2.Text;
         ParamByName('@GROUP_PRODUCTNO').Value := EditGroupNo.Text;  //Added to link products ACG 03/10/2026//

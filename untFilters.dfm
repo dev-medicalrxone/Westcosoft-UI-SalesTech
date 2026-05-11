@@ -18,60 +18,69 @@ object FrmFilters: TFrmFilters
     Top = 0
     Width = 453
     Height = 162
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     TabOrder = 1
     TabPosition = tpBottom
     object TabSheet1: TTabSheet
       Caption = 'TabSheet1'
       object Label1: TLabel
-        Left = 24
-        Top = 30
+        Left = 16
+        Top = 54
         Width = 28
         Height = 15
         Caption = 'From'
       end
       object Label2: TLabel
-        Left = 24
-        Top = 67
+        Left = 16
+        Top = 80
         Width = 13
         Height = 15
         Caption = 'To'
       end
+      object cbDate: TCheckBox
+        Left = 16
+        Top = 14
+        Width = 113
+        Height = 17
+        Caption = 'Filter by date'
+        TabOrder = 0
+        OnClick = cbDateClick
+      end
       object cbClient: TCheckBox
-        Left = 232
-        Top = 30
+        Left = 224
+        Top = 14
         Width = 113
         Height = 17
         Caption = 'Filter by client'
-        TabOrder = 0
+        TabOrder = 1
         OnClick = cbClientClick
       end
-      object Desde: TDateTimePicker
-        Left = 72
-        Top = 24
-        Width = 105
-        Height = 23
-        Date = 43326.000000000000000000
-        Time = 0.489538101850485000
-        TabOrder = 1
-      end
       object EditClientName: TEdit
-        Left = 232
-        Top = 64
+        Left = 224
+        Top = 48
         Width = 209
         Height = 23
         Enabled = False
         TabOrder = 2
         TextHint = 'Client name'
       end
+      object Desde: TDateTimePicker
+        Left = 64
+        Top = 48
+        Width = 105
+        Height = 23
+        Date = 43326.000000000000000000
+        Time = 0.489538101850485000
+        TabOrder = 3
+      end
       object Hasta: TDateTimePicker
-        Left = 72
-        Top = 64
+        Left = 64
+        Top = 77
         Width = 105
         Height = 23
         Date = 43326.000000000000000000
         Time = 0.489589282413362500
-        TabOrder = 3
+        TabOrder = 4
       end
     end
     object TabSheet2: TTabSheet

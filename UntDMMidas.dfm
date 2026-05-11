@@ -9889,6 +9889,7 @@ object DMMidas: TDMMidas
       'MARS=yes'
       'Database=familiar'
       'DriverID=MSSQL')
+    Connected = True
     LoginPrompt = False
     Transaction = FDTransaction1
     Left = 24
@@ -11110,9 +11111,36 @@ object DMMidas: TDMMidas
       end
       item
         Position = 2
+        Name = '@REGISTER'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Position = 3
         Name = '@TNUMBER'
         DataType = ftInteger
         ParamType = ptInput
+      end
+      item
+        Position = 4
+        Name = '@DBName'
+        DataType = ftWideString
+        ParamType = ptInput
+        Size = 128
+      end
+      item
+        Position = 5
+        Name = '@USUARIO'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 3
+      end
+      item
+        Position = 6
+        Name = '@SUPERVISOR'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 3
       end>
   end
   object SPCalcHeadTotals: TFDStoredProc
