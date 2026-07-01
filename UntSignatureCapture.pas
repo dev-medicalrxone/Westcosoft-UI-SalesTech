@@ -71,6 +71,7 @@ type
     { Public declarations }
     EraseTabData: Boolean;
     Inserted: Boolean;
+    bagPickupFlag: Boolean;
   end;
 
 var
@@ -90,6 +91,7 @@ Var
   NoCliente: String;
   isOTCNumber: Boolean;
 begin
+  BagPickupFlag := BagPickup;   //To determine if it is a pickup when inserting the RXs to sign. If some RXs are not in the bag it will showmessage to user (BtnSelectAll procedure)  AGC050726
   if Trim(TokenStr) > '' then
   begin
     isOTCNumber := false;
@@ -108,25 +110,25 @@ begin
       if CommonPOS.IsNumber(TokenStr) then
       begin
         begin
-          if isOTCNumber = true then
+          if isOTCNumber = true then           //Checks OTC table with field otcnumber AGC050526
           begin
             Queries.OpenOTC(StrToInt(TokenStr), CDSSetupWF_OVERRIDE_CHECKED.Value);  //Filter considering this setting 11/14/2025//
             NoCliente := IntToStr(CDSOTCNUMEROCLIENTE.Value);
           end
-          else
+          else                                //Checks OTC table with field numeroreceta AGC050526
           begin
-            CommonPOS.SetConnection(QOTCFD);
+            //CommonPOS.SetConnection(QOTCFD);
+            QOTCFD.Connection := FDConnection2;
             CDSOTC.Close;
-            if CDSSetupWF_OVERRIDE_CHECKED.Value = True then          //Filter considering this setting 11/14/2025//
+            {if CDSSetupWF_OVERRIDE_CHECKED.Value = True then          //Filter considering this setting 11/14/2025//
               CDSOTC.CommandText := 'Select * from OTC with (NOLOCK) where NumeroReceta = ' + TokenStr + ' and WF_CHECKED > ' + chr(39) + chr(39)
-            else
+            else   }
               CDSOTC.CommandText := 'Select * from OTC with (NOLOCK) where NumeroReceta = ' + TokenStr;
             CDSOTC.Open;
             NoCliente := IntToStr(CDSOTCNUMEROCLIENTE.Value);
           end;
           if Trim(NoCliente) > '' then
           begin
-            //if CDSPrescriptionsNUMERORECETA.Value > 0 then
             if CDSOTC.RecordCount > 0 then
             begin
               if BagPickup = True then
@@ -282,6 +284,7 @@ begin
                 FrmeSignatureCapture4x3 := TFrmeSignatureCapture4x3.Create(Self);
                 With FrmeSignatureCapture4x3 do
                 begin
+                  FrmeSignatureCapture4x3.Tag := 0;
                   ShowModal;
                   if FrmeSignatureCapture4x3.ModalResult = mrOk then
                     cerrar := True
@@ -341,13 +344,34 @@ begin
     CDSPickUp.Open;
     Counter := CDSPickUp.RecordCount;
     CDSPickUp.First;
-    if InsertPickup(CDSOTCNUMERORECETA.Value, CDSOTCOTCNUMBER.Value, False) = true then
+    if CDSSetupWF_OVERRIDE_CHECKED.Value = True then
     begin
-      CDSPickUp.Close;
-      CDSPickUp.CommandText :=
-        'Select * from Pick_up where Instancia = ' + IntToStr
-        (FrmMain.Instancia);
-      CDSPickUp.Open;
+      if CDSOTCCHECKED.Value = 1 then
+      begin
+        if InsertPickup(CDSOTCNUMERORECETA.Value, CDSOTCOTCNUMBER.Value, False) = true then
+        begin
+          CDSPickUp.Close;
+          CDSPickUp.CommandText :=
+            'Select * from Pick_up where Instancia = ' + IntToStr
+            (FrmMain.Instancia);
+          CDSPickUp.Open;
+        end;
+      end
+      else
+      begin
+        showMessage('Prescription has not been checked.');
+      end;
+    end
+    else
+    begin
+      if InsertPickup(CDSOTCNUMERORECETA.Value, CDSOTCOTCNUMBER.Value, False) = true then
+      begin
+        CDSPickUp.Close;
+        CDSPickUp.CommandText :=
+          'Select * from Pick_up where Instancia = ' + IntToStr
+          (FrmMain.Instancia);
+        CDSPickUp.Open;
+      end;
     end;
   end;
 end;
@@ -367,8 +391,10 @@ end;
 procedure TFrmeSignatureCapture.ButtonSelectAllClick(Sender: TObject);
 Var
   Counter: Integer;
+  flag: Boolean;
 begin
   Counter := 0;
+  flag := False;
   With DMMidas do
   begin
     if CDSOTC.Active = False then
@@ -382,9 +408,39 @@ begin
     CDSOTC.First;
     While not CDSOTC.Eof do
     begin
-      InsertPickup(CDSOTCNUMERORECETA.Value, CDSOTCOTCNUMBER.Value, False);
+      if bagPickupFlag = True then
+      begin
+        if CDSSetupWF_OVERRIDE_CHECKED.Value = True then
+        begin
+          if (CDSOTCCHECKED.Value = 1) and (CDSOTCWC_PICKUP.Value = True) then
+            InsertPickup(CDSOTCNUMERORECETA.Value, CDSOTCOTCNUMBER.Value, False)
+          else
+            flag := True;    //To show message
+        end
+        else
+        begin
+          if CDSOTCWC_PICKUP.Value = True then
+            InsertPickup(CDSOTCNUMERORECETA.Value, CDSOTCOTCNUMBER.Value, False)
+          else
+            flag := True;    //To show message
+        end;
+      end
+      else
+      begin
+        if CDSSetupWF_OVERRIDE_CHECKED.Value = True then
+        begin
+          if (CDSOTCCHECKED.Value = 1) then
+            InsertPickup(CDSOTCNUMERORECETA.Value, CDSOTCOTCNUMBER.Value, False)
+          else
+            flag := True;    //To show message
+        end
+        else
+          InsertPickup(CDSOTCNUMERORECETA.Value, CDSOTCOTCNUMBER.Value, False)
+      end;
       CDSOTC.Next;
     end;
+    if flag = true then
+      ShowMessage('Some prescriptions are not in bag or have not been checked!');
     CDSPickUp.Close;
     CDSPickUp.CommandText :=
       'Select * from Pick_up where Instancia = ' + IntToStr
@@ -511,9 +567,12 @@ end;
 procedure TFrmeSignatureCapture.FormShow(Sender: TObject);
 begin
   ButtonDeleteAll.Click;
-  //Timer1.Enabled := True;
-  FrmeSignatureCapture.Caption :=
-    'eSignature Capture ' + DMMidas.CDSClientesNombreCompleto2.Value; //DMwc.cdsWillCall_StatusNombreCompleto.Value;
+  if FrmeSignatureCapture.Tag = 0 then  //Verifies if form is called directly from eSignature Addon
+    FrmeSignatureCapture.Caption :=
+      'eSignature Capture ' + DMMidas.CDSClientesNombreCompleto2.Value
+  else   //eSignatrue is being called from Smartpickup addon with a bagNumber attatched to the form tag and wc_patients table for patient info
+    FrmeSignatureCapture.Caption :=
+      'eSignature Capture ' + DMwc.cdsWC_PATIENTSNombreCompleto.Value;
   label1.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 255);
   label2.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 306);
   TabSheet1.Caption := TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 307);

@@ -18,13 +18,7 @@ object DMwc: TDMwc
     AfterDelete = cdsWillCallAfterDelete
     OnCalcFields = cdsWillCallCalcFields
     Left = 312
-    Top = 40
-    object cdsWillCallBAG_NUMBER: TWideStringField
-      FieldName = 'BAG_NUMBER'
-      Origin = 'BAG_NUMBER'
-      FixedChar = True
-      Size = 10
-    end
+    Top = 32
     object cdsWillCallDRUG_DESCRIPTION: TWideStringField
       FieldName = 'DRUG_DESCRIPTION'
       Origin = 'DRUG_DESCRIPTION'
@@ -133,6 +127,9 @@ object DMwc: TDMwc
     object cdsWillCallOTC_NUMBER: TIntegerField
       FieldName = 'OTC_NUMBER'
       Origin = 'OTC_NUMBER'
+    end
+    object cdsWillCallBAG_NUMBER: TIntegerField
+      FieldName = 'BAG_NUMBER'
     end
   end
   object dsWillCall: TDataSource

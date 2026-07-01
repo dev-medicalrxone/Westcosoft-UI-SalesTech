@@ -392,7 +392,7 @@ begin
         With DMwc do
         begin
           cdsWillCall_Status.Close;
-          cdsWillCall_Status.CommandText := 'Select * from WillCall_Status where Bag_number = ' + Trim(cdsWillCallBAG_NUMBER.Value);
+          cdsWillCall_Status.CommandText := 'Select * from WillCall_Status where Bag_number = ' + Trim(cdsWillCallBAG_NUMBER.asString);
           cdsWillCall_Status.Open;
         end;
         ShowModal;
@@ -419,7 +419,7 @@ begin
         mtConfirmation, [mbYes, mbNo], 0) = mrYes then
         begin
           TransNo := cdsWillCallTRANSACTION_NUMBER.Value;
-          BN := cdsWillCallBAG_NUMBER.Value;
+          BN := cdsWillCallBAG_NUMBER.asString;
           OTCNumber := cdsWillCallOTC_NUMBER.Value;
 
           if cdsWillCallRx_Number.Value  > 0 then
@@ -437,7 +437,7 @@ begin
           qForAll.ExecSQL;
           //====================
           CommonPOS.OpenWillCallBag(BN);
-          if Trim(cdsWillCallBAG_NUMBER.Value) = ''  then
+          if Trim(cdsWillCallBAG_NUMBER.asString) = ''  then
           begin
             QBorrarNonMatchedNDC.SQL.Text := 'Delete from WillCall_Status where Bag_Number = ' + Trim(BN);
             QBorrarNonMatchedNDC.ExecSQL();

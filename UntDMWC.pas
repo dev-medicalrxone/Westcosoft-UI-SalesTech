@@ -19,7 +19,6 @@ type
     dspWillCall: TDataSetProvider;
     cdsWillCall: TClientDataSet;
     dsWillCall: TDataSource;
-    cdsWillCallBAG_NUMBER: TWideStringField;
     cdsWillCallDRUG_DESCRIPTION: TWideStringField;
     cdsWillCallCUSTOMER_NUMBER: TIntegerField;
     cdsWillCallSTATUS: TIntegerField;
@@ -455,6 +454,7 @@ type
     cdsWC_PATIENTSNOTIFICATION_MODE_SMS: TSmallintField;
     cdsWC_PATIENTSNOTIFICATION_MODE_EMAIL: TSmallintField;
     cdsWC_PATIENTSemail: TWideStringField;
+    cdsWillCallBAG_NUMBER: TIntegerField;
     procedure cdsWillCallAfterDelete(DataSet: TDataSet);
     procedure cdsWillCallCalcFields(DataSet: TDataSet);
     procedure cdsWillCallHistoryAfterOpen(DataSet: TDataSet);

@@ -343,10 +343,12 @@ object FrmLog: TFrmLog
         end
         object Memo2: TfrxMemoView
           AllowVectorExport = True
-          Left = 141.637910000000000000
+          Left = 179.433210000000000000
           Top = 4.566929130000000000
           Width = 56.692950000000000000
           Height = 15.118120000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -360,10 +362,12 @@ object FrmLog: TFrmLog
         end
         object Memo3: TfrxMemoView
           AllowVectorExport = True
-          Left = 209.669450000000000000
+          Left = 255.023810000000000000
           Top = 4.566929130000000000
           Width = 79.370130000000000000
           Height = 15.118120000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -377,10 +381,12 @@ object FrmLog: TFrmLog
         end
         object Memo4: TfrxMemoView
           AllowVectorExport = True
-          Left = 296.692925590000000000
+          Left = 343.937034720000000000
           Top = 4.566929130000000000
           Width = 94.488250000000000000
           Height = 15.118120000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -394,10 +400,12 @@ object FrmLog: TFrmLog
         end
         object Memo5: TfrxMemoView
           AllowVectorExport = True
-          Left = 623.622450000000000000
+          Left = 680.315400000000000000
           Top = 4.566929130000000000
           Width = 56.692950000000000000
           Height = 15.118120000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -411,10 +419,12 @@ object FrmLog: TFrmLog
         end
         object Memo6: TfrxMemoView
           AllowVectorExport = True
-          Left = 752.126470000000000000
+          Left = 805.039890000000000000
           Top = 4.566929130000000000
           Width = 56.692950000000000000
           Height = 15.118120000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -428,10 +438,12 @@ object FrmLog: TFrmLog
         end
         object Memo7: TfrxMemoView
           AllowVectorExport = True
-          Left = 842.835190000000000000
+          Left = 884.410020000000000000
           Top = 4.566929130000000000
           Width = 79.370130000000000000
           Height = 15.118120000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -473,8 +485,10 @@ object FrmLog: TFrmLog
           AllowVectorExport = True
           Left = 7.559060000000000000
           Top = 1.779530000000000000
-          Width = 128.504020000000000000
+          Width = 166.299320000000000000
           Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           DataField = 'USUARIO_DEFINE'
           DataSet = frxDBDataset1
           DataSetName = 'frxDBDataset1'
@@ -492,10 +506,12 @@ object FrmLog: TFrmLog
         object frxDBDataset1CONTROLLED: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 213.448980000000000000
+          Left = 258.803340000000000000
           Top = 1.779530000000000000
           Width = 52.913420000000000000
           Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           DataField = 'CONTROLLED'
           DataSet = frxDBDataset1
           DataSetName = 'frxDBDataset1'
@@ -513,10 +529,12 @@ object FrmLog: TFrmLog
         object frxDBDataset1DESCRIPCION: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 296.803340000000000000
+          Left = 343.937034720000000000
           Top = 1.779530000000000000
-          Width = 313.700990000000000000
+          Width = 328.819110000000000000
           Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           DataField = 'DESCRIPCION'
           DataSet = frxDBDataset1
           DataSetName = 'frxDBDataset1'
@@ -534,10 +552,12 @@ object FrmLog: TFrmLog
         object frxDBDataset1DESC_CODIGO: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 141.637910000000000000
+          Left = 179.433210000000000000
           Top = 1.779530000000000000
-          Width = 64.252010000000000000
+          Width = 68.031540000000000000
           Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           DataField = 'DESC_CODIGO'
           DataSet = frxDBDataset1
           DataSetName = 'frxDBDataset1'
@@ -555,10 +575,12 @@ object FrmLog: TFrmLog
         object frxDBDataset1FECHA: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 623.622450000000000000
+          Left = 680.315400000000000000
           Top = 1.779530000000000000
           Width = 120.944960000000000000
           Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           DataField = 'FECHA'
           DataSet = frxDBDataset1
           DataSetName = 'frxDBDataset1'
@@ -576,10 +598,12 @@ object FrmLog: TFrmLog
         object frxDBDataset1NO_RX: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 752.126470000000000000
+          Left = 805.039890000000000000
           Top = 1.000000000000000000
           Width = 68.031540000000000000
           Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           DataField = 'NO_RX'
           DataSet = frxDBDataset1
           DataSetName = 'frxDBDataset1'
@@ -596,9 +620,11 @@ object FrmLog: TFrmLog
         object frxDBDataset1SUCCESSFUL: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 842.835190000000000000
+          Left = 884.410020000000000000
           Width = 79.370130000000000000
           Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           DataField = 'SUCCESSFUL'
           DataSet = frxDBDataset1
           DataSetName = 'frxDBDataset1'
@@ -632,6 +658,8 @@ object FrmLog: TFrmLog
           Left = 7.559060000000000000
           Width = 963.780150000000000000
           Height = 45.354360000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           DataField = 'NOTE'
           DataSet = frxDBDataset1
           DataSetName = 'frxDBDataset1'
@@ -742,6 +770,7 @@ object FrmLog: TFrmLog
       'CONTROLLED=CONTROLLED'
       'DRUG_ID=DRUG_ID'
       'SUCCESSFUL=SUCCESSFUL')
+    DataSource = DMMidas.DSLog
     BCDToCurrency = False
     DataSetOptions = []
     Left = 624
@@ -875,6 +904,7 @@ object FrmLog: TFrmLog
       'IMAGE_DATABASE_IP=IMAGE_DATABASE_IP'
       'ENFORCE_MARKET_STAUS=ENFORCE_MARKET_STAUS'
       'TownAddress=TownAddress')
+    DataSource = DMMidas.DSSetup
     BCDToCurrency = False
     DataSetOptions = []
     Left = 808

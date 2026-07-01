@@ -2065,9 +2065,6 @@ Coordinates=4253,3686,230,36
 [CDSTransHeadDELIVERYPHONE]
 Coordinates=4253,3741,213,36
 
-[CDSPacientesANIMAL_NAME]
-Coordinates=4253,3796,189,36
-
 [CDSPacientesCELULAR]
 Coordinates=4253,3851,157,36
 
@@ -7652,6 +7649,6 @@ Coordinates=7255,10,149,300
 Coordinates=9902,2641,187,36
 
 []
-Coordinates=4604,4632,242,58
+Coordinates=4253,3796,189,36
 Visible=True
 

@@ -16,7 +16,7 @@ uses
   FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, FireDAC.Comp.UI, FireDAC.Phys.ODBCBase, frxClass,
   frxDBSet, REST.Types, REST.Client, Data.Bind.Components, Data.Bind.ObjectScope,
-  IdExplicitTLSClientServerBase, IdMessageClient, IdSMTPBase, IdSMTP, IdMessage,
+  IdExplicitTLSClientServerBase, IdMessageClient, IdSMTPBase, IdSMTP, IdMessage ,
   IdIntercept, System.IniFiles;
 
 type
@@ -2447,7 +2447,6 @@ type
     CDSPacientesID_IMAGE: TIntegerField;
     CDSPacientesRECORD_LOCKED: TBooleanField;
     CDSPacientesINSTANCIA: TIntegerField;
-    CDSPacientesANIMAL_NAME: TWideStringField;
     CDSPacientesDELIVERY: TBooleanField;
     CDSPacientesCLASIFICATION: TWideStringField;
     CDSPacientesAUTOMATIC_REFILL: TBooleanField;

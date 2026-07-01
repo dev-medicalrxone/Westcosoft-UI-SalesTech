@@ -1084,7 +1084,7 @@ begin
     if Assigned(FrmPickup) then
     begin
       FrmPickup.StatusBar1.Panels[1].Text := 'Items in Bag: ' + IntToStr(RecCount);
-      FrmPickup.StatusBar1.Panels[0].Text := 'Bag # ' + cdsWillCallBAG_NUMBER.Value;//IntToStr(FrmMain.BagNumber);
+      FrmPickup.StatusBar1.Panels[0].Text := 'Bag # ' + cdsWillCallBAG_NUMBER.asString;//IntToStr(FrmMain.BagNumber);
       FrmPickup.StatusBar1.Panels[3].Text := 'Amount Due: ' + Format('%m', [WILLCALL_TOTAL_AMOUNT_DUE.ParamByName('@TAmountDue').asFloat]);
     end;
     FrmMain.sbMain.Refresh;
@@ -5139,22 +5139,22 @@ begin
                     if CommonPOS.RxRecibo = True then
                         AddProduct('F','RX' + cdsWillCallRX_NUMBER.asString, 'RX' + cdsWillCallRX_NUMBER.asString,DeptDesc,'F','',
                                CommonPOS.User, 'F', 'F', cdsWillCallAmountDue.Value,
-                               cdsWillCallCOST.Value, Perc, 0,1, 0, 0, CommonPOS.ID, 0,0, StrToInt(cdsWillCallBAG_NUMBER.Value), cdsWillCallOTC_NUMBER.Value,false,false,'',0,false,0,false, false) // cdsWillCall_StatusID.Value
+                               cdsWillCallCOST.Value, Perc, 0,1, 0, 0, CommonPOS.ID, 0,0, cdsWillCallBAG_NUMBER.Value, cdsWillCallOTC_NUMBER.Value,false,false,'',0,false,0,false, false) // cdsWillCall_StatusID.Value
                       else
                         AddProduct('F','RX' + cdsWillCallRX_NUMBER.asString, 'RX' + Copy(cdsWillCallDRUG_DESCRIPTION.AsString,1,30),DeptDesc,'F','',
                                CommonPOS.User, 'F', 'F', cdsWillCallAmountDue.Value,
-                               cdsWillCallCOST.Value, Perc, 0,1, 0, 0, CommonPOS.ID, 0,0, StrToInt(cdsWillCallBAG_NUMBER.Value), cdsWillCallOTC_NUMBER.Value,false,false,'',0,false,0,false, false)
+                               cdsWillCallCOST.Value, Perc, 0,1, 0, 0, CommonPOS.ID, 0,0, cdsWillCallBAG_NUMBER.Value, cdsWillCallOTC_NUMBER.Value,false,false,'',0,false,0,false, false)
                   end
                   else
                   begin
                     if CommonPOS.RxRecibo = True then
                         AddProduct('F','RX' + cdsWillCallRX_NUMBER.asString, 'OT' + cdsWillCallOTC_NUMBER.asString,'OTC','F','',
                                CommonPOS.User, 'F', 'F', cdsWillCallAmountDue.Value,
-                               cdsWillCallCOST.Value, Perc, 0,1, 0, 0, CommonPOS.ID, 0,0, StrToInt(cdsWillCallBAG_NUMBER.Value), cdsWillCallOTC_NUMBER.Value,false,false,'',0,false,0,false, false)
+                               cdsWillCallCOST.Value, Perc, 0,1, 0, 0, CommonPOS.ID, 0,0, cdsWillCallBAG_NUMBER.Value, cdsWillCallOTC_NUMBER.Value,false,false,'',0,false,0,false, false)
                       else
                         AddProduct('F','RX' + cdsWillCallRX_NUMBER.asString, 'OT' + Copy(cdsWillCallDRUG_DESCRIPTION.AsString,1,30),'OTC','F','',
                                CommonPOS.User, 'F', 'F', cdsWillCallAmountDue.Value,
-                               cdsWillCallCOST.Value, Perc, 0,1, 0, 0, CommonPOS.ID, 0,0, StrToInt(cdsWillCallBAG_NUMBER.Value), cdsWillCallOTC_NUMBER.Value,false,false,'',0,false,0,false, false)
+                               cdsWillCallCOST.Value, Perc, 0,1, 0, 0, CommonPOS.ID, 0,0, cdsWillCallBAG_NUMBER.Value, cdsWillCallOTC_NUMBER.Value,false,false,'',0,false,0,false, false)
                   end;
                 end
                 else
@@ -10256,7 +10256,7 @@ begin
       cdsWillCall_Status.CommandText := 'select * from WILLCALL_STATUS where BAG_NUMBER = ' + cdsWillCallBAG_NUMBER.AsString;
       cdsWillCall_Status.Open;
       Queries.OpenWC_Patient('where NumeroCliente = ' + IntToStr(cdsWillCall_StatusCUSTOMER_NUMBER.Value));
-      CommonPOS.SmartPickup(StrToInt(cdsWillCallBAG_NUMBER.Value));
+      CommonPOS.SmartPickup(cdsWillCallBAG_NUMBER.Value);
     end;
   end;
 end;
@@ -11283,9 +11283,9 @@ begin
   With DMMidas do
   begin
     if CommonPOS.standalone = True then
-      fdq.Connection := FDConnection1
+      fdq.Connection := FDConnection2
     else
-      fdq.Connection := FDConnection2;
+      fdq.Connection := FDConnection1;
   end;
 end;
 

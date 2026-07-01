@@ -1337,7 +1337,7 @@ begin
       cdsWillCall.CommandText := 'Select * from WillCall with (NOLOCK) where RX_NUMBER = ' + chr(39) + NoRx + chr(39);
     cdsWillCall.Open;
     if cdsWillCall.RecordCount > 0 then
-      Result := cdsWillCallBAG_NUMBER.Value
+      Result := cdsWillCallBAG_NUMBER.asString
     else
       Result := '0';
   end;

@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Grids, DBGrids, ComCtrls, ToolWin, jpeg, ExtCtrls, StdCtrls, Data.DB,
   Vcl.DBCtrls, frxClass, frxDBSet, Vcl.Mask, System.ImageList, Vcl.ImgList,
-  frCoreClasses;
+  frCoreClasses, frxExportBaseDialog, frxExportCSV;
 
 type
   TFrmLog = class(TForm)

@@ -9881,15 +9881,14 @@ object DMMidas: TDMMidas
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'Server=192.168.4.217,1433'
+      'Server=192.168.4.24,1433'
       'User_Name=dbo'
       'Password=agabriel'
       'ApplicationName=Enterprise/Architect/Ultimate'
       'Workstation=SERVER'
       'MARS=yes'
-      'Database=familiar'
+      'Database=th_salestech'
       'DriverID=MSSQL')
-    Connected = True
     LoginPrompt = False
     Transaction = FDTransaction1
     Left = 24
@@ -19213,11 +19212,6 @@ object DMMidas: TDMMidas
     end
     object CDSPacientesINSTANCIA: TIntegerField
       FieldName = 'INSTANCIA'
-    end
-    object CDSPacientesANIMAL_NAME: TWideStringField
-      FieldName = 'ANIMAL_NAME'
-      FixedChar = True
-      Size = 45
     end
     object CDSPacientesDELIVERY: TBooleanField
       FieldName = 'DELIVERY'
