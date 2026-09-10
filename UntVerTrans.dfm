@@ -912,9 +912,10 @@ object FrmVerTrans: TFrmVerTrans
       FixedChar = True
       Size = 3
     end
-    object CDSTransactionDetailsLAST4: TIntegerField
-      DisplayLabel = 'Last 4'
+    object CDSTransactionDetailsLAST4: TStringField
       FieldName = 'LAST4'
+      Required = True
+      Size = 5
     end
   end
   object dspVerTransacciones: TDataSetProvider

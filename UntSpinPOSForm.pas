@@ -182,7 +182,8 @@ end;
 procedure TfrmSpinPOS.FormDestroy(Sender: TObject);
 begin
     if CommonPOS.CDApproved = True then
-        FrmCheckOut.Close
+        if Assigned(FrmCheckOut) then
+          FrmCheckOut.Close
     else
       begin
         if ProcessNum=1 then

@@ -234,7 +234,7 @@ end;
     procedure SendtoPole(Line1, Line2: String);
     procedure AddProduct(GroupSale, ProdUPC, ProdDesc, ProdDept, Food, SubDetail, User, TaxMunicipal, TaxEstatal: String;
                          Price, RegPrice, Disc, costo, ProdQty: Double; Suplidor, Shift, ID, PID, ProdSubDpt, BagNumber, OTC_NUMBER: Integer; UTILIDAD, TaxServicio: Boolean; Note: String; Main_Cource_ID: Integer;
-                         INVCONTROL_RECIPE: Boolean; BUTTON_QTY: Double; ProcessedFood, salesPromo: Boolean);
+                         INVCONTROL_RECIPE: Boolean; BUTTON_QTY: Double; ProcessedFood, salesPromo: Boolean; PR_OTC: Boolean = False);
     Procedure CheckOut(Tip, Amount, SUBTOTAL: Double; TransType, PrintType: String; TS: Boolean; NoRecibos: Integer; Factura: Boolean);
     procedure BorrarProducto(TranNo, IDno: Integer);
     procedure PrintReceipt(THead, NoRecibos: Integer; OpenDrwr: Boolean; TransType, PrintType: String; IVULoto, RePrint, Factura, Kitchen, FinalReceipt: Boolean);
@@ -2829,7 +2829,7 @@ end;
 procedure TCommonPOS.AddProduct(GroupSale , ProdUPC, ProdDesc, ProdDept, Food, SubDetail, User, TaxMunicipal, TaxEstatal: String;
                             Price, RegPrice, Disc, costo, ProdQty: Double; Suplidor, Shift, ID, PID, ProdSubDpt, BagNumber,
                             OTC_NUMBER: Integer; UTILIDAD, TaxServicio: Boolean; Note: String; Main_Cource_ID: Integer;
-                            INVCONTROL_RECIPE: Boolean; BUTTON_QTY: Double; ProcessedFood, salesPromo: Boolean);
+                            INVCONTROL_RECIPE: Boolean; BUTTON_QTY: Double; ProcessedFood, salesPromo: Boolean; PR_OTC: Boolean = False);
 Var
   IDTemp, IDNumber, TQty: Integer;
   Precio, SrcQty: Double;
@@ -3076,6 +3076,7 @@ Begin
         else
           ParamByName('@DISCOUNT_PERCENTAGE').Value := 0 ;
         ParamByName('@SALES_PROMO').Value := salesPromo ;
+        ParamByName('@PR_OTC').Value := PR_OTC ;
         ParamByName('@DBname').Value := CommonPOS.DataBaseNameRx;
         ExecProc;
         if CDSInventarioPisoFOODITEM.Value = 1 then
@@ -5463,7 +5464,7 @@ begin
         if SKU > '' then
         begin
           Loop := False;
-          Queries.OpenOTC(StrToInt(Copy(Trim(SKU), 3, 8)), False);
+          Queries.OpenPR_OTC(StrToInt(Copy(Trim(SKU), 3, 8)));
           NumRx := Copy(Trim(SKU), 3, 8);
         end
         else
@@ -5483,20 +5484,19 @@ begin
               NumRX := '';
             Free;
             if Trim(NumRx) > '' then
-              Queries.OpenOTC(StrToInt(NumRX), false);
+              Queries.OpenPR_OTC(StrToInt(NumRX));
           end;
         end;
-
-          If CDSOTCMEDICAMENTO.Value <> '' then
+          If cdsPR_OTCMEDICAMENTO.Value <> '' then
           begin
-            CDSInventarioPiso.Close;
+          {  CDSInventarioPiso.Close;
             CDSInventarioPiso.CommandText := 'Select * from InventarioPiso with (NOLOCK) where PRODUCTNO = ' + CDSOTCProduct_ID.asString;
-            CDSInventarioPiso.Open;
-            If CDSOTCCobrado.Value <> 'T' then
+            CDSInventarioPiso.Open;    }
+            If cdsPR_OTCCOBRADO.Value <> 'T' then
             Begin
-              if CDSInventarioPisoCobrar_Tax.Value = 1 then
+             { if CDSInventarioPisoCobrar_Tax.Value = 1 then
               begin
-                if CommonPOS.RxRecibo = True then
+               { if CommonPOS.RxRecibo = True then
                   AddProduct('F','RX' + NumRX ,'RX' + NumRX +'-Q'+ FloatToStr(CDSOTCQTY.asFloat),'RECETAS','F','',
                            CommonPOS.User,  'T', 'T', CDSOTCTOTAL.asFloat*Mult,
                            CDSOTCTOTAL.asFloat, Perc, CDSOTCCOSTOVENTA.asFloat,1,0,CommonPOS.Turno, CommonPOS.ID, 0,0,0,StrToInt(NumRX),
@@ -5507,18 +5507,18 @@ begin
                            CDSOTCTOTAL.asFloat, Perc,CDSOTCCOSTOVENTA.asFloat,1,0,CommonPOS.Turno, CommonPOS.ID, 0,0,0,StrToInt(NumRX),
                            false,false,'',0,false,0,false, false);
               end
-              else
+              else   }
               begin
                 if CommonPOS.RxRecibo = True then
-                  AddProduct('F','RX' + NumRX ,'RX' + NumRX +'-Q'+ FloatToStr(CDSOTCQTY.asFloat),'RECETAS','F','',
-                           CommonPOS.User,  CDSSetupCOBRAR_OTC_TAX.Value, CDSSetupCOBRAR_OTC_TAX.Value, CDSOTCTOTAL.asFloat*Mult,
-                           CDSOTCTOTAL.asFloat, Perc, CDSOTCCOSTOVENTA.asFloat,1,0,CommonPOS.Turno, CommonPOS.ID, 0,0,0,StrToInt(NumRX),
-                           false,false,'',0,false,0,false, false)
+                  AddProduct('F','RX' + NumRX ,'RX' + NumRX +'-Q'+ FloatToStr(CDSPR_OTCQTY.asFloat),'RECETAS','F','',
+                           CommonPOS.User,  CDSSetupCOBRAR_OTC_TAX.Value, CDSSetupCOBRAR_OTC_TAX.Value, CDSPR_OTCTOTAL.asFloat*Mult,
+                           CDSPR_OTCTOTAL.asFloat, Perc, CDSPR_OTCCOSTOVENTA.asFloat,1,0,CommonPOS.Turno, CommonPOS.ID, 0,0,0,StrToInt(NumRX),
+                           false,false,'',0,false,0,false, false, true)
                 else
-                  AddProduct('F','RX' + NumRX ,CDSOTCMEDICAMENTO.Value +'-Q'+ FloatToStr(CDSOTCQTY.asFloat),'RECETAS','F','',
-                           CommonPOS.User, CDSSetupCOBRAR_OTC_TAX.Value, CDSSetupCOBRAR_OTC_TAX.Value,  CDSOTCTOTAL.asFloat*Mult,
-                           CDSOTCTOTAL.asFloat, Perc, CDSOTCCOSTOVENTA.asFloat,1,0,CommonPOS.Turno, CommonPOS.ID, 0,0,0,StrToInt(NumRX),
-                           false,false,'',0,false,0,false, false);
+                  AddProduct('F','RX' + NumRX ,CDSPR_OTCMEDICAMENTO.Value +'-Q'+ FloatToStr(CDSPR_OTCQTY.asFloat),'RECETAS','F','',
+                           CommonPOS.User, CDSSetupCOBRAR_OTC_TAX.Value, CDSSetupCOBRAR_OTC_TAX.Value,  CDSPR_OTCTOTAL.asFloat*Mult,
+                           CDSPR_OTCTOTAL.asFloat, Perc, CDSPR_OTCCOSTOVENTA.asFloat,1,0,CommonPOS.Turno, CommonPOS.ID, 0,0,0,StrToInt(NumRX),
+                           false,false,'',0,false,0,false, false, true);
               end;
 
             end
@@ -5883,6 +5883,7 @@ begin
                   ParamByName('@NOTRANS').Value := StrToInt(EditNumber.Text);
                   ParamByName('@UPDATE_INV').Value := True;
                   ParamByName('@isVoid').Value := False;
+                  ParamByName('@DBName').Value := CommonPOS.DataBaseNameRx;
                   ExecProc;
                   if FrmMain.LanguageStr = 'English' then
                     ShowMessageStr(TResourceLocalizer.GetString (FrmMain.LanguageResOffset, 280) + Trim(EditNumber.Text), 12, clBlack)
@@ -6921,7 +6922,7 @@ begin
       CDSTransShow.First;
       while not CDSTransShow.Eof do
       begin
-        if CDSTransShowOTC_NUMBER.Value > 0 then
+        if (CDSTransShowOTC_NUMBER.Value > 0) and (CDSTransShowPR_OTC.Value = False) then
         begin
           Queries.OpenPrescriptions(false, CDSTransShowOTC_NUMBER.Value);
           if DMMidas.CDSOTCNUMERORECETA.Value > 0 then
@@ -8934,6 +8935,7 @@ begin
     ParamByName('@NOTRANS').Value := noTrans;
     ParamByName('@UPDATE_INV').Value := True;
     ParamByName('@isVoid').Value := True;
+    ParamByName('@DBName').Value := CommonPOS.DataBaseNameRx;
     ExecProc;
   end;
   CommonPOS.Insert_Print_Jobs(True, false, false, 'receipt', '0', IntToStr(noTrans), 'VOI', '', '', '', '0', 1);

@@ -17,6 +17,7 @@ Type
     procedure NextNumber;
     procedure OpenPrescriptions(SearchByNoRx: Boolean; OTC_NUMBER: Integer);
     procedure OpenOTC(OTCNumber: Integer; filterByChecked: Boolean);
+    procedure OpenPR_OTC(OTCNumber: Integer);
     procedure OpenPasswords(Password: String);
     procedure OpenPasswordsIniciales(Iniciales: String);
     procedure MultiToken(InputString: String; var Token1, Token2, Token3: String);
@@ -59,6 +60,7 @@ Var
   GPNO: String;
   upcE: String;
   upc: String;
+  SearchGroupMain: Boolean;
 begin
   if Token1 > ' ' then
   begin
@@ -123,12 +125,30 @@ begin
               CDSInventarioPiso.Close;
               CDSInventarioPiso.CommandText := 'Select * from InventarioPiso with (NOLOCK) where CodigoBarra = '+ #39 + upc  + #39 + ' and Recetario <> ' + #39 + 'R' + #39 + ' order by DESCRIPCION';
               CDSInventarioPiso.Open;
-              if (Trim(CDSInventarioPisoCodigoBarra.Value) > '') and (CDSInventarioPisoGROUP_PRODUCTNO.Value > 0) then
+              SearchGroupMain := False;
+              if CDSInventarioPiso.RecordCount = 1 then
+              begin
+                if Trim(CDSInventarioPisoCodigoBarra.Value) > '' then
+                begin
+                  if not CDSInventarioPisoGROUP_PRODUCTNO.IsNull then
+                    SearchGroupMain := CDSInventarioPisoGROUP_PRODUCTNO.Value > 0;
+                end;
+              end;
+              if SearchGroupMain then
               begin
                 GPNO := CDSInventarioPisoGROUP_PRODUCTNO.asString;
                 CDSInventarioPiso.Close;
-                CDSInventarioPiso.CommandText := 'Select * from InventarioPiso with (NOLOCK) where GROUP_PRODUCTNO = '+ #39 + GPNO  + #39 +  ' and Recetario <> ' + #39 + 'R' + #39 + ' and MAIN_NDC = 1 order by DESCRIPCION';      //main_ndc added in order to insert product instead of showing all linked products AGC 03/11/26
+                // Older databases may not have MAIN_NDC populated; use the group anchor as fallback.
+                CDSInventarioPiso.CommandText := 'Select Top 1 * from InventarioPiso with (NOLOCK) where Recetario <> ' + #39 + 'R' + #39 +
+                  ' and ((GROUP_PRODUCTNO = ' + GPNO + ' and MAIN_NDC = 1) or PRODUCTNO = ' + GPNO + ')' +
+                  ' order by case when MAIN_NDC = 1 then 0 when PRODUCTNO = ' + GPNO + ' then 1 else 2 end, DESCRIPCION';
                 CDSInventarioPiso.Open;
+                if CDSInventarioPiso.RecordCount = 0 then
+                begin
+                  CDSInventarioPiso.Close;
+                  CDSInventarioPiso.CommandText := 'Select * from InventarioPiso with (NOLOCK) where CodigoBarra = '+ #39 + upc  + #39 + ' and Recetario <> ' + #39 + 'R' + #39 + ' order by DESCRIPCION';
+                  CDSInventarioPiso.Open;
+                end;
               end
               else
               begin
@@ -470,6 +490,16 @@ begin
       CDSOTC.Open;
       BatchNo := CDSOTCBATCH_NUMBER.Value;
     end;
+  end;
+end;
+
+procedure TQueries.OpenPR_OTC(OTCNumber: Integer);
+begin
+  with DMMidas do
+  begin
+    cdsPR_OTC.Close;
+    cdsPR_OTC.CommandText := 'Select * from PR_OTC with (NOLOCK)  where OTCNumber = ' + IntToStr(OTCNumber);
+    cdsPR_OTC.Open;
   end;
 end;
 

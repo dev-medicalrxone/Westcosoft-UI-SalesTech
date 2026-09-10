@@ -98,7 +98,7 @@ type
     Label8: TLabel;
     ComboBox2: TComboBox;
     Label5: TLabel;
-    CDSTransactionDetailsLAST4: TIntegerField;
+    CDSTransactionDetailsLAST4: TStringField;
     procedure ToolButton1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);

@@ -99,14 +99,14 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <VerInfo_Build>1</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=11.2026.421.1;InternalName=;LegalCopyright=©WesCom, Inc.;LegalTrademarks=;OriginalFilename=;ProductName=SalesTech;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=11.2026.714.1;InternalName=;LegalCopyright=©WesCom, Inc.;LegalTrademarks=;OriginalFilename=;ProductName=SalesTech;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <DCC_ExeOutput>F:\WestcoSoft\Salestech\Bin</DCC_ExeOutput>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
         <VerInfo_MinorVer>2026</VerInfo_MinorVer>
         <Icon_MainIcon>SalesTech_Icon3.ico</Icon_MainIcon>
         <DCC_PEOSVersion>5.1</DCC_PEOSVersion>
-        <VerInfo_Release>421</VerInfo_Release>
+        <VerInfo_Release>714</VerInfo_Release>
         <VerInfo_MajorVer>11</VerInfo_MajorVer>
         <VerInfo_AutoGenVersion>false</VerInfo_AutoGenVersion>
     </PropertyGroup>

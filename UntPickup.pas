@@ -203,7 +203,10 @@ begin
             Queries.OpenWillCall_Status(IntToStr(BagNumber));
             Queries.OpenWillCallBag(IntToStr(BagNumber));
             //Queries.OpenPatient_Rx('', DMwc.cdsWillCall_StatusCUSTOMER_NUMBER.Value);
-            Queries.OpenWC_Patient('where NumeroCliente = ' + DMwc.cdsWillCall_StatusCUSTOMER_NUMBER.asString);
+            if DMwc.cdsWillCall_StatusCUSTOMER_NUMBER.asString > '' then        //Added to prevent error on query with empty customer number AGC82526
+              Queries.OpenWC_Patient('where NumeroCliente = ' + DMwc.cdsWillCall_StatusCUSTOMER_NUMBER.asString)
+            else
+              CommonPOS.ShowMessageStr('Not found', 12, clred);
           end
           else
           begin

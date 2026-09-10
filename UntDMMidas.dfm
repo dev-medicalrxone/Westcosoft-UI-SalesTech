@@ -5086,6 +5086,9 @@ object DMMidas: TDMMidas
     object CDSTransShowSALES_PROMO: TBooleanField
       FieldName = 'SALES_PROMO'
     end
+    object CDSTransShowPR_OTC: TBooleanField
+      FieldName = 'PR_OTC'
+    end
   end
   object CDSOrderDetailHistory: TClientDataSet
     Aggregates = <>
@@ -9887,7 +9890,7 @@ object DMMidas: TDMMidas
       'ApplicationName=Enterprise/Architect/Ultimate'
       'Workstation=SERVER'
       'MARS=yes'
-      'Database=th_salestech'
+      'Database=tufarmacia_Salestec'
       'DriverID=MSSQL')
     LoginPrompt = False
     Transaction = FDTransaction1
@@ -10771,13 +10774,19 @@ object DMMidas: TDMMidas
       end
       item
         Position = 51
+        Name = '@PR_OTC'
+        DataType = ftBoolean
+        ParamType = ptInput
+      end
+      item
+        Position = 52
         Name = '@DBName'
         DataType = ftFixedWideChar
         ParamType = ptInput
         Size = 20
       end
       item
-        Position = 52
+        Position = 53
         Name = '@Current_Identity'
         DataType = ftInteger
         ParamType = ptInputOutput
@@ -18678,13 +18687,13 @@ object DMMidas: TDMMidas
   end
   object FDConnection2: TFDConnection
     Params.Strings = (
-      'Server=192.168.4.217,1433'
+      'Server=192.168.4.24,1433'
       'User_Name=dbo'
       'Password=agabriel'
       'ApplicationName=Enterprise/Architect/Ultimate'
       'Workstation=SERVER'
       'MARS=yes'
-      'Database=familiar'
+      'Database=perpetuo'
       'DriverID=MSSQL')
     LoginPrompt = False
     Transaction = FDTransaction2
@@ -20354,5 +20363,95 @@ object DMMidas: TDMMidas
       FixedChar = True
       Size = 500
     end
+  end
+  object cdsPR_OTC: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspPR_OTC'
+    Left = 200
+    Top = 824
+    object cdsPR_OTCOTCNUMBER: TAutoIncField
+      FieldName = 'OTCNUMBER'
+      ReadOnly = True
+    end
+    object cdsPR_OTCMEDICAMENTO: TWideStringField
+      FieldName = 'MEDICAMENTO'
+      Required = True
+      FixedChar = True
+      Size = 30
+    end
+    object cdsPR_OTCMEDICAMENTOMIX: TWideStringField
+      FieldName = 'MEDICAMENTOMIX'
+      FixedChar = True
+      Size = 120
+    end
+    object cdsPR_OTCQTY: TFMTBCDField
+      FieldName = 'QTY'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsPR_OTCTOTAL: TFMTBCDField
+      FieldName = 'TOTAL'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsPR_OTCCOSTOVENTA: TFMTBCDField
+      FieldName = 'COSTOVENTA'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsPR_OTCATENDIDOPOR: TStringField
+      FieldName = 'ATENDIDOPOR'
+      FixedChar = True
+      Size = 3
+    end
+    object cdsPR_OTCFECHAOTC: TSQLTimeStampField
+      FieldName = 'FECHAOTC'
+      Required = True
+    end
+    object cdsPR_OTCCOBRADO: TStringField
+      FieldName = 'COBRADO'
+      Required = True
+      FixedChar = True
+      Size = 1
+    end
+    object cdsPR_OTCPRODUCT_ID: TIntegerField
+      FieldName = 'PRODUCT_ID'
+      Required = True
+    end
+    object cdsPR_OTCNUMEROCLIENTE: TIntegerField
+      FieldName = 'NUMEROCLIENTE'
+    end
+    object cdsPR_OTCNDC: TWideStringField
+      FieldName = 'NDC'
+      FixedChar = True
+      Size = 11
+    end
+    object cdsPR_OTCCREATED_AT: TSQLTimeStampField
+      FieldName = 'CREATED_AT'
+      Required = True
+    end
+  end
+  object dsPR_OTC: TDataSource
+    DataSet = cdsPR_OTC
+    Left = 136
+    Top = 824
+  end
+  object dspPR_OTC: TDataSetProvider
+    DataSet = qPR_OTC
+    Options = [poPropogateChanges, poAllowCommandText]
+    Left = 72
+    Top = 824
+  end
+  object qPR_OTC: TFDQuery
+    Connection = FDConnection2
+    SQL.Strings = (
+      'Select * from PR_OTC'
+      '')
+    Left = 8
+    Top = 824
   end
 end
